@@ -1,0 +1,269 @@
+﻿body {
+  margin:0px;
+  background-image:none;
+  position:static;
+  left:auto;
+  width:364px;
+  margin-left:0;
+  margin-right:0;
+  text-align:left;
+}
+#base {
+  position:absolute;
+  z-index:0;
+}
+#u0 {
+  position:absolute;
+  left:-1px;
+  top:-28px;
+  width:366px;
+  height:640px;
+}
+#u0_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:366px;
+  height:640px;
+}
+#u1 {
+  position:absolute;
+  left:2px;
+  top:312px;
+  width:362px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u2 {
+  position:absolute;
+  left:15px;
+  top:72px;
+  width:335px;
+  height:158px;
+  opacity:0.5;
+}
+#u2_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:335px;
+  height:158px;
+}
+#u3 {
+  position:absolute;
+  left:2px;
+  top:71px;
+  width:331px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u4 {
+  position:absolute;
+  left:21px;
+  top:84px;
+  width:329px;
+  height:112px;
+  font-size:14px;
+}
+#u4_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:329px;
+  height:112px;
+}
+#u5 {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:329px;
+  word-wrap:break-word;
+}
+#u6 {
+  position:absolute;
+  left:191px;
+  top:11px;
+  width:1px;
+  height:33px;
+  font-family:'Minecrafter Regular', 'Minecrafter';
+  font-weight:400;
+  font-style:normal;
+  text-align:center;
+}
+#u6_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:1px;
+  height:33px;
+}
+#u7 {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:1px;
+  white-space:nowrap;
+}
+#u8 {
+  position:absolute;
+  left:7px;
+  top:5px;
+  width:44px;
+  height:41px;
+}
+#u8_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:44px;
+  height:41px;
+}
+#u9 {
+  position:absolute;
+  left:2px;
+  top:12px;
+  width:40px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u10 {
+  position:absolute;
+  left:0px;
+  top:537px;
+  width:365px;
+  height:75px;
+  opacity:0.400000005960464;
+}
+#u10_img {
+  position:absolute;
+  left:-5px;
+  top:-7px;
+  width:375px;
+  height:85px;
+}
+#u11 {
+  position:absolute;
+  left:2px;
+  top:30px;
+  width:361px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u12 {
+  position:absolute;
+  left:112px;
+  top:540px;
+  width:141px;
+  height:56px;
+  font-family:'Minecraftia Regular', 'Minecraftia';
+  font-weight:400;
+  font-style:normal;
+  color:#66FFCC;
+}
+#u12_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:151px;
+  height:66px;
+}
+#u12_img.mouseDown {
+}
+#u12.mouseDown {
+}
+#u13 {
+  position:absolute;
+  left:2px;
+  top:20px;
+  width:137px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u14 {
+  position:absolute;
+  left:0px;
+  top:240px;
+  width:365px;
+  height:222px;
+}
+#u14_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:365px;
+  height:222px;
+}
+#u15 {
+  position:absolute;
+  left:2px;
+  top:103px;
+  width:361px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u16 {
+  position:absolute;
+  left:21px;
+  top:375px;
+  width:93px;
+  height:155px;
+}
+#u16_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:93px;
+  height:155px;
+}
+#u17 {
+  position:absolute;
+  left:2px;
+  top:70px;
+  width:89px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u18 {
+  position:absolute;
+  left:191px;
+  top:397px;
+  width:133px;
+  height:133px;
+}
+#u18_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:133px;
+  height:133px;
+}
+#u19 {
+  position:absolute;
+  left:2px;
+  top:58px;
+  width:129px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
+#u20 {
+  position:absolute;
+  left:52px;
+  top:6px;
+  width:259px;
+  height:40px;
+}
+#u20_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:259px;
+  height:40px;
+}
+#u21 {
+  position:absolute;
+  left:2px;
+  top:12px;
+  width:255px;
+  visibility:hidden;
+  word-wrap:break-word;
+}
