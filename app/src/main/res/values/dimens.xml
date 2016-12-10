@@ -11,4 +11,5 @@
 
     <!-- Story page -->
     <dimen name="story_font_size">24sp</dimen>
+    <dimen name="story_welcome_logo_height">200dp</dimen>
 </resources>
