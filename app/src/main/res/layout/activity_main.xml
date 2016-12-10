@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/lets_go_start"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/story_welcome_lets_go_margin_top" />
+        android:layout_marginTop="@dimen/story_welcome_lets_go_margin_top"
+        android:onClick="handleLetsGoButtonClick"/>
 
 </LinearLayout>
