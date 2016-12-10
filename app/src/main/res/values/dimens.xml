@@ -2,4 +2,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Custom toolbar -->
+    <dimen name="actionbar_horizontal_margin">4dp</dimen>
+    <dimen name="actionbar_vertical_margin">4dp</dimen>
+    <dimen name="actionbar_text_padding">3dp</dimen>
+    <dimen name="actionbar_text_max_width">240dp</dimen>
 </resources>
