@@ -26,4 +26,11 @@
         android:src="@drawable/logo"
         android:layout_gravity="center_horizontal"/>
 
+    <Button
+        android:layout_width="@dimen/story_welcome_lets_go_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/lets_go_start"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/story_welcome_lets_go_margin_top" />
+
 </LinearLayout>
