@@ -3,9 +3,9 @@ package com.github.hintofbasil.standingalone;
 import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends BaseActivity {
+public class WelcomeActivity extends BaseActivity {
 
-    public MainActivity() {
+    public WelcomeActivity() {
         super(R.drawable.the_story);
     }
 
