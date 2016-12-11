@@ -15,15 +15,17 @@ import android.widget.ImageView;
 public class BaseActivity extends AppCompatActivity {
 
     private int titleImageResource;
+    private int layoutResource;
 
-    public BaseActivity(int titleImageResource) {
+    public BaseActivity(int titleImageResource, int layoutResource) {
         this.titleImageResource = titleImageResource;
+        this.layoutResource = layoutResource;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(layoutResource);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(false);
