@@ -22,4 +22,12 @@
     <dimen name="introduction_font_size">20dp</dimen>
     <dimen name="introduction_navigation_margin_left">15dp</dimen>
     <dimen name="introduction_navigation_margin_right">5dp</dimen>
+
+    <!-- Map -->
+    <dimen name="map_legend_icon_size">30dp</dimen>
+    <dimen name="map_legend_margin_top">10dp</dimen>
+    <dimen name="map_legend_margin_bottom">10dp</dimen>
+    <dimen name="map_legend_horizontal_inner_margin">5dp</dimen>
+    <dimen name="map_legend_vertical_inner_margin">5dp</dimen>
+
 </resources>

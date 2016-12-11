@@ -9,4 +9,9 @@
     <string name="introduction_4">One day, a terrible flood destroyed Jupiter Artland. Everyone was blamed creatures. Only Brian, one of humans keeped peace. Ever since then everyone trusts only him..</string>
     <string name="introduction_5">I suspect Brian is hidding something. Help me to find out the truth. Find me next to the Suck to start our adventure. Use the map if you don\'t know the way.\n<b>See you soon!</b></string>
 
+    <!-- Map -->
+    <string name="map_description">This is the map of invisible dimention of Jupiter Artland. Find the way to the next location to find Brownie\'s friends, find out what happened and find the treasure! There is a reward waiting for you.. Good luck !</string>
+    <string name="map_legend_next">Your next location</string>
+    <string name="map_legend_previous">Previous locations</string>
+
 </resources>
