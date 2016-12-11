@@ -19,4 +19,5 @@
     <dimen name="introducion_progress_vertical_margin">10dp</dimen>
     <dimen name="brownlie_image_height">160dp</dimen>
     <dimen name="brownlie_image_width">96dp</dimen>
+    <dimen name="introduction_font_size">24dp</dimen>
 </resources>

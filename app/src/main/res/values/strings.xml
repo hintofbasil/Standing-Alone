@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Standing Alone</string>
     <string name="story_welcome_text">Welcome\n\nto Jupiter Artland Treasure\nHunt Adventure</string>
+
+    <!-- Introduction -->
+    <string name="introduction_1"><b>Hello</b>\n\nMy name is Brownie. I am a goblin. Let me tell you a story of Jupiter Artland.</string>
 </resources>
