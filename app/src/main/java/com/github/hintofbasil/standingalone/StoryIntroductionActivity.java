@@ -1,5 +1,6 @@
 package com.github.hintofbasil.standingalone;
 
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -79,6 +80,10 @@ public class StoryIntroductionActivity extends BaseActivity {
                 progress[i].setImageResource(R.drawable.point_unselected);
             }
         }
+    }
+
+    public void handleLetsGoButtonClick(View view) {
+        Log.e("handleLetsGoButtonClick", "This method has not yet been implemented");
     }
 
     private ViewFlipper getBackgroundImageFlipper() {
