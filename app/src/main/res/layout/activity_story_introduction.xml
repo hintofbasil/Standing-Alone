@@ -112,7 +112,39 @@
             android:layout_height="wrap_content"
             android:text="@string/introduction_1"
             android:textSize="@dimen/introduction_font_size"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/introduction_2"
+            android:textSize="@dimen/introduction_font_size"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/introduction_3"
+            android:textSize="@dimen/introduction_font_size"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/introduction_4"
+            android:textSize="@dimen/introduction_font_size"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/introduction_5"
+            android:textSize="@dimen/introduction_font_size"
+            android:layout_gravity="center_horizontal"
             android:textAlignment="center" />
 
     </ViewFlipper>

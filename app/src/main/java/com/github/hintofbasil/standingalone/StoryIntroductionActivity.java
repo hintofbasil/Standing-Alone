@@ -24,12 +24,14 @@ public class StoryIntroductionActivity extends BaseActivity {
     public void onLeftNavigationClicked(View view) {
         currentPage--;
         getBackgroundImageFlipper().showPrevious();
+        getIntroductionStoryFlipper().showPrevious();
         updateDisplayForPage();
     }
 
     public void onRightNavigationClicked(View view) {
         currentPage++;
         getBackgroundImageFlipper().showNext();
+        getIntroductionStoryFlipper().showNext();
         updateDisplayForPage();
     }
 

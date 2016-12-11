@@ -4,4 +4,9 @@
 
     <!-- Introduction -->
     <string name="introduction_1"><b>Hello</b>\n\nMy name is Brownie. I am a goblin. Let me tell you a story of Jupiter Artland.</string>
+    <string name="introduction_2">A long time ago many magical creatures lived here. They were helping and protecting people.</string>
+    <string name="introduction_3">They came from a magical dimention called Minecraft, where everything is almost the same but square.</string>
+    <string name="introduction_4">One day, a terrible flood destroyed Jupiter Artland. Everyone was blamed creatures. Only Brian, one of humans keeped peace. Ever since then everyone trusts only him..</string>
+    <string name="introduction_5">I suspect Brian is hidding something. Help me to find out the truth. Find me next to the Suck to start our adventure. Use the map if you don\'t know the way.\n\nSee you soon!</string>
+
 </resources>
