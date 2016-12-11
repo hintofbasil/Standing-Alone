@@ -20,6 +20,7 @@
     </ViewFlipper>
 
     <RelativeLayout
+        android:id="@+id/introduction_progress_tracker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/introducion_progress_vertical_margin"
@@ -60,5 +61,15 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <!-- TODO figure out why width="wrap_content" doesn't work -->
+    <ImageView
+        android:layout_width="@dimen/brownlie_image_width"
+        android:layout_height="@dimen/brownlie_image_height"
+        android:adjustViewBounds="true"
+        android:src="@drawable/brownie"
+        android:layout_alignBottom="@id/introduction_progress_tracker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
