@@ -10,6 +10,8 @@ public class StoryIntroductionActivity extends BaseActivity {
 
     private ImageView leftButton, rightButton;
 
+    private ImageView[] progressDisplay;
+
     private int currentPage;
     private int maxPage;
 
@@ -43,6 +45,15 @@ public class StoryIntroductionActivity extends BaseActivity {
         } else {
             getRightButton().setVisibility(View.VISIBLE);
         }
+
+        ImageView[] progress = getProgressDisplay();
+        for(int i=0; i < progress.length; i++) {
+            if (i <= currentPage) {
+                progress[i].setImageResource(R.drawable.point_selected);
+            } else {
+                progress[i].setImageResource(R.drawable.point_unselected);
+            }
+        }
     }
 
     private ViewFlipper getBackgroundImageFlipper() {
@@ -71,5 +82,17 @@ public class StoryIntroductionActivity extends BaseActivity {
             introductionStoryFlipper = (ViewFlipper) findViewById(R.id.introduction_story_flipper);
         }
         return introductionStoryFlipper;
+    }
+
+    public ImageView[] getProgressDisplay() {
+        if (progressDisplay == null) {
+            progressDisplay = new ImageView[maxPage + 1];
+            progressDisplay[0] = (ImageView) findViewById(R.id.story_progress_1);
+            progressDisplay[1] = (ImageView) findViewById(R.id.story_progress_2);
+            progressDisplay[2] = (ImageView) findViewById(R.id.story_progress_3);
+            progressDisplay[3] = (ImageView) findViewById(R.id.story_progress_4);
+            progressDisplay[4] = (ImageView) findViewById(R.id.story_progress_5);
+        }
+        return progressDisplay;
     }
 }
