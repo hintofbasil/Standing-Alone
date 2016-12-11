@@ -150,6 +150,7 @@
     </ViewFlipper>
 
     <RelativeLayout
+        android:id="@+id/introduction_navigation_buttons"
         android:layout_below="@id/introduction_story_flipper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -178,5 +179,12 @@
             android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lets_go"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/introduction_navigation_buttons" />
 
 </RelativeLayout>
