@@ -20,4 +20,6 @@
     <dimen name="brownlie_image_height">160dp</dimen>
     <dimen name="brownlie_image_width">96dp</dimen>
     <dimen name="introduction_font_size">24dp</dimen>
+    <dimen name="introduction_navigation_margin_left">15dp</dimen>
+    <dimen name="introduction_navigation_margin_right">5dp</dimen>
 </resources>
