@@ -6,7 +6,14 @@
     tools:context=".MapActivity"
     android:background="@drawable/gradient_background" >
 
+    <com.github.hintofbasil.standingalone.map.LocationsMap
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/map_legend" />
+
     <LinearLayout
+        android:id="@+id/map_legend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
