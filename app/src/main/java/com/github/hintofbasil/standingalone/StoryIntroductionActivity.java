@@ -79,14 +79,14 @@ public class StoryIntroductionActivity extends BaseActivity {
         return rightButton;
     }
 
-    public ViewFlipper getIntroductionStoryFlipper() {
+    private ViewFlipper getIntroductionStoryFlipper() {
         if (introductionStoryFlipper == null) {
             introductionStoryFlipper = (ViewFlipper) findViewById(R.id.introduction_story_flipper);
         }
         return introductionStoryFlipper;
     }
 
-    public ImageView[] getProgressDisplay() {
+    private ImageView[] getProgressDisplay() {
         if (progressDisplay == null) {
             progressDisplay = new ImageView[maxPage + 1];
             progressDisplay[0] = (ImageView) findViewById(R.id.story_progress_1);
