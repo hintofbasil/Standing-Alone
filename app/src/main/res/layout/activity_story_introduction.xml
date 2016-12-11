@@ -96,16 +96,23 @@
         android:layout_marginRight="@dimen/introduction_navigation_margin_right" >
 
         <ImageView
+            android:id="@+id/introduction_left_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/left"
+            android:clickable="true"
+            android:onClick="onLeftNavigationClicked"
+            android:visibility="invisible"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <ImageView
+            android:id="@+id/introduction_right_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/right"
+            android:clickable="true"
+            android:onClick="onRightNavigationClicked"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
