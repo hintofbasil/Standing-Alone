@@ -1,10 +1,15 @@
 package com.github.hintofbasil.standingalone;
 
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 public class StoryIntroductionActivity extends BaseActivity {
+
+    public static final int ANIMATION_DURATION = 350;
 
     private ViewFlipper backgroundImageFlipper, introductionStoryFlipper;
 
@@ -23,6 +28,12 @@ public class StoryIntroductionActivity extends BaseActivity {
 
     public void onLeftNavigationClicked(View view) {
         currentPage--;
+
+        getBackgroundImageFlipper().setInAnimation(inFromLeftAnimation());
+        getBackgroundImageFlipper().setOutAnimation(outToRightAnimation());
+        getIntroductionStoryFlipper().setInAnimation(inFromLeftAnimation());
+        getIntroductionStoryFlipper().setOutAnimation(outToRightAnimation());
+
         getBackgroundImageFlipper().showPrevious();
         getIntroductionStoryFlipper().showPrevious();
         updateDisplayForPage();
@@ -30,6 +41,12 @@ public class StoryIntroductionActivity extends BaseActivity {
 
     public void onRightNavigationClicked(View view) {
         currentPage++;
+
+        getBackgroundImageFlipper().setInAnimation(inFromRightAnimation());
+        getBackgroundImageFlipper().setOutAnimation(outToLeftAnimation());
+        getIntroductionStoryFlipper().setInAnimation(inFromRightAnimation());
+        getIntroductionStoryFlipper().setOutAnimation(outToLeftAnimation());
+
         getBackgroundImageFlipper().showNext();
         getIntroductionStoryFlipper().showNext();
         updateDisplayForPage();
@@ -96,5 +113,48 @@ public class StoryIntroductionActivity extends BaseActivity {
             progressDisplay[4] = (ImageView) findViewById(R.id.story_progress_5);
         }
         return progressDisplay;
+    }
+
+
+    // Animation getters taken from
+    // http://www.inter-fuser.com/2009/07/android-transistions-slide-in-and-slide.html
+    private Animation inFromRightAnimation() {
+        Animation inFromRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT,  +1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f
+        );
+        inFromRight.setDuration(ANIMATION_DURATION);
+        inFromRight.setInterpolator(new AccelerateInterpolator());
+        return inFromRight;
+    }
+
+    private Animation outToLeftAnimation() {
+        Animation outtoLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,  -1.0f,
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f
+        );
+        outtoLeft.setDuration(ANIMATION_DURATION);
+        outtoLeft.setInterpolator(new AccelerateInterpolator());
+        return outtoLeft;
+    }
+
+    private Animation inFromLeftAnimation() {
+        Animation inFromLeft = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT,  -1.0f, Animation.RELATIVE_TO_PARENT,  0.0f,
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f
+        );
+        inFromLeft.setDuration(ANIMATION_DURATION);
+        inFromLeft.setInterpolator(new AccelerateInterpolator());
+        return inFromLeft;
+    }
+
+    private Animation outToRightAnimation() {
+        Animation outtoRight = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,  +1.0f,
+                Animation.RELATIVE_TO_PARENT,  0.0f, Animation.RELATIVE_TO_PARENT,   0.0f
+        );
+        outtoRight.setDuration(ANIMATION_DURATION);
+        outtoRight.setInterpolator(new AccelerateInterpolator());
+        return outtoRight;
     }
 }
