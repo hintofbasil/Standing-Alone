@@ -14,4 +14,7 @@
     <dimen name="story_welcome_logo_height">200dp</dimen>
     <dimen name="story_welcome_lets_go_margin_top">30dp</dimen>
     <dimen name="story_welcome_lets_go_width">200dp</dimen>
+
+    <!-- Introduction -->
+    <dimen name="introducion_progress_vertical_margin">10dp</dimen>
 </resources>
