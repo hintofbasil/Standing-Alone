@@ -27,6 +27,9 @@ public class StoryIntroductionActivity extends BaseActivity {
     }
 
     public void onLeftNavigationClicked(View view) {
+        if (currentPage == 0) {
+            return;
+        }
         currentPage--;
 
         getBackgroundImageFlipper().setInAnimation(inFromLeftAnimation());
@@ -40,6 +43,9 @@ public class StoryIntroductionActivity extends BaseActivity {
     }
 
     public void onRightNavigationClicked(View view) {
+        if (currentPage == maxPage) {
+            return;
+        }
         currentPage++;
 
         getBackgroundImageFlipper().setInAnimation(inFromRightAnimation());
