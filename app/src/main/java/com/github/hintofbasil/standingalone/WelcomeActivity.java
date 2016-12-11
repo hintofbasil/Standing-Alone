@@ -1,6 +1,6 @@
 package com.github.hintofbasil.standingalone;
 
-import android.util.Log;
+import android.content.Intent;
 import android.view.View;
 
 public class WelcomeActivity extends BaseActivity {
@@ -10,6 +10,8 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     public void handleLetsGoButtonClick(View view) {
-        Log.e("handleLetsGoButtonClick", "This method has not yet been implemented");
+        Intent intent = new Intent(getApplicationContext(),
+                StoryIntroductionActivity.class);
+        startActivity(intent);
     }
 }
