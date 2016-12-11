@@ -14,7 +14,7 @@ public class StoryIntroductionActivity extends BaseActivity {
 
     private ViewFlipper backgroundImageFlipper, introductionStoryFlipper;
 
-    private ImageView leftButton, rightButton;
+    private ImageView leftButton, rightButton, letsGoButton;
 
     private ImageView[] progressDisplay;
 
@@ -68,8 +68,10 @@ public class StoryIntroductionActivity extends BaseActivity {
 
         if (currentPage == maxPage) {
             getRightButton().setVisibility(View.INVISIBLE);
+            getLetsGoButton().setVisibility(View.VISIBLE);
         } else {
             getRightButton().setVisibility(View.VISIBLE);
+            getLetsGoButton().setVisibility(View.INVISIBLE);
         }
 
         ImageView[] progress = getProgressDisplay();
@@ -105,6 +107,13 @@ public class StoryIntroductionActivity extends BaseActivity {
             rightButton = (ImageView) findViewById(R.id.introduction_right_button);
         }
         return rightButton;
+    }
+
+    public ImageView getLetsGoButton() {
+        if (letsGoButton == null) {
+            letsGoButton = (ImageView) findViewById(R.id.lets_go_button);
+        }
+        return letsGoButton;
     }
 
     private ViewFlipper getIntroductionStoryFlipper() {

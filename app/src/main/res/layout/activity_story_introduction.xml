@@ -181,11 +181,13 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/lets_go_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/lets_go"
         android:clickable="true"
         android:onClick="handleLetsGoButtonClick"
+        android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/introduction_navigation_buttons" />
 
