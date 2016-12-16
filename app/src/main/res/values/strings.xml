@@ -2,6 +2,9 @@
     <string name="app_name">Standing Alone</string>
     <string name="story_welcome_text">Welcome\n\nto Jupiter Artland Treasure\nHunt Adventure</string>
 
+    <string name="preferences_file_key">com.github.hintofbasil.StandingAlone.preferences</string>
+    <string name="preferences_locations_found_key">LOCATIONS_FOUND_KEY</string>
+
     <!-- Introduction -->
     <string name="introduction_1"><b>Hello</b>\n\nMy name is Brownie. I am a goblin. Let me tell you a story of Jupiter Artland.</string>
     <string name="introduction_2">A long time ago many magical creatures lived here. They were helping and protecting people.</string>
