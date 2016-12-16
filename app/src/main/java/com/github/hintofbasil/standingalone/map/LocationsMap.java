@@ -47,10 +47,10 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         super.onDraw(canvas);
         this.paint.setColor(BACKGROUND_COLOR);
         canvas.save();
-        canvas.scale(scaleFactor, scaleFactor);
-        canvas.drawRect(0, 0, getWidth() / scaleFactor, getHeight() / scaleFactor, this.paint);
-
+        canvas.drawRect(0, 0, getWidth(), getHeight(), this.paint);
         canvas.translate(offsetX, offsetY);
+        canvas.scale(scaleFactor, scaleFactor);
+
         canvas.drawBitmap(mapBackground, 0, 0, paint);
         canvas.restore();
     }
@@ -91,8 +91,31 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         this.offsetX -= distanceX;
         this.offsetY -= distanceY;
+
+        limitViewBounds();
         invalidate();
         return true;
+    }
+
+    private void limitViewBounds() {
+        offsetX = Math.max(getMinOffsetX(), Math.min(offsetX, getMaxOffsetX()));
+        offsetY = Math.max(getMinOffsetY(), Math.min(offsetY, getMaxOffsetY()));
+    }
+
+    public float getMinOffsetX() {
+        return -100 * scaleFactor - mapBackground.getWidth() * scaleFactor + getWidth();
+    }
+
+    public float getMinOffsetY() {
+        return -100 * scaleFactor - mapBackground.getHeight() * scaleFactor + getHeight();
+    }
+
+    public float getMaxOffsetX() {
+        return 100 * scaleFactor;
+    }
+
+    public float getMaxOffsetY() {
+        return 100 * scaleFactor;
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -111,6 +134,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
             offsetX += fx/scaleFactor;
             offsetY += fy/scaleFactor;
+
+            limitViewBounds();
 
             invalidate();
             return true;
