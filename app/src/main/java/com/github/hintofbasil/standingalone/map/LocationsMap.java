@@ -98,9 +98,19 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
+
+            float fx = detector.getFocusX();
+            float fy = detector.getFocusY();
+
+            offsetX -= fx/scaleFactor;
+            offsetY -= fy/scaleFactor;
+
             scaleFactor *= detector.getScaleFactor();
             // Don't let the object get too small or too large.
             scaleFactor = Math.max(0.3f, Math.min(scaleFactor, 1.2f));
+
+            offsetX += fx/scaleFactor;
+            offsetY += fy/scaleFactor;
 
             invalidate();
             return true;
