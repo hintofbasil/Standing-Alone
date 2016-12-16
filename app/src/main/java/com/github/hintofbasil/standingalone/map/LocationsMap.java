@@ -25,6 +25,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
     Bitmap mapBackground;
     Bitmap nextLocationImage;
+    Bitmap previousLocationImage;
 
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
@@ -41,6 +42,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
         mapBackground = BitmapFactory.decodeResource(getResources(), R.drawable.map_background);
         nextLocationImage = BitmapFactory.decodeResource(getResources(), R.drawable.next_location_marker);
+        previousLocationImage = BitmapFactory.decodeResource(getResources(), R.drawable.previous_location_marker);
 
         scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());
         gestureDetector = new GestureDetector(context, this);
@@ -48,14 +50,15 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         offsetX = 0;
         offsetY = 0;
         locations = getLocations();
-        foundLocations = 0;
+        foundLocations = 1;
     }
 
     private Point[] getLocations() {
         int mapWidth = mapBackground.getWidth();
         int mapHeight = mapBackground.getHeight();
-        Point[] locations = new Point[1];
+        Point[] locations = new Point[2];
         locations[0] = new Point((int)(0.625 * mapWidth), (int)(0.330 * mapHeight)); // Suck
+        locations[1] = new Point((int)(0.518 * mapWidth), (int)(0.261 * mapHeight)); // Stone House
         return locations;
     }
 
@@ -69,6 +72,13 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         canvas.scale(scaleFactor, scaleFactor);
 
         canvas.drawBitmap(mapBackground, 0, 0, paint);
+
+        for (int i=0; i < foundLocations; i++) {
+            Point location = locations[i];
+            int x = location.x - nextLocationImage.getWidth()/2;
+            int y = location.y - nextLocationImage.getHeight();
+            canvas.drawBitmap(previousLocationImage, x, y, paint);
+        }
 
         if (foundLocations < locations.length) {
             Point location = locations[foundLocations];
