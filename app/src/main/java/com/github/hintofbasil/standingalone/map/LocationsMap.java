@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -23,6 +24,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     private Paint paint;
 
     Bitmap mapBackground;
+    Bitmap nextLocationImage;
 
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
@@ -30,16 +32,31 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     float scaleFactor;
     float offsetX, offsetY;
 
+    private Point[] locations;
+    private int foundLocations;
+
     public LocationsMap(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mapBackground = BitmapFactory.decodeResource(getResources(), R.drawable.map_background);
+        nextLocationImage = BitmapFactory.decodeResource(getResources(), R.drawable.next_location_marker);
+
         scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());
         gestureDetector = new GestureDetector(context, this);
         scaleFactor = 1;
         offsetX = 0;
         offsetY = 0;
+        locations = getLocations();
+        foundLocations = 0;
+    }
+
+    private Point[] getLocations() {
+        int mapWidth = mapBackground.getWidth();
+        int mapHeight = mapBackground.getHeight();
+        Point[] locations = new Point[1];
+        locations[0] = new Point((int)(0.625 * mapWidth), (int)(0.330 * mapHeight)); // Suck
+        return locations;
     }
 
     @Override
@@ -52,6 +69,13 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         canvas.scale(scaleFactor, scaleFactor);
 
         canvas.drawBitmap(mapBackground, 0, 0, paint);
+
+        if (foundLocations < locations.length) {
+            Point location = locations[foundLocations];
+            int x = location.x - nextLocationImage.getWidth()/2;
+            int y = location.y - nextLocationImage.getHeight();
+            canvas.drawBitmap(nextLocationImage, x, y, paint);
+        }
         canvas.restore();
     }
 
