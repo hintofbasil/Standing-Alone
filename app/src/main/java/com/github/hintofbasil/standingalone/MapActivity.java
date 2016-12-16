@@ -33,6 +33,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         }
         sharedPreferences = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
+        int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
+        updateProgressIndicator(progress);
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
