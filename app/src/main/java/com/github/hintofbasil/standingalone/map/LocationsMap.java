@@ -50,7 +50,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         offsetX = 0;
         offsetY = 0;
         locations = getLocations();
-        foundLocations = 9;
+        foundLocations = 0;
     }
 
     private Point[] getLocations() {
@@ -182,5 +182,10 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
             invalidate();
             return true;
         }
+    }
+
+    public void setFoundLocations(int foundLocations) {
+        this.foundLocations = foundLocations;
+        invalidate();
     }
 }

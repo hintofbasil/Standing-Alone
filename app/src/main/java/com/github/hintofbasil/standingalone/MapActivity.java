@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.hintofbasil.standingalone.map.LocationsMap;
+
 /**
  * Created by will on 11/12/16.
  */
@@ -18,6 +20,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private SharedPreferences sharedPreferences;
     private ImageView[] progressImageViews;
     private TextView progressText;
+    private LocationsMap locationsMap;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -65,6 +68,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private void updateProgress(int progress) {
         updateProgressPointImages(progress);
         updateProgressText(progress);
+        getLocationsMap().setFoundLocations(progress);
     }
 
     private void updateProgressText(int progress) {
@@ -105,5 +109,12 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             progressText = (TextView) findViewById(R.id.story_progress_text);
         }
         return progressText;
+    }
+
+    public LocationsMap getLocationsMap() {
+        if (locationsMap == null) {
+            locationsMap = (LocationsMap) findViewById(R.id.locations_map);
+        }
+        return locationsMap;
     }
 }
