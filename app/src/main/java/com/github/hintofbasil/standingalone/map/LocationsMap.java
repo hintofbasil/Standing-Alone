@@ -79,7 +79,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         canvas.save();
         canvas.drawRect(0, 0, getWidth(), getHeight(), this.paint);
         canvas.scale(scaleFactor, scaleFactor);
-        canvas.translate(offsetX, offsetY);
+        canvas.translate(-offsetX, -offsetY);
 
         canvas.drawBitmap(mapBackground, 0, 0, paint);
 
@@ -133,8 +133,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        this.offsetX -= distanceX;
-        this.offsetY -= distanceY;
+        this.offsetX += distanceX;
+        this.offsetY += distanceY;
 
         limitViewBounds();
         invalidate();
@@ -147,8 +147,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         // Only update view location on first load
         // Can't do in constructor as view has no width or height then
         if (oldw <= 0 && oldh <= 0) {
-            offsetX = -INITIAL_X_OFFSET_PERCENTAGE * mapBackground.getWidth() + w/2;
-            offsetY = -INITIAL_Y_OFFSET_PERCENTAGE * mapBackground.getHeight() + h/2;
+            offsetX = INITIAL_X_OFFSET_PERCENTAGE * mapBackground.getWidth() - w/2;
+            offsetY = INITIAL_Y_OFFSET_PERCENTAGE * mapBackground.getHeight() - h/2;
             invalidate();
         }
     }
@@ -159,19 +159,19 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     }
 
     public float getMinOffsetX() {
-        return -100 * scaleFactor - mapBackground.getWidth() * scaleFactor + getWidth();
+        return -100 * scaleFactor;
     }
 
     public float getMinOffsetY() {
-        return -100 * scaleFactor - mapBackground.getHeight() * scaleFactor + getHeight();
+        return -100 * scaleFactor;
     }
 
     public float getMaxOffsetX() {
-        return 100 * scaleFactor;
+        return 100 * scaleFactor + mapBackground.getWidth() * scaleFactor - getWidth();
     }
 
     public float getMaxOffsetY() {
-        return 100 * scaleFactor;
+        return 100 * scaleFactor + mapBackground.getHeight() * scaleFactor - getHeight();
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -181,15 +181,15 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
             float fx = detector.getFocusX();
             float fy = detector.getFocusY();
 
-            offsetX -= fx/scaleFactor;
-            offsetY -= fy/scaleFactor;
+            offsetX += fx/scaleFactor;
+            offsetY += fy/scaleFactor;
 
             scaleFactor *= detector.getScaleFactor();
             // Don't let the object get too small or too large.
             scaleFactor = Math.max(0.3f, Math.min(scaleFactor, 1.2f));
 
-            offsetX += fx/scaleFactor;
-            offsetY += fy/scaleFactor;
+            offsetX -= fx/scaleFactor;
+            offsetY -= fy/scaleFactor;
 
             limitViewBounds();
 
