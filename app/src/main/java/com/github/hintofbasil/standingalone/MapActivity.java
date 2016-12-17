@@ -1,6 +1,7 @@
 package com.github.hintofbasil.standingalone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.hintofbasil.standingalone.geolocation.GeolocationMonitorService;
 import com.github.hintofbasil.standingalone.map.LocationsMap;
 
 /**
@@ -21,6 +23,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private ImageView[] progressImageViews;
     private TextView progressText;
     private LocationsMap locationsMap;
+    private Intent geolocationMonitorServiceIntent;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -41,6 +44,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
         updateProgress(progress);
+
+        geolocationMonitorServiceIntent = new Intent(getApplicationContext(),
+                GeolocationMonitorService.class);
+        startService(geolocationMonitorServiceIntent);
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
@@ -63,6 +70,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     protected void onDestroy() {
         super.onDestroy();
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        stopService(geolocationMonitorServiceIntent);
     }
 
     private void updateProgress(int progress) {
