@@ -174,6 +174,14 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         return 100 * scaleFactor + mapBackground.getHeight() - getHeight() / scaleFactor;
     }
 
+    public float getMinScaleFactor() {
+        return getHeight() / (mapBackground.getHeight() + 100f);
+    }
+
+    public float getMaxScaleFactor() {
+        return 1.0f;
+    }
+
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
@@ -186,7 +194,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
             scaleFactor *= detector.getScaleFactor();
             // Don't let the object get too small or too large.
-            scaleFactor = Math.max(0.3f, Math.min(scaleFactor, 1.2f));
+            scaleFactor = Math.max(getMinScaleFactor(), Math.min(scaleFactor, getMaxScaleFactor()));
 
             offsetX -= fx/scaleFactor;
             offsetY -= fy/scaleFactor;
