@@ -20,6 +20,8 @@ import com.github.hintofbasil.standingalone.R;
 public class LocationsMap extends View implements GestureDetector.OnGestureListener {
 
     private static final int BACKGROUND_COLOR = 0xFF9BE8F0;
+    private static final float INITIAL_X_OFFSET_PERCENTAGE = 0.543f;
+    private static final float INITIAL_Y_OFFSET_PERCENTAGE = 0.357f;
 
     private Paint paint;
 
@@ -46,7 +48,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
         scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());
         gestureDetector = new GestureDetector(context, this);
-        scaleFactor = 1;
+        scaleFactor = 0.85f;
         offsetX = 0;
         offsetY = 0;
         locations = getLocations();
@@ -76,8 +78,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         this.paint.setColor(BACKGROUND_COLOR);
         canvas.save();
         canvas.drawRect(0, 0, getWidth(), getHeight(), this.paint);
-        canvas.translate(offsetX, offsetY);
         canvas.scale(scaleFactor, scaleFactor);
+        canvas.translate(offsetX, offsetY);
 
         canvas.drawBitmap(mapBackground, 0, 0, paint);
 
@@ -137,6 +139,18 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         limitViewBounds();
         invalidate();
         return true;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        // Only update view location on first load
+        // Can't do in constructor as view has no width or height then
+        if (oldw <= 0 && oldh <= 0) {
+            offsetX = -INITIAL_X_OFFSET_PERCENTAGE * mapBackground.getWidth() + w/2;
+            offsetY = -INITIAL_Y_OFFSET_PERCENTAGE * mapBackground.getHeight() + h/2;
+            invalidate();
+        }
     }
 
     private void limitViewBounds() {
