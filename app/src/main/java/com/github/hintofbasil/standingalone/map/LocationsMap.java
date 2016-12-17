@@ -167,11 +167,11 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     }
 
     public float getMaxOffsetX() {
-        return 100 * scaleFactor + mapBackground.getWidth() * scaleFactor - getWidth();
+        return 100 * scaleFactor + mapBackground.getWidth() - getWidth() / scaleFactor;
     }
 
     public float getMaxOffsetY() {
-        return 100 * scaleFactor + mapBackground.getHeight() * scaleFactor - getHeight();
+        return 100 * scaleFactor + mapBackground.getHeight() - getHeight() / scaleFactor;
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
