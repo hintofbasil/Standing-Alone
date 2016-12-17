@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by will on 11/12/16.
@@ -16,6 +17,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
     private SharedPreferences sharedPreferences;
     private ImageView[] progressImageViews;
+    private TextView progressText;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -35,7 +37,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
-        updateProgressIndicator(progress);
+        updateProgress(progress);
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
@@ -50,7 +52,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         if (key.equals(getString(R.string.preferences_locations_found_key))) {
             // Loctions found updated
             int progress = sharedPreferences.getInt(key, 0);
-            updateProgressIndicator(progress);
+            updateProgress(progress);
         }
     }
 
@@ -60,7 +62,16 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
-    private void updateProgressIndicator(int progress) {
+    private void updateProgress(int progress) {
+        updateProgressPointImages(progress);
+        updateProgressText(progress);
+    }
+
+    private void updateProgressText(int progress) {
+        getProgressText().setText(String.format("%d/9", progress));
+    }
+
+    private void updateProgressPointImages(int progress) {
         ImageView[] progressViews = getProgressImageViews();
         for (int i = 0; i < progressViews.length; i++) {
             Drawable drawable;
@@ -87,5 +98,12 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             progressImageViews[8] = (ImageView) findViewById(R.id.story_progress_9);
         }
         return progressImageViews;
+    }
+
+    public TextView getProgressText() {
+        if (progressText == null) {
+            progressText = (TextView) findViewById(R.id.story_progress_text);
+        }
+        return progressText;
     }
 }
