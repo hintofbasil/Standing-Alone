@@ -103,6 +103,10 @@ public class GeolocationMonitorService extends Service implements LocationListen
         if (key.equals(getString(R.string.preferences_locations_found_key))) {
             progress = sharedPreferences.getInt(key, 0);
         }
+        if (progress == 9) {
+            Log.d("GeolocationMonitorServi", "Last location found.  Stopping monitor service");
+            this.stopSelf();
+        }
     }
 
     public class LocalBinder extends Binder {
