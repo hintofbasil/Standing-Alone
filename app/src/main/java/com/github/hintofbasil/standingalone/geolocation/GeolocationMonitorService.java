@@ -3,6 +3,7 @@ package com.github.hintofbasil.standingalone.geolocation;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -13,7 +14,11 @@ import android.util.Log;
 
 public class GeolocationMonitorService extends Service implements LocationListener {
 
+    // Distance (in meters) from target that still triggers event.
+    public static final int DISTANCE_DELTA = 1;
+
     private LocationManager locationManager;
+    private Location[] locations;
 
     public GeolocationMonitorService() {
     }
@@ -46,6 +51,22 @@ public class GeolocationMonitorService extends Service implements LocationListen
     @Override
     public void onLocationChanged(Location location) {
         Log.d("GeolocationMonitorServi", "New location detected " + location);
+    }
+
+    private boolean checkIfAtNextLocation() {
+        return false;
+    }
+
+    private Location[] getLocations() {
+        if (locations == null) {
+            boolean isDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+            if (isDebuggable) {
+                locations = new TestLocationsFactory().getLocations();
+            } else {
+                locations = new LocationsFactory().getLocations();
+            }
+        }
+        return locations;
     }
 
     @Override
