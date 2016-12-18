@@ -3,6 +3,7 @@ package com.github.hintofbasil.standingalone.geolocation;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,13 +13,19 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-public class GeolocationMonitorService extends Service implements LocationListener {
+import com.github.hintofbasil.standingalone.R;
+
+public class GeolocationMonitorService extends Service implements LocationListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Distance (in meters) from target that still triggers event.
     public static final int DISTANCE_DELTA = 1;
 
     private LocationManager locationManager;
     private Location[] locations;
+
+    private int progress;
+    private SharedPreferences sharedPreferences;
 
     public GeolocationMonitorService() {
     }
@@ -34,6 +41,12 @@ public class GeolocationMonitorService extends Service implements LocationListen
         } catch (SecurityException e) {
             Log.e("GeolocationMonitorServi", "Unable to register for location updates\n" + Log.getStackTraceString(e));
         }
+
+        sharedPreferences = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
+        progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
+
         return START_NOT_STICKY;
     }
 
@@ -46,6 +59,7 @@ public class GeolocationMonitorService extends Service implements LocationListen
         } catch (SecurityException e) {
             Log.e("GeolocationMonitorServi", "Unable to unregister for location updates\n" + Log.getStackTraceString(e));
         }
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -82,6 +96,13 @@ public class GeolocationMonitorService extends Service implements LocationListen
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.preferences_locations_found_key))) {
+            progress = sharedPreferences.getInt(key, 0);
+        }
     }
 
     public class LocalBinder extends Binder {
