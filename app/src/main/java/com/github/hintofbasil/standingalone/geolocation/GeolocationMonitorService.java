@@ -12,6 +12,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.github.hintofbasil.standingalone.R;
 
@@ -19,7 +20,7 @@ public class GeolocationMonitorService extends Service implements LocationListen
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Distance (in meters) from target that still triggers event.
-    public static final int DISTANCE_DELTA = 1;
+    public static final int DISTANCE_DELTA = 2;
 
     private LocationManager locationManager;
     private Location[] locations;
@@ -27,16 +28,28 @@ public class GeolocationMonitorService extends Service implements LocationListen
     private int progress;
     private SharedPreferences sharedPreferences;
 
+    private boolean isDebuggable;
+
     public GeolocationMonitorService() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("GeolocationMonitorServi", "GeolocationMonitorService started.");
+
+        isDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
+        if (isDebuggable) {
+            Log.d("GeolocationMonitorServi", "Debug mode enabled");
+        }
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            if (isDebuggable) {
+                // Limit to 2s min time to avoid toast spam
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, this);
+            } else {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+            }
             Log.i("GeolocationMonitorServi", "Registered for location updates");
         } catch (SecurityException e) {
             Log.e("GeolocationMonitorServi", "Unable to register for location updates\n" + Log.getStackTraceString(e));
@@ -64,16 +77,34 @@ public class GeolocationMonitorService extends Service implements LocationListen
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d("GeolocationMonitorServi", "New location detected " + location);
+        Log.i("GeolocationMonitorServi", "New location detected " + location);
+        if (isAtNextLocation(location)) {
+            String key = getString(R.string.preferences_locations_found_key);
+            sharedPreferences.edit().putInt(key, progress + 1).apply();
+            Log.d("GeolocationMonitorServi", "Next location found.  Progress increased by 1");
+
+            // Toast is only used for testing until chat activity is implemented
+            if (isDebuggable) {
+                Toast.makeText(getApplicationContext(),
+                        "Next location found",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
-    private boolean checkIfAtNextLocation() {
-        return false;
+    private boolean isAtNextLocation(Location location) {
+        Location[] locations = getLocations();
+        Location nextLocation = locations[progress];
+        if (isDebuggable) {
+            Toast.makeText(getApplicationContext(),
+                    "Distance: " + nextLocation.distanceTo(location),
+                    Toast.LENGTH_SHORT).show();
+        }
+        return nextLocation.distanceTo(location) <= DISTANCE_DELTA;
     }
 
     private Location[] getLocations() {
         if (locations == null) {
-            boolean isDebuggable = (0 != (getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE));
             if (isDebuggable) {
                 locations = new TestLocationsFactory().getLocations();
             } else {
