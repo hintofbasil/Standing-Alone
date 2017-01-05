@@ -1,7 +1,7 @@
 package com.github.hintofbasil.standingalone;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class LocationFoundActivity extends BaseActivity {
 
@@ -13,5 +13,11 @@ public class LocationFoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
+    }
+
+    public void handleMapButtonClicked(View view) {
+        // This should always be opened from the map
+        // so closing should take user back to map
+        this.finish();
     }
 }
