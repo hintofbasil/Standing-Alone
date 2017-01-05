@@ -2,6 +2,7 @@ package com.github.hintofbasil.standingalone;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 public class LocationFoundActivity extends BaseActivity {
 
@@ -13,6 +14,9 @@ public class LocationFoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
+
+        ImageView backgroundImage = (ImageView) findViewById(R.id.background_image);
+        backgroundImage.setImageResource(R.drawable.glaistig_background);
     }
 
     public void handleMapButtonClicked(View view) {
