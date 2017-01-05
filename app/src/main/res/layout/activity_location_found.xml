@@ -33,7 +33,6 @@
             android:layout_marginBottom="0dp"
             android:layout_alignParentTop="true"
             android:layout_above="@+id/speech_bubble_bottom"
-            android:text="@string/location_found_glaistig"
             android:textSize="@dimen/location_found_text_size"
             android:scrollbars="vertical" />
 
@@ -83,12 +82,12 @@
                 android:layout_alignParentBottom="true" />
 
             <ImageView
+                android:id="@+id/location_found_character_image"
                 android:layout_width="@dimen/location_found_character_width"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/location_found_character_horizontal_padding"
                 android:layout_marginEnd="@dimen/location_found_character_horizontal_padding"
                 android:adjustViewBounds="true"
-                android:src="@drawable/glaistig"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true" />

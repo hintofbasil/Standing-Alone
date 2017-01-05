@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class LocationFoundActivity extends BaseActivity {
 
     public LocationFoundActivity() {
+        // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
     }
 
@@ -17,11 +18,22 @@ public class LocationFoundActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
 
+        LocationFoundEnum details = LocationFoundEnum.GLAISTIG;
+
+        ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
+        titleImageView.setImageResource(details.titleDrawableId);
+
+        ImageView characterImageView = (ImageView) findViewById(R.id.location_found_character_image);
+        characterImageView.setImageResource(details.characterDrawableId);
+
         ImageView backgroundImage = (ImageView) findViewById(R.id.background_image);
-        backgroundImage.setImageResource(R.drawable.glaistig_background);
+        backgroundImage.setImageResource(details.backgroundDrawableId);
 
         TextView speechTextView = (TextView) findViewById(R.id.location_found_text);
         speechTextView.setMovementMethod(new ScrollingMovementMethod());
+
+        String speechText = getString(details.textStringId);
+        speechTextView.setText(speechText);
     }
 
     public void handleMapButtonClicked(View view) {
