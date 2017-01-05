@@ -34,7 +34,8 @@
             android:layout_alignParentTop="true"
             android:layout_above="@+id/speech_bubble_bottom"
             android:text="@string/location_found_glaistig"
-            android:textSize="@dimen/location_found_text_size" />
+            android:textSize="@dimen/location_found_text_size"
+            android:scrollbars="vertical" />
 
         <ImageView
             android:id="@+id/speech_bubble_bottom"
