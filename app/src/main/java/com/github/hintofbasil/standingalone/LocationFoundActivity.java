@@ -18,7 +18,7 @@ public class LocationFoundActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
 
-        LocationFoundEnum details = LocationFoundEnum.GLAISTIG;
+        LocationFoundEnum details = LocationFoundEnum.get(1);
 
         ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
         titleImageView.setImageResource(details.titleDrawableId);

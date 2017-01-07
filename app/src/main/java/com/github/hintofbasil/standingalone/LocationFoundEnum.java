@@ -36,4 +36,29 @@ public enum LocationFoundEnum {
         this.backgroundDrawableId = backgroundDrawableId;
         this.textStringId = textStringId;
     }
+
+    public static LocationFoundEnum get(int progress) {
+        switch (progress) {
+            case 1:
+                return GLAISTIG;
+            case 2:
+                return CU_SITH;
+            case 3:
+                return BLUE_WITCH;
+            case 4:
+                return MERMAID;
+            case 5:
+                return SELKIE;
+            case 6:
+                return KELPIE;
+            case 7:
+                return CAIT_SITH;
+            case 8:
+                return BRIAN;
+            case 9:
+                return TREASURE;
+            default:
+                throw new RuntimeException("Invalid progress id: " + progress);
+        }
+    }
 }
