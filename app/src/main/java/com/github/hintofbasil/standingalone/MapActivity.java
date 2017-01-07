@@ -55,6 +55,14 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         int locationsFoundCount = sharedPreferences.getInt(locationsFoundKey, 0);
         locationsFoundCount = (locationsFoundCount + 1) % 10;
         sharedPreferences.edit().putInt(locationsFoundKey, locationsFoundCount).apply();
+
+        // Must check if not 0 as cheat is cyclical
+        if (locationsFoundCount > 0) {
+            Intent intent = new Intent(getApplicationContext(),
+                    LocationFoundActivity.class);
+            intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(locationsFoundCount));
+            startActivity(intent);
+        }
     }
 
     @Override

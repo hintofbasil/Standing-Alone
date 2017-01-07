@@ -14,6 +14,8 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.github.hintofbasil.standingalone.LocationFoundActivity;
+import com.github.hintofbasil.standingalone.LocationFoundEnum;
 import com.github.hintofbasil.standingalone.R;
 
 public class GeolocationMonitorService extends Service implements LocationListener,
@@ -89,6 +91,11 @@ public class GeolocationMonitorService extends Service implements LocationListen
                         "Next location found",
                         Toast.LENGTH_LONG).show();
             }
+
+            Intent intent = new Intent(getApplicationContext(),
+                    LocationFoundActivity.class);
+            intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(progress));
+            startActivity(intent);
         }
     }
 

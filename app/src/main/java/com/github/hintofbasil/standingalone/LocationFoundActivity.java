@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 public class LocationFoundActivity extends BaseActivity {
 
+    public static final String EXTRA_LOCATION_FOUND_PROGRESS = "com.github.hintofbasil.EXTRA_LOCATION_FOUND_PROGRESS";
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -18,7 +20,7 @@ public class LocationFoundActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
 
-        LocationFoundEnum details = LocationFoundEnum.get(1);
+        LocationFoundEnum details = (LocationFoundEnum) getIntent().getSerializableExtra(EXTRA_LOCATION_FOUND_PROGRESS);
 
         ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
         titleImageView.setImageResource(details.titleDrawableId);
