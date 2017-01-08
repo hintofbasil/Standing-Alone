@@ -6,37 +6,50 @@ package com.github.hintofbasil.standingalone;
 public enum LocationFoundEnum {
 
     BROWNIE(R.drawable.brownie_title, R.drawable.blank,
-            R.drawable.blank, R.string.location_found_brownie),
+            R.drawable.blank, R.string.location_found_brownie,
+            1f),
     GLAISTIG(R.drawable.glaistig_title, R.drawable.glaistig,
-            R.drawable.glaistig_background, R.string.location_found_glaistig),
+            R.drawable.glaistig_background, R.string.location_found_glaistig,
+            1f),
     CU_SITH(R.drawable.cu_sith_title, R.drawable.cu_sith,
-            R.drawable.cu_sith_background, R.string.location_found_cu_sith),
+            R.drawable.cu_sith_background, R.string.location_found_cu_sith,
+            1.6f),
     BLUE_WITCH(R.drawable.blue_witch_title, R.drawable.blue_witch,
-            R.drawable.blue_witch_background, R.string.location_found_blue_witch),
+            R.drawable.blue_witch_background, R.string.location_found_blue_witch,
+            1.5f),
     MERMAID(R.drawable.mermaid_title, R.drawable.mermaid,
-            R.drawable.mermaid_background, R.string.location_found_mermaid),
+            R.drawable.mermaid_background, R.string.location_found_mermaid,
+            1.2f),
     SELKIE(R.drawable.selkie_title, R.drawable.selkie,
-            R.drawable.selkie_background, R.string.location_found_selkie),
+            R.drawable.selkie_background, R.string.location_found_selkie,
+            1f),
     KELPIE(R.drawable.kelpie_title, R.drawable.kelpie,
-            R.drawable.introduction_background_2, R.string.location_found_kelpie),
+            R.drawable.introduction_background_2, R.string.location_found_kelpie,
+            2.2f),
     CAIT_SITH(R.drawable.cait_sith_title, R.drawable.cait_sith,
-            R.drawable.introduction_background_4, R.string.location_found_cait_sith),
+            R.drawable.introduction_background_4, R.string.location_found_cait_sith,
+            1f),
     BRIAN(R.drawable.brian_title, R.drawable.brian,
-            R.drawable.brian_background, R.string.location_found_brian),
+            R.drawable.brian_background, R.string.location_found_brian,
+            1.6f),
     TREASURE(R.drawable.treasure_title, R.drawable.treasure,
-            R.drawable.treasure_background, R.string.location_found_treasure);
+            R.drawable.treasure_background, R.string.location_found_treasure,
+            1f);
 
     int titleDrawableId;
     int characterDrawableId;
     int backgroundDrawableId;
     int textStringId;
+    float scale;
 
     LocationFoundEnum(int titleDrawableId, int characterDrawableId,
-                      int backgroundDrawableId, int textStringId) {
+                      int backgroundDrawableId, int textStringId,
+                      float scale) {
         this.titleDrawableId = titleDrawableId;
         this.characterDrawableId = characterDrawableId;
         this.backgroundDrawableId = backgroundDrawableId;
         this.textStringId = textStringId;
+        this.scale = scale;
     }
 
     public static LocationFoundEnum get(int progress) {
