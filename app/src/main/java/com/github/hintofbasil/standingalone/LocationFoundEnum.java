@@ -5,6 +5,8 @@ package com.github.hintofbasil.standingalone;
  */
 public enum LocationFoundEnum {
 
+    BROWNIE(R.drawable.brownie_title, R.drawable.blank,
+            R.drawable.blank, R.string.location_found_brownie),
     GLAISTIG(R.drawable.glaistig_title, R.drawable.glaistig,
             R.drawable.glaistig_background, R.string.location_found_glaistig),
     CU_SITH(R.drawable.cu_sith_title, R.drawable.cu_sith,
@@ -40,22 +42,24 @@ public enum LocationFoundEnum {
     public static LocationFoundEnum get(int progress) {
         switch (progress) {
             case 1:
-                return GLAISTIG;
+                return BROWNIE;
             case 2:
-                return CU_SITH;
+                return GLAISTIG;
             case 3:
-                return BLUE_WITCH;
+                return CU_SITH;
             case 4:
-                return MERMAID;
+                return BLUE_WITCH;
             case 5:
-                return SELKIE;
+                return MERMAID;
             case 6:
-                return KELPIE;
+                return SELKIE;
             case 7:
-                return CAIT_SITH;
+                return KELPIE;
             case 8:
-                return BRIAN;
+                return CAIT_SITH;
             case 9:
+                return BRIAN;
+            case 10:
                 return TREASURE;
             default:
                 throw new RuntimeException("Invalid progress id: " + progress);
