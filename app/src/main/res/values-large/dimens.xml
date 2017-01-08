@@ -5,8 +5,7 @@
     <dimen name="story_welcome_logo_height">400dp</dimen>
     <dimen name="story_welcome_lets_go_margin_top">60dp</dimen>
     <dimen name="story_welcome_lets_go_width">400dp</dimen>
-
-
+    
     <!-- Introduction -->
     <dimen name="introducion_progress_vertical_margin">20dp</dimen>
     <dimen name="brownlie_image_height">320dp</dimen>
@@ -21,5 +20,15 @@
     <dimen name="map_legend_vertical_inner_margin">10dp</dimen>
     <dimen name="map_legend_progress_font_size">20sp</dimen>
     <dimen name="map_legend_font_size">30sp</dimen>
+
+    <!-- Location Found -->
+    <dimen name="map_button_margin_bottom">30dp</dimen>
+    <dimen name="map_button_margin_top">30dp</dimen>
+    <dimen name="location_found_character_bottom_spacing">30dp</dimen>
+    <dimen name="location_found_character_width">160dp</dimen>
+    <dimen name="location_found_character_horizontal_padding">80dp</dimen>
+    <dimen name="location_found_text_size">40sp</dimen>
+    <!-- TODO remove hard coded height-->
+    <dimen name="location_found_character_container_height">400dp</dimen>
 
 </resources>
