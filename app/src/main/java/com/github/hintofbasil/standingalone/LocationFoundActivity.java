@@ -3,6 +3,7 @@ package com.github.hintofbasil.standingalone;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,13 +21,16 @@ public class LocationFoundActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
 
-        LocationFoundEnum details = (LocationFoundEnum) getIntent().getSerializableExtra(EXTRA_LOCATION_FOUND_PROGRESS);
+        final LocationFoundEnum details = (LocationFoundEnum) getIntent().getSerializableExtra(EXTRA_LOCATION_FOUND_PROGRESS);
 
         ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
         titleImageView.setImageResource(details.titleDrawableId);
 
-        ImageView characterImageView = (ImageView) findViewById(R.id.location_found_character_image);
+        final ImageView characterImageView = (ImageView) findViewById(R.id.location_found_character_image);
         characterImageView.setImageResource(details.characterDrawableId);
+        ViewGroup.LayoutParams layoutParams = characterImageView.getLayoutParams();
+        layoutParams.height = (int)(layoutParams.height * details.scale);
+        layoutParams.width = (int)(layoutParams.width * details.scale);
 
         ImageView backgroundImage = (ImageView) findViewById(R.id.background_image);
         backgroundImage.setImageResource(details.backgroundDrawableId);
