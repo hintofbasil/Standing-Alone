@@ -6,4 +6,11 @@
     <dimen name="story_welcome_lets_go_margin_top">60dp</dimen>
     <dimen name="story_welcome_lets_go_width">400dp</dimen>
 
+
+    <!-- Introduction -->
+    <dimen name="introducion_progress_vertical_margin">20dp</dimen>
+    <dimen name="brownlie_image_height">320dp</dimen>
+    <dimen name="brownlie_image_width">192dp</dimen>
+    <dimen name="introduction_font_size">40dp</dimen>
+
 </resources>
