@@ -11,20 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity">
-        </activity>
-        <activity android:name=".StoryIntroductionActivity" />
-        <activity android:name=".MapActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".StoryIntroductionActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".LocationFoundActivity" />
         <service
             android:name=".geolocation.GeolocationMonitorService"
             android:enabled="true"
             android:exported="false" />
-        <activity android:name=".LocationFoundActivity"></activity>
     </application>
 
 </manifest>
