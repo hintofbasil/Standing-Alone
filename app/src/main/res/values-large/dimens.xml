@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Story page -->
+    <dimen name="story_font_size">48sp</dimen>
+    <dimen name="story_welcome_logo_height">400dp</dimen>
+    <dimen name="story_welcome_lets_go_margin_top">60dp</dimen>
+    <dimen name="story_welcome_lets_go_width">400dp</dimen>
+
+</resources>

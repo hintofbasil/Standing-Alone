@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,27 +11,37 @@
     android:orientation="vertical"
     android:background="@drawable/gradient_background" >
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/story_welcome_text"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textSize="@dimen/story_font_size" />
+        android:orientation="vertical"
+        android:layout_centerInParent="true" >
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/story_welcome_logo_height"
-        android:adjustViewBounds="true"
-        android:src="@drawable/logo"
-        android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/story_welcome_text"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="@dimen/story_font_size" />
 
-    <Button
-        android:layout_width="@dimen/story_welcome_lets_go_width"
-        android:layout_height="wrap_content"
-        android:background="@drawable/lets_go_start"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/story_welcome_lets_go_margin_top"
-        android:onClick="handleLetsGoButtonClick"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/story_welcome_logo_height"
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo"
+            android:layout_gravity="center_horizontal"/>
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="@dimen/story_welcome_lets_go_width"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/lets_go_start"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/story_welcome_lets_go_margin_top"
+            android:onClick="handleLetsGoButtonClick"
+            android:clickable="true" />
+
+    </LinearLayout>
+
+</RelativeLayout>
