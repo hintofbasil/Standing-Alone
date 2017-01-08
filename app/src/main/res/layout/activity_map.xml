@@ -102,8 +102,10 @@
                 android:id="@+id/story_progress_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/map_legend_progress_font_size"
                 android:layout_toRightOf="@id/progress_container"
-                android:layout_toEndOf="@id/progress_container" />
+                android:layout_toEndOf="@id/progress_container"
+                android:layout_centerInParent="true" />
 
         </RelativeLayout>
 
@@ -111,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/map_description"
+            android:textSize="@dimen/map_legend_font_size"
             android:layout_gravity="center_horizontal" />
 
         <LinearLayout
@@ -138,6 +141,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/map_legend_next"
+                    android:textSize="@dimen/map_legend_font_size"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical" />
 
@@ -160,6 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/map_legend_previous"
+                    android:textSize="@dimen/map_legend_font_size"
                     android:textStyle="bold"
                     android:layout_gravity="center_vertical" />
 

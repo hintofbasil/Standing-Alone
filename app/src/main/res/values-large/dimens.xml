@@ -13,4 +13,13 @@
     <dimen name="brownlie_image_width">192dp</dimen>
     <dimen name="introduction_font_size">40dp</dimen>
 
+    <!-- Map -->
+    <dimen name="map_legend_icon_size">60dp</dimen>
+    <dimen name="map_legend_margin_top">20dp</dimen>
+    <dimen name="map_legend_margin_bottom">20dp</dimen>
+    <dimen name="map_legend_horizontal_inner_margin">10dp</dimen>
+    <dimen name="map_legend_vertical_inner_margin">10dp</dimen>
+    <dimen name="map_legend_progress_font_size">20sp</dimen>
+    <dimen name="map_legend_font_size">30sp</dimen>
+
 </resources>
