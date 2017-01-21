@@ -45,12 +45,15 @@ public class GeolocationMonitorService extends Service implements LocationListen
         }
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         try {
             if (isDebuggable) {
                 // Limit to 2s min time to avoid toast spam
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0, this);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 0, this);
             } else {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
             }
             Log.i("GeolocationMonitorServi", "Registered for location updates");
         } catch (SecurityException e) {
