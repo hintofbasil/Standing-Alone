@@ -107,7 +107,8 @@ public class GeolocationMonitorService extends Service implements LocationListen
         Location nextLocation = locations[progress];
         if (isDebuggable) {
             Toast.makeText(getApplicationContext(),
-                    "Distance: " + nextLocation.distanceTo(location),
+                    "Distance: " + nextLocation.distanceTo(location) + " (" + location.getProvider() + ")"
+                    + "\n" + location.getLatitude() + ", " + location.getLongitude(),
                     Toast.LENGTH_SHORT).show();
         }
         return nextLocation.distanceTo(location) <= DISTANCE_DELTA;
