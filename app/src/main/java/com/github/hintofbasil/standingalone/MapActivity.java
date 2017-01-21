@@ -48,7 +48,21 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
         updateProgress(progress);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startGeolocationService();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopGeolocationService();
+    }
+
+    private void startGeolocationService() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         boolean gps_enabled;
@@ -78,6 +92,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         geolocationMonitorServiceIntent = new Intent(getApplicationContext(),
                 GeolocationMonitorService.class);
         startService(geolocationMonitorServiceIntent);
+    }
+
+    private void stopGeolocationService() {
+        stopService(geolocationMonitorServiceIntent);
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
