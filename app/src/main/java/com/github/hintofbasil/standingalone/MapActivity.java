@@ -1,11 +1,15 @@
 package com.github.hintofbasil.standingalone;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,6 +48,32 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
         updateProgress(progress);
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        boolean gps_enabled;
+
+        // May need try catch
+        gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!gps_enabled) {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage(getString(R.string.enable_location_services_message));
+            dialog.setPositiveButton(getString(R.string.enable_location_services_positive), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                }
+            });
+            dialog.setNegativeButton(getString(R.string.enable_location_services_negative), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.d("GeolocationMonitorServi", "Geo-location services not enabled");
+                }
+            });
+            dialog.show();
+        }
 
         geolocationMonitorServiceIntent = new Intent(getApplicationContext(),
                 GeolocationMonitorService.class);

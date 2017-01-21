@@ -16,6 +16,9 @@
     <string name="map_description">This is the map of invisible dimention of Jupiter Artland. Find the way to the next location to find Brownie\'s friends, find out what happened and find the treasure! There is a reward waiting for you.. Good luck !</string>
     <string name="map_legend_next">Your next location</string>
     <string name="map_legend_previous">Previous locations</string>
+    <string name="enable_location_services_message">Please enable high accuracy location services.  The game may not function correctly without this enabled.</string>
+    <string name="enable_location_services_positive">Enable</string>
+    <string name="enable_location_services_negative">No thanks</string>
 
     <!-- Location Found -->
     <string name="location_found_brownie">You have found me!\n\nThe magic gold is missing.\nIt allows us to travel between dimentions. We need to find my friends and find out what happened to the gold.\n\nFirst, let\'s go to the stone house.\nI think someone lives there..</string>
