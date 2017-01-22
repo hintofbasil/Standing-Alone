@@ -175,49 +175,76 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/location_found_cheater"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/right_button"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/actionbar_vertical_margin"
+        android:paddingBottom="@dimen/actionbar_vertical_margin"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:clickable="true"
-        android:onClick="onLocationFoundCheaterClickHandler"
-        android:visibility="gone" />
+        android:layout_alignParentRight="true" >
 
-    <LinearLayout
-        android:id="@+id/no_data_found_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/location_found_cheater"
-        android:layout_toStartOf="@+id/location_found_cheater"
-        android:visibility="gone" >
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/no_data_found_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/location_service_no_data_error" />
+            android:orientation="vertical"
+            android:visibility="gone" >
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="@dimen/map_warning_error_width_height"
+                android:layout_height="@dimen/map_warning_error_width_height"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/error" />
 
-    <LinearLayout
-        android:id="@+id/no_gps_data_found_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/location_found_cheater"
-        android:layout_toStartOf="@+id/location_found_cheater"
-        android:visibility="gone" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@string/location_service_no_data_error"
+                android:textSize="@dimen/map_warning_error_text_size" />
 
-        <TextView
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/no_gps_data_found_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/location_service_network_only_error" />
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="@dimen/map_warning_error_width_height"
+                android:layout_height="@dimen/map_warning_error_width_height"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/warning" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@string/location_service_network_only_error"
+                android:textSize="@dimen/map_warning_error_text_size" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/location_found_cheater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_button"
+            android:clickable="true"
+            android:onClick="onLocationFoundCheaterClickHandler"
+            android:visibility="gone" />
 
     </LinearLayout>
 
