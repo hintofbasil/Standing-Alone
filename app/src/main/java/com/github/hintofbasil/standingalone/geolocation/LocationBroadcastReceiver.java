@@ -41,7 +41,7 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
         if (isAtNextLocation(location)) {
             String key = mapActivity.getString(R.string.preferences_locations_found_key);
             int progress = sharedPreferences.getInt(mapActivity.getString(R.string.preferences_locations_found_key), 0);
-            sharedPreferences.edit().putInt(key, (progress + 1) % 10).apply();
+            sharedPreferences.edit().putInt(key, (progress + 1) % 11).apply();
             Log.d("GeolocationMonitorServi", "Next location found.  Progress increased by 1");
 
             // Toast is only used for testing until chat activity is implemented
@@ -55,6 +55,10 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
 
     private boolean isAtNextLocation(Location location) {
         int progress = sharedPreferences.getInt(mapActivity.getString(R.string.preferences_locations_found_key), 0);
+        if (progress == 10) {
+            Log.e("LocationBroadcastReceiv", "Progress is at 10.  GeolocationMonitorService should have stopped.");
+            return false;
+        }
         Location[] locations = getLocations();
         Location nextLocation = locations[progress];
         if (isDebuggable) {

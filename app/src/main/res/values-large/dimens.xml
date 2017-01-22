@@ -1,5 +1,8 @@
 <resources>
 
+    <!-- Custom toolbar -->
+    <dimen name="actionbar_max_title_width">440dp</dimen>
+
     <!-- Story page -->
     <dimen name="story_font_size">48sp</dimen>
     <dimen name="story_welcome_logo_height">400dp</dimen>

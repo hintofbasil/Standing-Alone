@@ -58,7 +58,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     private Point[] getLocations() {
         int mapWidth = mapBackground.getWidth();
         int mapHeight = mapBackground.getHeight();
-        Point[] locations = new Point[9];
+        Point[] locations = new Point[10];
         locations[0] = new Point((int)(0.625 * mapWidth), (int)(0.330 * mapHeight)); // Suck
         locations[1] = new Point((int)(0.518 * mapWidth), (int)(0.261 * mapHeight)); // Stone House
         locations[2] = new Point((int)(0.443 * mapWidth), (int)(0.206 * mapHeight)); // Temple of Apollo
@@ -67,7 +67,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         locations[5] = new Point((int)(0.562 * mapWidth), (int)(0.549 * mapHeight)); // Life Mounds 2
         locations[6] = new Point((int)(0.613 * mapWidth), (int)(0.624 * mapHeight)); // Duck Pond
         locations[7] = new Point((int)(0.497 * mapWidth), (int)(0.593 * mapHeight)); // The Light Pours Out of Me
-        locations[8] = new Point((int)(0.709 * mapWidth), (int)(0.329 * mapHeight)); // The Coppice Room
+        locations[8] = new Point((int)(0.727 * mapWidth), (int)(0.317 * mapHeight)); // The Estate Office
+        locations[9] = new Point((int)(0.709 * mapWidth), (int)(0.329 * mapHeight)); // The Coppice Room
 
         return locations;
     }

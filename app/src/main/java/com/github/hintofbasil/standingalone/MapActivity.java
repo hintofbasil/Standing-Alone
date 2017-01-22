@@ -113,9 +113,12 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     protected void onResume() {
         super.onResume();
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        startGeolocationService();
-        noDataErrorHandler.postDelayed(noDataErrorHandlerRunnable, ERROR_DELAY_TIME);
-        noGPSErrorHandler.postDelayed(noGPSErrorHandlerRunnable, ERROR_DELAY_TIME);
+        int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
+        if (progress < 10) {
+            startGeolocationService();
+            noDataErrorHandler.postDelayed(noDataErrorHandlerRunnable, ERROR_DELAY_TIME);
+            noGPSErrorHandler.postDelayed(noGPSErrorHandlerRunnable, ERROR_DELAY_TIME);
+        }
     }
 
     @Override
@@ -176,7 +179,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     public void onLocationFoundCheaterClickHandler(View view) {
         String locationsFoundKey = getString(R.string.preferences_locations_found_key);
         int locationsFoundCount = sharedPreferences.getInt(locationsFoundKey, 0);
-        locationsFoundCount = (locationsFoundCount + 1) % 10;
+        locationsFoundCount = (locationsFoundCount + 1) % 11;
         sharedPreferences.edit().putInt(locationsFoundKey, locationsFoundCount).apply();
     }
 
@@ -201,7 +204,11 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     }
 
     private void updateProgressText(int progress) {
-        getProgressText().setText(String.format("%d/9", progress));
+        if (progress == 9 || progress == 10) {
+            getProgressText().setText(String.format("%d/10", progress));
+        } else {
+            getProgressText().setText(String.format("%d/9", progress));
+        }
     }
 
     private void updateProgressPointImages(int progress) {
@@ -215,11 +222,17 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             }
             progressViews[i].setImageDrawable(drawable);
         }
+
+        if (progress == 9 || progress == 10) {
+            progressViews[9].setVisibility(View.VISIBLE);
+        } else {
+            progressViews[9].setVisibility(View.GONE);
+        }
     }
 
     public ImageView[] getProgressImageViews() {
         if (progressImageViews == null) {
-            progressImageViews = new ImageView[9];
+            progressImageViews = new ImageView[10];
             progressImageViews[0] = (ImageView) findViewById(R.id.story_progress_1);
             progressImageViews[1] = (ImageView) findViewById(R.id.story_progress_2);
             progressImageViews[2] = (ImageView) findViewById(R.id.story_progress_3);
@@ -229,6 +242,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             progressImageViews[6] = (ImageView) findViewById(R.id.story_progress_7);
             progressImageViews[7] = (ImageView) findViewById(R.id.story_progress_8);
             progressImageViews[8] = (ImageView) findViewById(R.id.story_progress_9);
+            progressImageViews[9] = (ImageView) findViewById(R.id.story_progress_10);
         }
         return progressImageViews;
     }
