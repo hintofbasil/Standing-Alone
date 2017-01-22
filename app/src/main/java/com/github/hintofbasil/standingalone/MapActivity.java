@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -152,12 +153,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private void startGeolocationService() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        boolean gps_enabled;
+        boolean gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean has_permission = this.checkCallingOrSelfPermission("android.permission.ACCESS_FINE_LOCATION") == PackageManager.PERMISSION_GRANTED;
 
-        // May need try catch
-        gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-        if (!gps_enabled) {
+        if (!gps_enabled || !has_permission) {
             openLocationSettings();
         }
 
