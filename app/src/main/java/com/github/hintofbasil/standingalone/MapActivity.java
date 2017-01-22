@@ -1,21 +1,25 @@
 package com.github.hintofbasil.standingalone;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.hintofbasil.standingalone.geolocation.GeolocationMonitorService;
+import com.github.hintofbasil.standingalone.geolocation.LocationBroadcastReceiver;
 import com.github.hintofbasil.standingalone.map.LocationsMap;
 
 /**
@@ -28,6 +32,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private TextView progressText;
     private LocationsMap locationsMap;
     private Intent geolocationMonitorServiceIntent;
+    private BroadcastReceiver locationReceiver;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -44,21 +49,24 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             locationFoundCheater.setVisibility(View.VISIBLE);
         }
         sharedPreferences = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
-        updateProgress(progress);
+        updateProgress(progress, false);
+
+        locationReceiver = new LocationBroadcastReceiver(this);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         startGeolocationService();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         stopGeolocationService();
     }
 
@@ -89,6 +97,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             dialog.show();
         }
 
+        // Register for location events to detect errors
+        LocalBroadcastManager.getInstance(this).registerReceiver(locationReceiver, new IntentFilter("custom"));
+
         geolocationMonitorServiceIntent = new Intent(getApplicationContext(),
                 GeolocationMonitorService.class);
         startService(geolocationMonitorServiceIntent);
@@ -96,6 +107,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
     private void stopGeolocationService() {
         stopService(geolocationMonitorServiceIntent);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(locationReceiver);
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
@@ -103,36 +115,26 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         int locationsFoundCount = sharedPreferences.getInt(locationsFoundKey, 0);
         locationsFoundCount = (locationsFoundCount + 1) % 10;
         sharedPreferences.edit().putInt(locationsFoundKey, locationsFoundCount).apply();
-
-        // Must check if not 0 as cheat is cyclical
-        if (locationsFoundCount > 0) {
-            Intent intent = new Intent(getApplicationContext(),
-                    LocationFoundActivity.class);
-            intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(locationsFoundCount));
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(getString(R.string.preferences_locations_found_key))) {
-            // Loctions found updated
-            int progress = sharedPreferences.getInt(key, 0);
-            updateProgress(progress);
-        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         stopService(geolocationMonitorServiceIntent);
     }
 
-    private void updateProgress(int progress) {
+    public void updateProgress(int progress, boolean showText) {
         updateProgressPointImages(progress);
         updateProgressText(progress);
         getLocationsMap().setFoundLocations(progress);
+
+        // Must check if not 0 as cheat is cyclical
+        if (showText && progress > 0) {
+            Intent intent = new Intent(getApplicationContext(),
+                    LocationFoundActivity.class);
+            intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(progress));
+            startActivity(intent);
+        }
     }
 
     private void updateProgressText(int progress) {
@@ -181,4 +183,15 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         }
         return locationsMap;
     }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.preferences_locations_found_key))) {
+            // Loctions found updated
+            int progress = sharedPreferences.getInt(key, 0);
+            updateProgress(progress, true);
+        }
+    }
+
+
 }
