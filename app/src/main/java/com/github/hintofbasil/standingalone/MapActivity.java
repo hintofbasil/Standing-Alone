@@ -126,6 +126,29 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
     }
 
+    public void handleErrorClick(View view) {
+        openLocationSettings();
+    }
+
+    private void openLocationSettings() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage(getString(R.string.enable_location_services_message));
+        dialog.setPositiveButton(getString(R.string.enable_location_services_positive), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+        dialog.setNegativeButton(getString(R.string.enable_location_services_negative), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d("GeolocationMonitorServi", "Geo-location services not enabled");
+            }
+        });
+        dialog.show();
+    }
+
     private void startGeolocationService() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -135,22 +158,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         if (!gps_enabled) {
-            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-            dialog.setMessage(getString(R.string.enable_location_services_message));
-            dialog.setPositiveButton(getString(R.string.enable_location_services_positive), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(intent);
-                }
-            });
-            dialog.setNegativeButton(getString(R.string.enable_location_services_negative), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Log.d("GeolocationMonitorServi", "Geo-location services not enabled");
-                }
-            });
-            dialog.show();
+            openLocationSettings();
         }
 
         // Register for location events to detect errors
