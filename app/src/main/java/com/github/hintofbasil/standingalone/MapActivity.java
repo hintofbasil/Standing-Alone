@@ -9,13 +9,16 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.hintofbasil.standingalone.geolocation.GeolocationMonitorService;
@@ -27,12 +30,21 @@ import com.github.hintofbasil.standingalone.map.LocationsMap;
  */
 public class MapActivity extends BaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    public static final int ERROR_DELAY_TIME = 60000; // One minute
+
     private SharedPreferences sharedPreferences;
     private ImageView[] progressImageViews;
     private TextView progressText;
     private LocationsMap locationsMap;
     private Intent geolocationMonitorServiceIntent;
     private BroadcastReceiver locationReceiver;
+
+    private Handler noDataErrorHandler;
+    private LinearLayout noDataError;
+    private Runnable noDataErrorHandlerRunnable;
+    private Handler noGPSErrorHandler;
+    private LinearLayout noGPSError;
+    private Runnable noGPSErrorHandlerRunnable;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -54,6 +66,46 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         locationReceiver = new LocationBroadcastReceiver(this);
 
+        noDataError = (LinearLayout) findViewById(R.id.no_data_found_error);
+        noGPSError = (LinearLayout) findViewById(R.id.no_gps_data_found_error);
+
+        noDataErrorHandlerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // Hide less significant error
+                if (noGPSError.getVisibility() == View.VISIBLE) {
+                    noGPSError.setVisibility(View.GONE);
+                }
+                noDataError.setVisibility(View.VISIBLE);
+                noDataErrorHandler.postDelayed(this, ERROR_DELAY_TIME);
+            }
+        };
+        noDataErrorHandler = new Handler();
+
+        noGPSErrorHandlerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // Only show more significant error
+                if(noDataError.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                noDataError.setVisibility(View.VISIBLE);
+                noDataErrorHandler.postDelayed(this, ERROR_DELAY_TIME);
+            }
+        };
+        noGPSErrorHandler = new Handler();
+    }
+
+    public void postponeErrorMessages(Location location) {
+        // Reset timers
+        noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
+        noDataErrorHandler.postDelayed(noDataErrorHandlerRunnable, ERROR_DELAY_TIME);
+        noDataError.setVisibility(View.GONE);
+        if (location.getProvider().equals("gps")) {
+            noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
+            noGPSErrorHandler.postDelayed(noGPSErrorHandlerRunnable, ERROR_DELAY_TIME);
+            noGPSError.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -61,6 +113,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         super.onResume();
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         startGeolocationService();
+        noDataErrorHandler.postDelayed(noDataErrorHandlerRunnable, ERROR_DELAY_TIME);
+        noGPSErrorHandler.postDelayed(noGPSErrorHandlerRunnable, ERROR_DELAY_TIME);
     }
 
     @Override
@@ -68,6 +122,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         super.onPause();
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         stopGeolocationService();
+        noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
+        noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
     }
 
     private void startGeolocationService() {

@@ -37,6 +37,7 @@ public class LocationBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Location location = intent.getParcelableExtra("location");
+        mapActivity.postponeErrorMessages(location);
         if (isAtNextLocation(location)) {
             String key = mapActivity.getString(R.string.preferences_locations_found_key);
             int progress = sharedPreferences.getInt(mapActivity.getString(R.string.preferences_locations_found_key), 0);

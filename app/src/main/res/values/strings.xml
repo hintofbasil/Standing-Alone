@@ -19,6 +19,8 @@
     <string name="enable_location_services_message">Please enable high accuracy location services.  The game may not function correctly without this enabled.</string>
     <string name="enable_location_services_positive">Enable</string>
     <string name="enable_location_services_negative">No thanks</string>
+    <string name="location_service_no_data_error">No location\ndata detected.</string>
+    <string name="location_service_network_only_error">No GPS\ndata detected.</string>
 
     <!-- Location Found -->
     <string name="location_found_brownie">You have found me!\n\nThe magic gold is missing.\nIt allows us to travel between dimentions. We need to find my friends and find out what happened to the gold.\n\nFirst, let\'s go to the stone house.\nI think someone lives there..</string>

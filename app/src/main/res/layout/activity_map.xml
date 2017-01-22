@@ -117,6 +117,7 @@
             android:layout_gravity="center_horizontal" />
 
         <LinearLayout
+            android:id="@+id/map_icon_legend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -185,5 +186,39 @@
         android:clickable="true"
         android:onClick="onLocationFoundCheaterClickHandler"
         android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/no_data_found_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/location_found_cheater"
+        android:layout_toStartOf="@+id/location_found_cheater"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_service_no_data_error" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_gps_data_found_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/location_found_cheater"
+        android:layout_toStartOf="@+id/location_found_cheater"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_service_network_only_error" />
+
+    </LinearLayout>
 
 </RelativeLayout>
