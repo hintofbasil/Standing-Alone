@@ -96,6 +96,13 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/point_unselected" />
 
+                <ImageView
+                    android:id="@+id/story_progress_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/point_unselected"
+                    android:visibility="gone" />
+
             </LinearLayout>
 
             <TextView

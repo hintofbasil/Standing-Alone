@@ -54,9 +54,9 @@ public class GeolocationMonitorService extends Service implements LocationListen
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("GeolocationMonitorServi", "GeolocationMonitorService stopped.");
         try {
             locationManager.removeUpdates(this);
+            Log.d("GeolocationMonitorServi", "GeolocationMonitorService stopped.");
         } catch (SecurityException e) {
             Log.e("GeolocationMonitorServi", "Unable to unregister for location updates\n" + Log.getStackTraceString(e));
         }
