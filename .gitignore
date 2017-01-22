@@ -46,3 +46,4 @@ captures/
 
 # Keystore files
 *.jks
+app/src/main/java/com/github/hintofbasil/standingalone/geolocation/TestLocationsFactory.java
