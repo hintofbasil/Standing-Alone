@@ -18,7 +18,7 @@ import com.github.hintofbasil.standingalone.R;
 public class LocationBroadcastReceiver extends BroadcastReceiver {
 
     // Distance (in meters) from target that still triggers event.
-    public static final int DISTANCE_DELTA = 2;
+    public static final int DISTANCE_DELTA = 12;
 
     private MapActivity mapActivity;
     private SharedPreferences sharedPreferences;
