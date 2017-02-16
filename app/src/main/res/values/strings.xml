@@ -24,7 +24,9 @@
     <string name="location_service_network_only_error">No GPS\ndata detected.</string>
 
     <!-- Location Found -->
-    <string name="location_found_brownie">Hello again, thank you so much for helping me. I need to find out what happened, it\’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary.\nWe should start with the Stone house. Something tells me one of my friends is hiding there. Let\’s find out!</string>
+    <string name="location_found_brownie">"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary
+We should start with the Stone house. Something tells me one of my friends is hiding there. Let’s find out!"</string>
+
     <string name="location_found_glaistig">The first creature you found with Brownie was Glaistig, who lived in Stone House. When Asked by Brownie, he mentioned seeing Brian and Blue Witch looking for something with shovels. He advised you to ask Cu Sith, who lives near to The Temple of Apollo. </string>
     <string name="location_found_cu_sith">Cu Sith told you that she talked to Brian about Gold.  The last time she saw him he was with Cailleach Bheur by In Memory.</string>
     <string name="location_found_blue_witch">Cailleach Bheur helped Brian find gold but she doesn\’t know where he hid it.  She thinks you should talk to the Mermaid at Life Mounds.</string>
