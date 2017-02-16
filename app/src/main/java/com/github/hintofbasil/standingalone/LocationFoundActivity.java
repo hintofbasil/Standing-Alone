@@ -1,8 +1,8 @@
 package com.github.hintofbasil.standingalone;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +18,10 @@ public class LocationFoundActivity extends BaseActivity {
     private int textStatus = 0;
     private TextView speechTextView;
 
+    private Drawable speechBubbleBottomLeft;
+    private Drawable speechBubbleBottomRight;
+    private ImageView speechBubbleBottomView;
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -27,6 +31,10 @@ public class LocationFoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
+
+        speechBubbleBottomLeft = getResources().getDrawable(R.drawable.speech_bubble_bottom);
+        speechBubbleBottomRight = getResources().getDrawable(R.drawable.speech_bubble_bottom_reverse);
+        speechBubbleBottomView = (ImageView) findViewById(R.id.speech_bubble_bottom);
 
         final LocationFoundEnum details = (LocationFoundEnum) getIntent().getSerializableExtra(EXTRA_LOCATION_FOUND_PROGRESS);
 
@@ -56,6 +64,13 @@ public class LocationFoundActivity extends BaseActivity {
 
     private void updateText() {
         speechTextView.setText(textArray[textStatus]);
+        if (textStatus == textArray.length -1) {
+            speechBubbleBottomView.setVisibility(View.INVISIBLE);
+        } else if (textStatus % 2 == 0) {
+            speechBubbleBottomView.setImageDrawable(speechBubbleBottomLeft);
+        } else {
+            speechBubbleBottomView.setImageDrawable(speechBubbleBottomRight);
+        }
         textStatus++;
         if (textArray.length > textStatus) {
             new Handler().postDelayed(new Runnable() {
