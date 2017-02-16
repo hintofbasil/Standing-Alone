@@ -30,7 +30,7 @@
     <dimen name="map_legend_horizontal_inner_margin">5dp</dimen>
     <dimen name="map_legend_vertical_inner_margin">5dp</dimen>
     <dimen name="map_legend_progress_font_size">12sp</dimen>
-    <dimen name="map_legend_font_size">12sp</dimen>
+    <dimen name="map_legend_font_size">16sp</dimen>
     <dimen name="map_warning_error_width_height">30dp</dimen>
     <dimen name="map_warning_error_text_size">12sp</dimen>
 
