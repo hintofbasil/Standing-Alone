@@ -2,6 +2,7 @@ package com.github.hintofbasil.standingalone;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ public class LocationFoundActivity extends BaseActivity {
     public static final String EXTRA_LOCATION_FOUND_PROGRESS = "com.github.hintofbasil.EXTRA_LOCATION_FOUND_PROGRESS";
     public static final int SPEACH_DELAY_MILLI = 8000;
 
-    private String[] textArray;
+    private CharSequence[] textArray;
     private int textStatus = 0;
     private TextView speechTextView;
 
@@ -44,7 +45,7 @@ public class LocationFoundActivity extends BaseActivity {
         speechTextView = (TextView) findViewById(R.id.location_found_text);
         speechTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        textArray = getResources().getStringArray(details.textStringId);
+        textArray = getResources().getTextArray(details.textStringId);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
