@@ -22,6 +22,9 @@ public class LocationFoundActivity extends BaseActivity {
     private Drawable speechBubbleBottomRight;
     private ImageView speechBubbleBottomView;
 
+    private boolean brownieSpeaking;
+    private boolean endWithNoSpeech;
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -38,7 +41,10 @@ public class LocationFoundActivity extends BaseActivity {
 
         final LocationFoundEnum details = (LocationFoundEnum) getIntent().getSerializableExtra(EXTRA_LOCATION_FOUND_PROGRESS);
 
-        ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
+        brownieSpeaking = details.beginWithBrownie;
+        endWithNoSpeech = details.endWithNoSpeech;
+
+                ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
         titleImageView.setImageResource(details.titleDrawableId);
 
         final ImageView characterImageView = (ImageView) findViewById(R.id.location_found_character_image);
@@ -64,13 +70,14 @@ public class LocationFoundActivity extends BaseActivity {
 
     private void updateText() {
         speechTextView.setText(textArray[textStatus]);
-        if (textStatus == textArray.length -1) {
+        if (endWithNoSpeech && textStatus == textArray.length -1) {
             speechBubbleBottomView.setVisibility(View.INVISIBLE);
-        } else if (textStatus % 2 == 0) {
+        } else if (brownieSpeaking) {
             speechBubbleBottomView.setImageDrawable(speechBubbleBottomLeft);
         } else {
             speechBubbleBottomView.setImageDrawable(speechBubbleBottomRight);
         }
+        brownieSpeaking = !brownieSpeaking;
         textStatus++;
         if (textArray.length > textStatus) {
             new Handler().postDelayed(new Runnable() {
