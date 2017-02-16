@@ -25,7 +25,7 @@ public class StoryIntroductionActivity extends BaseActivity {
     public StoryIntroductionActivity() {
         super(R.drawable.the_story, R.layout.activity_story_introduction);
         currentPage = 0;
-        maxPage = 4;
+        maxPage = 5;
     }
 
     public void onLeftNavigationClicked(View view) {
@@ -134,6 +134,7 @@ public class StoryIntroductionActivity extends BaseActivity {
             progressDisplay[2] = (ImageView) findViewById(R.id.story_progress_3);
             progressDisplay[3] = (ImageView) findViewById(R.id.story_progress_4);
             progressDisplay[4] = (ImageView) findViewById(R.id.story_progress_5);
+            progressDisplay[5] = (ImageView) findViewById(R.id.story_progress_6);
         }
         return progressDisplay;
     }

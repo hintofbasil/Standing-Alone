@@ -6,11 +6,12 @@
     <string name="preferences_locations_found_key">LOCATIONS_FOUND_KEY</string>
 
     <!-- Introduction -->
-    <string name="introduction_1"><b>Hello</b>\n\nMy name is Brownie. I am a goblin. Let me tell you a story of Jupiter Artland.</string>
-    <string name="introduction_2">A long time ago many magical creatures lived here. They were helping and protecting people.</string>
-    <string name="introduction_3">They came from a magical dimention called Minecraft, where everything is almost the same but square.</string>
-    <string name="introduction_4">One day, a terrible flood destroyed Jupiter Artland. Everyone was blamed creatures. Only Brian, one of humans keeped peace. Ever since then everyone trusts only him..</string>
-    <string name="introduction_5">I suspect Brian is hidding something. Help me to find out the truth. Find me next to the Suck to start our adventure. Use the map if you don\'t know the way.\n<b>See you soon!</b></string>
+    <string name="introduction_1">"<b>Hello</b>\nMy name is Brownie, I am a friendly goblin and I’d like to tell you a story of Jupiter Artland, barely remembered, even by the oldest people."</string>
+    <string name="introduction_2">"A long time ago many magical creatures lived in Jupiter Artland. They lived in peace with humans and everyone helped each other. The magical creatures protected people, they took care of the farm animals and  helped out around the farms."</string>
+    <string name="introduction_3">"Because of its special location between worlds Jupiter Artland  was one of the few places the creatures could easily travel between a magical dimension in Minecraft and the real world. People were happy to have the creatures as their neighbours."</string>
+    <string name="introduction_4">"One day, a terrible flood came and destroyed part of the village and Jupiter Artland. The Creatures and the local people blamed each other. Everyone was scared except Brian, a human from the village who offered to talk to the creatures. Ever since then, Brian is the only person who keeps peace and everyone trusts only him."</string>
+    <string name="introduction_5">"I suspect this is not the truth. Why are the other creatures hiding? Why are we stuck in the human dimension? What really happened? Will you help me to find the answers and talk to the other creatures? If you’re ready for the adventure, I am waiting for you next to Suck. See you soon!"</string>
+    <string name="introduction_6">"Walk with your device. If you are close enough you will see Brownie, who will tell you what to do next. If you don’t know the location click on the map."</string>
 
     <!-- Map -->
     <string name="map_description">This is the map of invisible dimention of Jupiter Artland. Find the way to the next location to find Brownie\'s friends, find out what happened and find the treasure! There is a reward waiting for you.. Good luck !</string>
