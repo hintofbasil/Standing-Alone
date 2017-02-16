@@ -6,11 +6,12 @@
     <string name="preferences_locations_found_key">LOCATIONS_FOUND_KEY</string>
 
     <!-- Introduction -->
-    <string name="introduction_1"><b>Hello</b>\n\nMy name is Brownie. I am a goblin. Let me tell you a story of Jupiter Artland.</string>
-    <string name="introduction_2">A long time ago many magical creatures lived here. They were helping and protecting people.</string>
-    <string name="introduction_3">They came from a magical dimention called Minecraft, where everything is almost the same but square.</string>
-    <string name="introduction_4">One day, a terrible flood destroyed Jupiter Artland. Everyone was blamed creatures. Only Brian, one of humans keeped peace. Ever since then everyone trusts only him..</string>
-    <string name="introduction_5">I suspect Brian is hidding something. Help me to find out the truth. Find me next to the Suck to start our adventure. Use the map if you don\'t know the way.\n<b>See you soon!</b></string>
+    <string name="introduction_1">"<b>Hello</b>\nMy name is Brownie, I am a friendly goblin and I’d like to tell you a story of Jupiter Artland, barely remembered, even by the oldest people."</string>
+    <string name="introduction_2">"A long time ago many magical creatures lived in Jupiter Artland. They lived in peace with humans and everyone helped each other. The magical creatures protected people, they took care of the farm animals and  helped out around the farms."</string>
+    <string name="introduction_3">"Because of its special location between worlds Jupiter Artland  was one of the few places the creatures could easily travel between a magical dimension in Minecraft and the real world. People were happy to have the creatures as their neighbours."</string>
+    <string name="introduction_4">"One day, a terrible flood came and destroyed part of the village and Jupiter Artland. The Creatures and the local people blamed each other. Everyone was scared except Brian, a human from the village who offered to talk to the creatures. Ever since then, Brian is the only person who keeps peace and everyone trusts only him."</string>
+    <string name="introduction_5">"I suspect this is not the truth. Why are the other creatures hiding? Why are we stuck in the human dimension? What really happened? Will you help me to find the answers and talk to the other creatures? If you’re ready for the adventure, I am waiting for you next to Suck. See you soon!"</string>
+    <string name="introduction_6">"Walk with your device. If you are close enough you will see Brownie, who will tell you what to do next. If you don’t know the location click on the map."</string>
 
     <!-- Map -->
     <string name="map_description">This is the map of invisible dimention of Jupiter Artland. Find the way to the next location to find Brownie\'s friends, find out what happened and find the treasure! There is a reward waiting for you.. Good luck !</string>
@@ -23,15 +24,88 @@
     <string name="location_service_network_only_error">No GPS\ndata detected.</string>
 
     <!-- Location Found -->
-    <string name="location_found_brownie">You have found me!\n\nThe magic gold is missing.\nIt allows us to travel between dimentions. We need to find my friends and find out what happened to the gold.\n\nFirst, let\'s go to the stone house.\nI think someone lives there..</string>
-    <string name="location_found_glaistig">That\'s Glaistig! She is suprised to see humans. Also, She is upset becasue she stuck in Minecraft dimention like others.\n\nGlaistig is saying that has seen Brian and Blue Witch looking for something. We need to find his friend Cu Sith at the Temple of Apollo to find out more..</string>
-    <string name="location_found_cu_sith">Cu Sith is a bit angry, he doesn\'t like children anymore, becasue they were mean to him. Cu Sith remembers that Brain was asking about the gold but he still trust him.. Well, let\'s walk to In Memory, there must be someone there..</string>
-    <string name="location_found_blue_witch">Be careful, she is dangerous! You are safe, I will talk to her.. What\'s that, Witch? She said that it is not our buisness.. Oh no, She feels quilty becasue she helped Brain to find the gold! She doesn\'t know where is it now though.. It will be ok Witch, we will try to fix it. Let\'s walk to Life Mounds.</string>
-    <string name="location_found_mermaid">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
-    <string name="location_found_selkie">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
-    <string name="location_found_kelpie">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
-    <string name="location_found_cait_sith">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
-    <string name="location_found_brian">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
-    <string name="location_found_treasure">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string-array name="location_found_brownie">
+        <item>"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary
+We should start with the Stone house. Something tells me one of my friends is hiding there. Let’s find out!"</item>
+    </string-array>
+
+    <string-array name="location_found_glaistig">
+        <item>"<b>Glaistig:</b> Hello Brownie, oh you’ve brought a human.  I haven’t seen humans for a while now. I can’t go back to our world and I am not sure why."</item>
+        <item>"<b>Brownie:</b> Hi old friend, did you notice anything odd?"</item>
+        <item>"<b>"Glaistig:</b> Well, I heard noises. I’m sure Brian and Blue Witch were looking for it, they had shovels, maybe they were digging for something. I am sure it’s all fine, Brian was there. Don’t worry, he’s protecting us."</item>
+        <item>"<b>Brownie:</b> I don’t think so friend. Thank you, stay safe. Something strange is going on.  We need to talk to the others."</item>
+        <item>"<b>Glaistig:</b> I think I saw Cu Sith somewhere in the forest near to the Temple of Apollo."</item>
+        <item>"The first creature you found with Brownie was Glaistig, who lived in  Stone House. When Asked by Brownie, he mentioned seeing Brian and Blue Witch looking for something with shovels. He advised you to ask Cu Sith, who lives near to The Temple of Apollo."</item>
+    </string-array>
+
+    <string-array name="location_found_cu_sith">
+        <item>"<b>Brownie:</b> Hello Cu Sith, don’t be angry. These humans are helping me to find out what happened. Something is wrong, people are not our enemies."</item>
+        <item>"<b>Cu Sith:</b> Oh Brownie I’m not angry, they look nice. I used to love playing with children, they brought me food and I took them for rides. Now it’s quiet and empty here but Brian says they changed."</item>
+        <item>"<b>Brownie:</b> Have you seen anything suspicious?"</item>
+        <item>"<b>Cu Sith:</b> No, I haven’t but I remember Brian was asking me where there was gold. But don’t worry, he can protect us."</item>
+        <item>"<b>Brownie:</b> Hmm, Brian again, why was he looking for gold?"</item>
+        <item>"<b>Cu Sith:</b> I don’t know, he was with Blue Witch over at In Memory."</item>
+        <item>"Cu Sith told you that she talked to Brian about Gold.  The last time she saw him he was with Cailleach Bheur by In Memory."</item>
+    </string-array>
+
+    <string-array name="location_found_blue_witch">
+        <item>"<b>Brownie:</b> (Be careful, she can be  dangerous! ) Hello Blue Witch are you there?"</item>
+        <item>"<b>Cailleach Bheur:</b> Oh no, not you… and you have noisy humans with you! Well, you humans are safe just as long you’re here with Brownie but don’t come back without him."</item>
+        <item>"<b>Brownie:</b> Tell us witch, what do you know about gold?"</item>
+        <item>"<b>Cailleach Bheur:</b> Why do you ask, why are you bothering me about that?"</item>
+        <item>"<b>Brownie:</b> Calm down, we need to talk to everyone. We’re just trying to get back to Minecraft. You know it wasn’t always like this, no one likes to live in fear. Please, help us."</item>
+        <item>"<b>Cailleach Bheur:</b> Alright, it was me, I helped Brian find the gold. I thought he was trying to help us. I’m sorry but I don’t know where he’s hidden it. The Mermaid or Selkie might know."</item>
+        <item>"<b>Brownie:</b> OK let me try and repair the situation.  I knew we couldn’t trust Brian. Come on, we need to walk to Life Mounds to see the Mermaid."</item>
+        <item>"Cailleach Bheur helped Brian find gold but she doesn’t know where he hid it.  She thinks you should talk to the Mermaid at Life Mounds."</item>
+    </string-array>
+
+    <string-array name="location_found_mermaid">
+        <item>"<b>Mermaid:</b> Oh no, not you again. What do you want this time. And what is that here with you, ooh human please, come closer to the water."</item>
+        <item>"<b>Brownie:</b> Don’t get too close, she’ll pull you in and eat you.  Mermaid, can you please just answer some questions? Have you seen Brian around here?"</item>
+        <item>"<b>Mermaid:</b> Maybe I did, maybe I didn’t. Why do you want to know?"</item>
+        <item>"<b>Brownie:</b> He has our gold, that’s why we can’t go back home. He manipulated us, people are not the threat, he is."</item>
+        <item>"<b>Mermaid:</b> I can’t believe we’ve been so stupid, it all makes sense. I saw him walking there on the other side, next to the bridge, looking for Selkie. Bring him to me if you find him."</item>
+        <item>"<b>Brownie:</b> Thanks for your help. We really need to get going now."</item>
+        <item>"The Mermaid saw Brian looking for Selkie by the bridge on the other side of Life Mounds."</item>
+    </string-array>
+
+    <string-array name="location_found_selkie">
+        <item>"<b>Brownie:</b> Selkie, don’t go, don’t be afraid of us. These humans are friendly, they can help us."</item>
+        <item>"<b>Selkie:</b> Alright, but please don’t hurt me. Brain said the humans will do terrible things if you find us. Why you are even here?"</item>
+        <item>"<b>Brownie:</b> I’m sorry Selkie but Brian lied to all of us. He has hidden the gold and now we are trying to find it. He knows the gold is magical and we can’t leave without it. You know humans are not really our enemies."</item>
+        <item>"<b>Selkie:</b> Oh no, he’s just using us. Well, Kelpie might help you. Last time I saw him, he was swimming in the Duck Pond. I hope you find the gold. Be careful, I think Brian is watching."</item>
+        <item>"<b>Brownie:</b> Thanks, we will do whatever it takes. Let’s go find Kelpie."</item>
+        <item>"Selkie thinks you should ask Kelpie by the duck pond."</item>
+    </string-array>
+
+    <string-array name="location_found_kelpie">
+        <item>"<b>Brownie:</b> Kelpie, I know you don’t like visitors, especially humans, but this is important. It looks like Brain lied to us and to the humans. He has hidden the magical gold and trapped us in the real world."</item>
+        <item>"<b>Kelpie:</b> What do you mean?! He betrayed all of us? I can’t trust any humans. I’ll take care of him and then."</item>
+        <item>"<b>Brownie:</b> Calm down, we need a plan here to find the gold. Tell me, have you seen him here recently? Anything suspicious?"</item>
+        <item>"<b>Kelpie:</b>  He was sneaking around somewhere here. I think somewhere close to the Crystal Cave. You should talk to Cait Sith, he likes shiny things after all. Check out next to Crystal Cave, or how people like to call it, The Light Pours Out of Me.  That annoying Cait Sith, I can’t think about this anymore. I need a swim."</item>
+        <item>"<b>Brownie:</b> Kelpie, wait! Oh he’s gone. Oh well, maybe the others will tell us more."</item>
+        <item>"Kelpie saw Brian sneaking around the Crystal Cave (The Light Pours Out of Me).  He thinks Cait Sith had something to do with it."</item>
+    </string-array>
+
+    <string-array name="location_found_cait_sith">
+        <item>"<b>Brownie:</b> Cait Sith? Are you there? Please don’t try to eat me this time."</item>
+        <item>"<b>Cait Sith:</b> Oh it’s you, I had my breakfast today, thank you very much. How can I help you and whatever this creature is."</item>
+        <item>"<b>Brownie:</b> We’re looking for gold. Magical gold in fact, the stuff that can help us to get home. You like crystals and other shiny things, have you seen it?"</item>
+        <item>"<b>Cait Sith:</b> Well, I might know where it is. First things first, what would I get in return. I am a busy cat, you know."</item>
+        <item>"<b>Brownie:</b> Fine, we’ll share some of the gold with you. Just help us please."</item>
+        <item>"<b>Cait Sith:</b> Alright then. The gold is somewhere here. Around Crystal Cave. You just need to look around. It won’t be far away."</item>
+        <item>"<b>Brownie:</b> Thank you so much. Well, you heard him. It should be here.. Come on, help me to find it.."</item>
+        <item>"Cait Sith thinks the gold is somewhere around the Crystal Cave, can you find it?"</item>
+    </string-array>
+
+    <string-array name="location_found_brian">
+        <item>"<b>Brian:</b> Oh Hello. Did you think I will just leave the treasure here? Oh no it’s not that easy!  I was watching you. If you think you’re so clever, find it yourself! Here’s a clue. The gold is hidden in a dark room full of trees, not far away from the Steadings. Good luck."</item>
+        <item>"<b>Brownie:</b> At least we know where to look for it .We’ll find it,  Let’s go!"</item>
+    </string-array>
+
+    <string-array name="location_found_treasure">
+        <item>"<b>Brownie:</b> Oh wow, you found it, thank you so much. Don’t forget to collect a thank you gift from the shop."</item>
+        <item>"You found the gold!  Take this screen and show it at the shop."</item>
+    </string-array>
 
 </resources>

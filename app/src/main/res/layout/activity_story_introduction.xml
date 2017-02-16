@@ -41,6 +41,13 @@
             android:adjustViewBounds="true"
             android:src="@drawable/introduction_background_5" />
 
+        <!-- TODO verify picture -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/cu_sith_background" />
+
     </ViewFlipper>
 
     <RelativeLayout
@@ -83,6 +90,12 @@
 
             <ImageView
                 android:id="@+id/story_progress_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/point_unselected" />
+
+            <ImageView
+                android:id="@+id/story_progress_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/point_unselected" />
@@ -147,6 +160,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/introduction_5"
+            android:textSize="@dimen/introduction_font_size"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/introduction_6"
             android:textSize="@dimen/introduction_font_size"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center" />
