@@ -1,6 +1,7 @@
 package com.github.hintofbasil.standingalone;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,11 @@ import android.widget.TextView;
 public class LocationFoundActivity extends BaseActivity {
 
     public static final String EXTRA_LOCATION_FOUND_PROGRESS = "com.github.hintofbasil.EXTRA_LOCATION_FOUND_PROGRESS";
+    public static final int SPEACH_DELAY_MILLI = 8000;
+
+    private String[] textArray;
+    private int textStatus = 0;
+    private TextView speechTextView;
 
     public LocationFoundActivity() {
         // Override title image in onCreate
@@ -35,11 +41,29 @@ public class LocationFoundActivity extends BaseActivity {
         ImageView backgroundImage = (ImageView) findViewById(R.id.background_image);
         backgroundImage.setImageResource(details.backgroundDrawableId);
 
-        TextView speechTextView = (TextView) findViewById(R.id.location_found_text);
+        speechTextView = (TextView) findViewById(R.id.location_found_text);
         speechTextView.setMovementMethod(new ScrollingMovementMethod());
 
-        String speechText = getString(details.textStringId);
-        speechTextView.setText(speechText);
+        textArray = getResources().getStringArray(details.textStringId);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                updateText();
+            }
+        }, 0);
+    }
+
+    private void updateText() {
+        speechTextView.setText(textArray[textStatus]);
+        textStatus++;
+        if (textArray.length > textStatus) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    updateText();
+                }
+            }, SPEACH_DELAY_MILLI);
+        }
     }
 
     public void handleMapButtonClicked(View view) {

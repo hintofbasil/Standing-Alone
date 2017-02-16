@@ -24,17 +24,50 @@
     <string name="location_service_network_only_error">No GPS\ndata detected.</string>
 
     <!-- Location Found -->
-    <string name="location_found_brownie">"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary
-We should start with the Stone house. Something tells me one of my friends is hiding there. Let’s find out!"</string>
+    <string-array name="location_found_brownie">
+        <item>"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary
+We should start with the Stone house. Something tells me one of my friends is hiding there. Let’s find out!"</item>
+    </string-array>
 
-    <string name="location_found_glaistig">The first creature you found with Brownie was Glaistig, who lived in Stone House. When Asked by Brownie, he mentioned seeing Brian and Blue Witch looking for something with shovels. He advised you to ask Cu Sith, who lives near to The Temple of Apollo. </string>
-    <string name="location_found_cu_sith">Cu Sith told you that she talked to Brian about Gold.  The last time she saw him he was with Cailleach Bheur by In Memory.</string>
-    <string name="location_found_blue_witch">Cailleach Bheur helped Brian find gold but she doesn\’t know where he hid it.  She thinks you should talk to the Mermaid at Life Mounds.</string>
-    <string name="location_found_mermaid">The Mermaid saw Brian looking for Selkie by the bridge on the other side of Life Mounds.</string>
-    <string name="location_found_selkie">Selkie thinks you should ask Kelpie by the duck pond.</string>
-    <string name="location_found_kelpie">Kelpie saw Brian sneaking around the Crystal Cave (The Light Pours Out of Me).  He thinks Cait Sith had something to do with it.</string>
-    <string name="location_found_cait_sith">Cait Sith thinks the gold is somewhere around the Crystal Cave, can you find it?</string>
-    <string name="location_found_brian">Oh Hello. Did you think I will just leave the treasure here? Oh no it\’s not that easy!  I was watching you. If you think you\’re so clever, find it yourself! Here\’s a clue. The gold is hidden in a dark room full of trees, not far away from the Steadings. Good luck.</string>
-    <string name="location_found_treasure">You found the gold!  Take this screen and show it at the shop.</string>
+    <string-array name="location_found_glaistig">
+        <item>"<b>Glaistig:</b> Hello Brownie, oh you’ve brought a human.  I haven’t seen humans for a while now. I can’t go back to our world and I am not sure why."</item>
+        <item>"<b>Brownie:</b> Hi old friend, did you notice anything odd?"</item>
+        <item>"<b>"Glaistig:</b> Well, I heard noises. I’m sure Brian and Blue Witch were looking for it, they had shovels, maybe they were digging for something. I am sure it’s all fine, Brian was there. Don’t worry, he’s protecting us."</item>
+        <item>"<b>Brownie:</b> I don’t think so friend. Thank you, stay safe. Something strange is going on.  We need to talk to the others."</item>
+        <item>"<b>Glaistig:</b> I think I saw Cu Sith somewhere in the forest near to the Temple of Apollo."</item>
+        <item>"The first creature you found with Brownie was Glaistig, who lived in  Stone House. When Asked by Brownie, he mentioned seeing Brian and Blue Witch looking for something with shovels. He advised you to ask Cu Sith, who lives near to The Temple of Apollo."</item>
+    </string-array>
+
+    <string-array name="location_found_cu_sith">
+        <item>Cu Sith told you that she talked to Brian about Gold.  The last time she saw him he was with Cailleach Bheur by In Memory.</item>
+    </string-array>
+
+    <string-array name="location_found_blue_witch">
+        <item>Cailleach Bheur helped Brian find gold but she doesn\’t know where he hid it.  She thinks you should talk to the Mermaid at Life Mounds.</item>
+    </string-array>
+
+    <string-array name="location_found_mermaid">
+        <item>The Mermaid saw Brian looking for Selkie by the bridge on the other side of Life Mounds.</item>
+    </string-array>
+
+    <string-array name="location_found_selkie">
+        <item>Selkie thinks you should ask Kelpie by the duck pond.</item>
+    </string-array>
+
+    <string-array name="location_found_kelpie">
+        <item>Kelpie saw Brian sneaking around the Crystal Cave (The Light Pours Out of Me).  He thinks Cait Sith had something to do with it.</item>
+    </string-array>
+
+    <string-array name="location_found_cait_sith">
+        <item>Cait Sith thinks the gold is somewhere around the Crystal Cave, can you find it?</item>
+    </string-array>
+
+    <string-array name="location_found_brian">
+        <item>Oh Hello. Did you think I will just leave the treasure here? Oh no it\’s not that easy!  I was watching you. If you think you\’re so clever, find it yourself! Here\’s a clue. The gold is hidden in a dark room full of trees, not far away from the Steadings. Good luck.</item>
+    </string-array>
+
+    <string-array name="location_found_treasure">
+        <item>You found the gold!  Take this screen and show it at the shop.</item>
+    </string-array>
 
 </resources>
