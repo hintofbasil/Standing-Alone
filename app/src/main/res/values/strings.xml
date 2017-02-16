@@ -53,7 +53,7 @@ We should start with the Stone house. Something tells me one of my friends is hi
         <item>"<b>Cailleach Bheur:</b> Oh no, not you… and you have noisy humans with you! Well, you humans are safe just as long you’re here with Brownie but don’t come back without him."</item>
         <item>"<b>Brownie:</b> Tell us witch, what do you know about gold?"</item>
         <item>"<b>Cailleach Bheur:</b> Why do you ask, why are you bothering me about that?"</item>
-        <item>"<b>Brownie:</b>Calm down, we need to talk to everyone. We’re just trying to get back to Minecraft. You know it wasn’t always like this, no one likes to live in fear. Please, help us."</item>
+        <item>"<b>Brownie:</b> Calm down, we need to talk to everyone. We’re just trying to get back to Minecraft. You know it wasn’t always like this, no one likes to live in fear. Please, help us."</item>
         <item>"<b>Cailleach Bheur:</b> Alright, it was me, I helped Brian find the gold. I thought he was trying to help us. I’m sorry but I don’t know where he’s hidden it. The Mermaid or Selkie might know."</item>
         <item>"<b>Brownie:</b> OK let me try and repair the situation.  I knew we couldn’t trust Brian. Come on, we need to walk to Life Mounds to see the Mermaid."</item>
         <item>"Cailleach Bheur helped Brian find gold but she doesn’t know where he hid it.  She thinks you should talk to the Mermaid at Life Mounds."</item>
@@ -61,7 +61,7 @@ We should start with the Stone house. Something tells me one of my friends is hi
 
     <string-array name="location_found_mermaid">
         <item>"<b>Mermaid:</b> Oh no, not you again. What do you want this time. And what is that here with you, ooh human please, come closer to the water."</item>
-        <item>"<b>Brownie:</b>  Don’t get too close, she’ll pull you in and eat you.  Mermaid, can you please just answer some questions? Have you seen Brian around here?"</item>
+        <item>"<b>Brownie:</b> Don’t get too close, she’ll pull you in and eat you.  Mermaid, can you please just answer some questions? Have you seen Brian around here?"</item>
         <item>"<b>Mermaid:</b> Maybe I did, maybe I didn’t. Why do you want to know?"</item>
         <item>"<b>Brownie:</b> He has our gold, that’s why we can’t go back home. He manipulated us, people are not the threat, he is."</item>
         <item>"<b>Mermaid:</b> I can’t believe we’ve been so stupid, it all makes sense. I saw him walking there on the other side, next to the bridge, looking for Selkie. Bring him to me if you find him."</item>
@@ -83,7 +83,7 @@ We should start with the Stone house. Something tells me one of my friends is hi
         <item>"<b>Kelpie:</b> What do you mean?! He betrayed all of us? I can’t trust any humans. I’ll take care of him and then."</item>
         <item>"<b>Brownie:</b> Calm down, we need a plan here to find the gold. Tell me, have you seen him here recently? Anything suspicious?"</item>
         <item>"<b>Kelpie:</b>  He was sneaking around somewhere here. I think somewhere close to the Crystal Cave. You should talk to Cait Sith, he likes shiny things after all. Check out next to Crystal Cave, or how people like to call it, The Light Pours Out of Me.  That annoying Cait Sith, I can’t think about this anymore. I need a swim."</item>
-        <item>"<b>Brownie:</b>Kelpie, wait! Oh he’s gone. Oh well, maybe the others will tell us more."</item>
+        <item>"<b>Brownie:</b> Kelpie, wait! Oh he’s gone. Oh well, maybe the others will tell us more."</item>
         <item>"Kelpie saw Brian sneaking around the Crystal Cave (The Light Pours Out of Me).  He thinks Cait Sith had something to do with it."</item>
     </string-array>
 
