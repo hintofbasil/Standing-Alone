@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ public class LocationFoundActivity extends BaseActivity {
 
     private boolean brownieSpeaking;
     private boolean endWithNoSpeech;
+
+    private ImageView mapButton;
 
     public LocationFoundActivity() {
         // Override title image in onCreate
@@ -59,6 +62,8 @@ public class LocationFoundActivity extends BaseActivity {
         speechTextView = (TextView) findViewById(R.id.location_found_text);
         speechTextView.setMovementMethod(new ScrollingMovementMethod());
 
+        mapButton = (ImageView) findViewById(R.id.map_button);
+
         textArray = getResources().getTextArray(details.textStringId);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -77,6 +82,18 @@ public class LocationFoundActivity extends BaseActivity {
         } else {
             speechBubbleBottomView.setImageDrawable(speechBubbleBottomRight);
         }
+        if (textStatus == textArray.length -1) {
+            mapButton.setClickable(true);
+            mapButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // This should always be opened from the map
+                    // so closing should take user back to map
+                    LocationFoundActivity.this.finish();
+                }
+            });
+            mapButton.setVisibility(View.VISIBLE);
+        }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
         if (textArray.length > textStatus) {
@@ -87,11 +104,5 @@ public class LocationFoundActivity extends BaseActivity {
                 }
             }, SPEACH_DELAY_MILLI);
         }
-    }
-
-    public void handleMapButtonClicked(View view) {
-        // This should always be opened from the map
-        // so closing should take user back to map
-        this.finish();
     }
 }
