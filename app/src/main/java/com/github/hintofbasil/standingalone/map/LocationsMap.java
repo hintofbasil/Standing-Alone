@@ -1,6 +1,7 @@
 package com.github.hintofbasil.standingalone.map;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -12,6 +13,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
+import com.github.hintofbasil.standingalone.LocationFoundActivity;
+import com.github.hintofbasil.standingalone.LocationFoundEnum;
 import com.github.hintofbasil.standingalone.R;
 
 /**
@@ -38,8 +41,11 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     private Point[] locations;
     private int foundLocations;
 
+    private Context context;
+
     public LocationsMap(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+        this.context = context;
         this.paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         mapBackground = BitmapFactory.decodeResource(getResources(), R.drawable.map_background);
@@ -119,6 +125,24 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
+        float x = (e.getX() / scaleFactor) + offsetX;
+        float y = (e.getY() / scaleFactor) + offsetY;
+        float markerWidth = nextLocationImage.getWidth();
+        float markerHeight = nextLocationImage.getHeight();
+        Point[] locations = getLocations();
+        // x, y is at base of marker
+        for (int i = 0; i < foundLocations; i++) {
+            Point location = locations[i];
+            if (x >= location.x - (markerWidth / 2) &&
+                    x <= location.x + (markerWidth / 2) &&
+                    y >= location.y - markerHeight &&
+                    y <= location.y) {
+                Intent intent = new Intent(context,
+                        LocationFoundActivity.class);
+                intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(i + 1));
+                context.startActivity(intent);
+            }
+        }
         return false;
     }
 
