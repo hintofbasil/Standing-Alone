@@ -67,8 +67,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         locations[5] = new Point((int)(0.562 * mapWidth), (int)(0.549 * mapHeight)); // Life Mounds 2
         locations[6] = new Point((int)(0.613 * mapWidth), (int)(0.624 * mapHeight)); // Duck Pond
         locations[7] = new Point((int)(0.497 * mapWidth), (int)(0.593 * mapHeight)); // The Light Pours Out of Me
-        locations[8] = new Point((int)(0.727 * mapWidth), (int)(0.317 * mapHeight)); // The Estate Office
-        locations[9] = new Point((int)(0.709 * mapWidth), (int)(0.329 * mapHeight)); // The Coppice Room
+        locations[8] = new Point((int)(0.850 * mapWidth), (int)(0.523 * mapHeight)); // Love Bomb
+        locations[9] = new Point((int)(0.691 * mapWidth), (int)(0.324 * mapHeight)); // The Large Tree
 
         return locations;
     }
