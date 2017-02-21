@@ -140,6 +140,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
                 Intent intent = new Intent(context,
                         LocationFoundActivity.class);
                 intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(i + 1));
+                intent.putExtra(LocationFoundActivity.LOCATION_FOUND_REPLAY, true);
                 context.startActivity(intent);
             }
         }

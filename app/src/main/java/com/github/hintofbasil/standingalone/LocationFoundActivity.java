@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class LocationFoundActivity extends BaseActivity {
 
     public static final String EXTRA_LOCATION_FOUND_PROGRESS = "com.github.hintofbasil.EXTRA_LOCATION_FOUND_PROGRESS";
+    public static final String LOCATION_FOUND_REPLAY = "com.github.hintofbasil.LOCATION_FOUND_REPLAY";
 
     private CharSequence[] textArray;
     private int[] textTimings;
@@ -68,6 +69,12 @@ public class LocationFoundActivity extends BaseActivity {
         boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
         if (isDebuggable) {
             Log.d("LocationFoundCheater", "Debug mode enabled, map button visible");
+            enableMapButton();
+        }
+
+        boolean isReplay = getIntent().getBooleanExtra(LOCATION_FOUND_REPLAY, false);
+
+        if (isReplay) {
             enableMapButton();
         }
 
