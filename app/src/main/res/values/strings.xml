@@ -70,7 +70,7 @@
 
     <string-array name="location_found_selkie">
         <item>"<b>Brownie:</b> Selkie, don’t go, don’t be afraid of us. These humans are friendly, they can help us."</item>
-        <item>"<b>Selkie:</b> Alright, but please don’t hurt me. Brian said the humans will do terrible things if you find us. Why are you  even here?"</item>
+        <item>"<b>Selkie:</b> Alright, but please don’t hurt me. Brian said the humans will do terrible things if you find us. Why are you even here?"</item>
         <item>"<b>Brownie:</b> I’m sorry Selkie but Brian lied to all of us. He has hidden the gold and now we are trying to find it. He knows the gold is magical and we can’t leave without it. You know humans are not really our enemies."</item>
         <item>"<b>Selkie:</b> Oh no, he’s just using us. Well, Kelpie might help you. Last time I saw him, he was swimming in the Duck Pond. I hope you find the gold. Be careful, I think Brian is watching."</item>
         <item>"<b>Brownie:</b> Thanks, we will do whatever it takes. Let’s go find Kelpie."</item>
@@ -81,7 +81,7 @@
         <item>"<b>Brownie:</b> Kelpie, I know you don’t like visitors, especially humans, but this is important. It looks like Brian lied to us and to the humans. He has hidden the magical gold and trapped us in the real world."</item>
         <item>"<b>Kelpie:</b> What do you mean?! He betrayed all of us? I can’t trust any humans. I’ll take care of him and them."</item>
         <item>"<b>Brownie:</b> Calm down, we need a plan here to find the gold. Tell me, have you seen him here recently? Anything suspicious?"</item>
-        <item>"<b>Kelpie:</b>  He was sneaking around somewhere here. I think somewhere close to the Crystal Cave. You should talk to Cait Sith, he likes shiny things after all. Check out next to the Crystal Cave, or how people like to call it, The Light Pours Out of Me.  That annoying Cait Sith, I can’t think about this anymore. I need a swim."</item>
+        <item>"<b>Kelpie:</b>  He was sneaking around somewhere here. I think somewhere close to the Crystal Cave. You should talk to Cait Sith, he likes shiny things after all. Check out next to the Crystal Cave, or how people like to call it, <i>The Light Pours Out of Me</i>.  That annoying Cait Sith, I can’t think about this anymore. I need a swim."</item>
         <item>"<b>Brownie:</b> Kelpie, wait! Oh he’s gone. Oh well, maybe the others will tell us more."</item>
         <item>"Kelpie saw Brian sneaking around the Crystal Cave (The Light Pours Out of Me).  He thinks Cait Sith had something to do with it."</item>
     </string-array>
@@ -99,7 +99,7 @@
 
     <string-array name="location_found_brian">
         <item>"<b>Brian:</b> Oh Hello. Did you think I will just leave the treasure here? Oh no it’s not that easy!  I was watching you. If you think you’re so clever, find it yourself! Here’s a clue. The gold is hidden near a large old tree, not far away from the Steadings. Good luck."</item>
-        <item>"<b>Brownie:</b> At least we know where to look for it .We’ll find it,  Let’s go!"</item>
+        <item>"<b>Brownie:</b> At least we know where to look for it. We’ll find it,  Let’s go!"</item>
     </string-array>
 
     <string-array name="location_found_treasure">
