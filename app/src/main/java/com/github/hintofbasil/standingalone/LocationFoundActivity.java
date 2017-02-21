@@ -1,9 +1,11 @@
 package com.github.hintofbasil.standingalone;
 
+import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -63,6 +65,11 @@ public class LocationFoundActivity extends BaseActivity {
         speechTextView.setMovementMethod(new ScrollingMovementMethod());
 
         mapButton = (ImageView) findViewById(R.id.map_button);
+        boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
+        if (isDebuggable) {
+            Log.d("LocationFoundCheater", "Debug mode enabled, map button visible");
+            enableMapButton();
+        }
 
         textArray = getResources().getTextArray(details.textStringId);
         new Handler().postDelayed(new Runnable() {
@@ -83,16 +90,7 @@ public class LocationFoundActivity extends BaseActivity {
             speechBubbleBottomView.setImageDrawable(speechBubbleBottomRight);
         }
         if (textStatus == textArray.length -1) {
-            mapButton.setClickable(true);
-            mapButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // This should always be opened from the map
-                    // so closing should take user back to map
-                    LocationFoundActivity.this.finish();
-                }
-            });
-            mapButton.setVisibility(View.VISIBLE);
+            enableMapButton();
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
@@ -104,5 +102,18 @@ public class LocationFoundActivity extends BaseActivity {
                 }
             }, SPEACH_DELAY_MILLI);
         }
+    }
+
+    private void enableMapButton() {
+        mapButton.setClickable(true);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This should always be opened from the map
+                // so closing should take user back to map
+                LocationFoundActivity.this.finish();
+            }
+        });
+        mapButton.setVisibility(View.VISIBLE);
     }
 }
