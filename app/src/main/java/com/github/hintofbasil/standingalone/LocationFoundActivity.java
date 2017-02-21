@@ -15,9 +15,9 @@ import android.widget.TextView;
 public class LocationFoundActivity extends BaseActivity {
 
     public static final String EXTRA_LOCATION_FOUND_PROGRESS = "com.github.hintofbasil.EXTRA_LOCATION_FOUND_PROGRESS";
-    public static final int SPEACH_DELAY_MILLI = 8000;
 
     private CharSequence[] textArray;
+    private int[] textTimings;
     private int textStatus = 0;
     private TextView speechTextView;
 
@@ -72,6 +72,7 @@ public class LocationFoundActivity extends BaseActivity {
         }
 
         textArray = getResources().getTextArray(details.textStringId);
+        textTimings = details.textTimings;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -95,12 +96,13 @@ public class LocationFoundActivity extends BaseActivity {
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
         if (textArray.length > textStatus) {
+            int delay = textTimings[textStatus - 1];
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     updateText();
                 }
-            }, SPEACH_DELAY_MILLI);
+            }, delay);
         }
     }
 
