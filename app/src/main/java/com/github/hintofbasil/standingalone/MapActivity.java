@@ -1,5 +1,6 @@
 package com.github.hintofbasil.standingalone;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,15 +13,20 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.hintofbasil.standingalone.geolocation.GeolocationMonitorService;
 import com.github.hintofbasil.standingalone.geolocation.LocationBroadcastReceiver;
@@ -30,6 +36,8 @@ import com.github.hintofbasil.standingalone.map.LocationsMap;
  * Created by will on 11/12/16.
  */
 public class MapActivity extends BaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+    public static final int ACCESS_FINE_LOCATION_REQUEST = 0;
 
     public static final int ERROR_DELAY_TIME = 60000; // One minute
 
@@ -65,7 +73,14 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
         updateProgress(progress, false);
 
-        locationReceiver = new LocationBroadcastReceiver(this);
+        int permissionGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionGranted == PackageManager.PERMISSION_GRANTED) {
+            locationReceiver = new LocationBroadcastReceiver(this);
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    ACCESS_FINE_LOCATION_REQUEST);
+        }
 
         noDataError = (LinearLayout) findViewById(R.id.no_data_found_error);
         noGPSError = (LinearLayout) findViewById(R.id.no_gps_data_found_error);
@@ -110,7 +125,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     }
 
     @Override
-    protected void onResume() {
+    protected void onStart() {
         super.onResume();
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
@@ -122,7 +137,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     }
 
     @Override
-    protected void onPause() {
+    protected void onStop() {
         super.onPause();
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
         stopGeolocationService();
@@ -135,22 +150,45 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     }
 
     private void openLocationSettings() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setMessage(getString(R.string.enable_location_services_message));
-        dialog.setPositiveButton(getString(R.string.enable_location_services_positive), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int permissionGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+            if (permissionGranted != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        ACCESS_FINE_LOCATION_REQUEST);
             }
-        });
-        dialog.setNegativeButton(getString(R.string.enable_location_services_negative), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Log.d("GeolocationMonitorServi", "Geo-location services not enabled");
-            }
-        });
-        dialog.show();
+        } else {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage(getString(R.string.enable_location_services_message));
+            dialog.setPositiveButton(getString(R.string.enable_location_services_positive), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                }
+            });
+            dialog.setNegativeButton(getString(R.string.enable_location_services_negative), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.d("GeolocationMonitorServi", "Geo-location services not enabled");
+                }
+            });
+            dialog.show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case ACCESS_FINE_LOCATION_REQUEST:
+                if (grantResults.length > 0 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    locationReceiver = new LocationBroadcastReceiver(this);
+                } else {
+                    Toast.makeText(this, "Without access to location the app will not function properly.", Toast.LENGTH_LONG).show();
+                }
+                break;
+        }
     }
 
     private void startGeolocationService() {
@@ -163,6 +201,12 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             openLocationSettings();
         }
 
+        // Check they were enabled
+        if (!gps_enabled || !has_permission) {
+            Log.d("MapActivity", "Location permission not granted");
+            return;
+        }
+
         // Register for location events to detect errors
         LocalBroadcastManager.getInstance(this).registerReceiver(locationReceiver, new IntentFilter("custom"));
 
@@ -172,7 +216,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     }
 
     private void stopGeolocationService() {
-        stopService(geolocationMonitorServiceIntent);
+        if (geolocationMonitorServiceIntent != null) {
+            stopService(geolocationMonitorServiceIntent);
+        }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(locationReceiver);
     }
 
