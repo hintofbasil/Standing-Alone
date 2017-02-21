@@ -185,7 +185,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
                         grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     locationReceiver = new LocationBroadcastReceiver(this);
                 } else {
-                    Toast.makeText(this, "Without access to location the app will not function properly.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.enable_location_services_message), Toast.LENGTH_LONG).show();
                 }
                 break;
         }
