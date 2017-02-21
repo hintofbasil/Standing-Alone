@@ -83,6 +83,7 @@ public class LocationFoundActivity extends BaseActivity {
 
     private void updateText() {
         speechTextView.setText(textArray[textStatus]);
+        speechTextView.scrollTo(0, 0);
         if (endWithNoSpeech && textStatus == textArray.length -1) {
             speechBubbleBottomView.setVisibility(View.INVISIBLE);
         } else if (brownieSpeaking) {
@@ -96,7 +97,13 @@ public class LocationFoundActivity extends BaseActivity {
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
         if (textArray.length > textStatus) {
-            int delay = textTimings[textStatus - 1];
+            // TODO find out why sometimes throws exception
+            int delay;
+            try {
+                delay = textTimings[textStatus - 1];
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                delay = 8000;
+            }
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
