@@ -138,6 +138,7 @@ public class StoryIntroductionActivity extends BaseActivity {
     }
 
     public void handleLetsGoButtonClick(View view) {
+        soundPool.stop(loadedSoundIds[currentPage]);
         Intent intent = new Intent(getApplicationContext(),
                 MapActivity.class);
         startActivity(intent);
