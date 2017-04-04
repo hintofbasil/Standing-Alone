@@ -60,6 +60,8 @@ public class StoryIntroductionActivity extends BaseActivity {
             int rawId = getRawSoundIds()[i];
             loadedSoundIds[i] = soundPool.load(this, rawId, 1);
         }
+
+        soundPool.play(loadedSoundIds[currentPage], 1, 1, 1, 0, 1);
     }
 
     public void onLeftNavigationClicked(View view) {
@@ -76,6 +78,8 @@ public class StoryIntroductionActivity extends BaseActivity {
         getBackgroundImageFlipper().showPrevious();
         getIntroductionStoryFlipper().showPrevious();
         updateDisplayForPage();
+
+        soundPool.play(loadedSoundIds[currentPage], 1, 1, 1, 0, 1);
     }
 
     int[] getRawSoundIds() {
@@ -104,6 +108,8 @@ public class StoryIntroductionActivity extends BaseActivity {
         getBackgroundImageFlipper().showNext();
         getIntroductionStoryFlipper().showNext();
         updateDisplayForPage();
+
+        soundPool.play(loadedSoundIds[currentPage], 1, 1, 1, 0, 1);
     }
 
     private void updateDisplayForPage() {
