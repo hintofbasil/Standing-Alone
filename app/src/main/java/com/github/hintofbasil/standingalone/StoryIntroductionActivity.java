@@ -1,6 +1,11 @@
 package com.github.hintofbasil.standingalone;
 
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -22,10 +27,39 @@ public class StoryIntroductionActivity extends BaseActivity {
     private int currentPage;
     private int maxPage;
 
+    private SoundPool soundPool;
+
+    private int[] rawSoundIds;
+
+    private int[] loadedSoundIds;
+
     public StoryIntroductionActivity() {
         super(R.drawable.the_story, R.layout.activity_story_introduction);
         currentPage = 0;
         maxPage = 5;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT < 21) {
+            soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        } else {
+            AudioAttributes attrs = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build();
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(1)
+                    .setAudioAttributes(attrs)
+                    .build();
+        }
+        loadedSoundIds = new int[getRawSoundIds().length];
+        for (int i = 0; i < getRawSoundIds().length; i++) {
+            int rawId = getRawSoundIds()[i];
+            loadedSoundIds[i] = soundPool.load(this, rawId, 1);
+        }
     }
 
     public void onLeftNavigationClicked(View view) {
@@ -42,6 +76,18 @@ public class StoryIntroductionActivity extends BaseActivity {
         getBackgroundImageFlipper().showPrevious();
         getIntroductionStoryFlipper().showPrevious();
         updateDisplayForPage();
+    }
+
+    int[] getRawSoundIds() {
+        rawSoundIds = new int[7];
+        rawSoundIds[0] = R.raw.intro1;
+        rawSoundIds[1] = R.raw.intro2;
+        rawSoundIds[2] = R.raw.intro3;
+        rawSoundIds[3] = R.raw.intro4;
+        rawSoundIds[4] = R.raw.intro5;
+        rawSoundIds[5] = R.raw.intro6;
+        rawSoundIds[6] = R.raw.intro6b;
+        return rawSoundIds;
     }
 
     public void onRightNavigationClicked(View view) {
