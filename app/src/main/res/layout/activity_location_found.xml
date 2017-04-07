@@ -12,48 +12,73 @@
         android:clickable="true"
         android:onClick="handleAutoSpeechButtonClick" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_above="@+id/background_image_container" >
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_alignBottom="@+id/location_found_text"
-            android:layout_alignEnd="@+id/location_found_text"
-            android:layout_alignLeft="@+id/location_found_text"
-            android:layout_alignRight="@+id/location_found_text"
-            android:layout_alignStart="@+id/location_found_text"
-            android:layout_alignTop="@+id/location_found_text"
-            android:scaleType="fitXY"
-            android:src="@drawable/speech_bubble_top"/>
-
-        <TextView
-            android:id="@+id/location_found_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_above="@+id/speech_bubble_bottom"
-            android:textSize="@dimen/location_found_text_size"
-            android:scrollbars="vertical" />
+            android:src="@drawable/left_button"
+            android:layout_gravity="center_vertical"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:layout_weight="0" />
+
+        <RelativeLayout
+            android:id="@+id/speech_bubble_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignBottom="@+id/location_found_text"
+                android:layout_alignEnd="@+id/location_found_text"
+                android:layout_alignLeft="@+id/location_found_text"
+                android:layout_alignRight="@+id/location_found_text"
+                android:layout_alignStart="@+id/location_found_text"
+                android:layout_alignTop="@+id/location_found_text"
+                android:scaleType="fitXY"
+                android:src="@drawable/speech_bubble_top"/>
+
+            <TextView
+                android:id="@+id/location_found_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/speech_bubble_bottom"
+                android:textSize="@dimen/location_found_text_size"
+                android:scrollbars="vertical" />
+
+            <ImageView
+                android:id="@+id/speech_bubble_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
 
         <ImageView
-            android:id="@+id/speech_bubble_bottom"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_alignParentBottom="true"/>
+            android:src="@drawable/right_button"
+            android:layout_gravity="center_vertical"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:layout_weight="0" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/background_image_container"
