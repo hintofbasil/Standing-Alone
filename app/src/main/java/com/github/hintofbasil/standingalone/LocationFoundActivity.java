@@ -31,6 +31,10 @@ public class LocationFoundActivity extends BaseActivity {
 
     private ImageView mapButton;
 
+    private boolean autoNext;
+    private Handler timingHandler;
+    private Runnable updateTextRunnable;
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -40,6 +44,14 @@ public class LocationFoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
+
+        timingHandler = new Handler();
+        updateTextRunnable = new Runnable() {
+            @Override
+            public void run() {
+                updateText();
+            }
+        };
 
         speechBubbleBottomLeft = getResources().getDrawable(R.drawable.speech_bubble_bottom);
         speechBubbleBottomRight = getResources().getDrawable(R.drawable.speech_bubble_bottom_reverse);
@@ -80,12 +92,7 @@ public class LocationFoundActivity extends BaseActivity {
 
         textArray = getResources().getTextArray(details.textStringId);
         textTimings = details.textTimings;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                updateText();
-            }
-        }, 0);
+        timingHandler.postDelayed(updateTextRunnable, 0);
     }
 
     private void updateText() {
@@ -103,7 +110,7 @@ public class LocationFoundActivity extends BaseActivity {
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
-        if (textArray.length > textStatus) {
+        if (autoNext && textArray.length > textStatus) {
             // TODO find out why sometimes throws exception
             int delay;
             try {
@@ -111,12 +118,7 @@ public class LocationFoundActivity extends BaseActivity {
             } catch (ArrayIndexOutOfBoundsException ex) {
                 delay = 8000;
             }
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    updateText();
-                }
-            }, delay);
+            timingHandler.postDelayed(updateTextRunnable, delay);
         }
     }
 
@@ -131,5 +133,23 @@ public class LocationFoundActivity extends BaseActivity {
             }
         });
         mapButton.setVisibility(View.VISIBLE);
+    }
+
+    public void handleAutoSpeechButtonClick(View view) {
+        if (autoNext) {
+            timingHandler.removeCallbacks(updateTextRunnable);
+        } else {
+            if (textArray.length > textStatus) {
+                // TODO find out why sometimes throws exception
+                int delay;
+                try {
+                    delay = textTimings[textStatus - 1];
+                } catch (ArrayIndexOutOfBoundsException ex) {
+                    delay = 8000;
+                }
+                timingHandler.postDelayed(updateTextRunnable, delay);
+            }
+        }
+        autoNext = !autoNext;
     }
 }
