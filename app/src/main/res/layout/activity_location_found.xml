@@ -19,12 +19,15 @@
         android:layout_above="@+id/background_image_container" >
 
         <ImageView
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/left_button"
             android:layout_gravity="center_vertical"
             android:scaleX="0.5"
             android:scaleY="0.5"
+            android:clickable="true"
+            android:onClick="handleRightButtonClick"
             android:layout_weight="0" />
 
         <RelativeLayout
@@ -70,12 +73,15 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/right_button"
             android:layout_gravity="center_vertical"
             android:scaleX="0.5"
             android:scaleY="0.5"
+            android:clickable="true"
+            android:onClick="handleRightButtonClick"
             android:layout_weight="0" />
 
     </LinearLayout>

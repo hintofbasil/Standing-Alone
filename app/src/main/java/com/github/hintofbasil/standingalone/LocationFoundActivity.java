@@ -35,6 +35,9 @@ public class LocationFoundActivity extends BaseActivity {
     private Handler timingHandler;
     private Runnable updateTextRunnable;
 
+    private ImageView backButton;
+    private ImageView nextButton;
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -52,6 +55,9 @@ public class LocationFoundActivity extends BaseActivity {
                 updateText();
             }
         };
+
+        backButton = (ImageView) findViewById(R.id.back_button);
+        nextButton = (ImageView) findViewById(R.id.next_button);
 
         speechBubbleBottomLeft = getResources().getDrawable(R.drawable.speech_bubble_bottom);
         speechBubbleBottomRight = getResources().getDrawable(R.drawable.speech_bubble_bottom_reverse);
@@ -107,6 +113,9 @@ public class LocationFoundActivity extends BaseActivity {
         }
         if (textStatus == textArray.length -1) {
             enableMapButton();
+            nextButton.setVisibility(View.INVISIBLE);
+        } else {
+            nextButton.setVisibility(View.VISIBLE);
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
@@ -136,7 +145,14 @@ public class LocationFoundActivity extends BaseActivity {
     }
 
     public void handleAutoSpeechButtonClick(View view) {
-        if (autoNext) {
+        setAutoNextEnabled(!autoNext);
+    }
+
+    private void setAutoNextEnabled(boolean enabled) {
+        if (enabled == autoNext) {
+            return;
+        }
+        if (!enabled) {
             timingHandler.removeCallbacks(updateTextRunnable);
         } else {
             if (textArray.length > textStatus) {
@@ -150,6 +166,19 @@ public class LocationFoundActivity extends BaseActivity {
                 timingHandler.postDelayed(updateTextRunnable, delay);
             }
         }
-        autoNext = !autoNext;
+        autoNext = enabled;
+    }
+
+    public void handleLeftButtonClick(View view) {
+        setAutoNextEnabled(false);
+    }
+
+    public void handleRightButtonClick(View view) {
+        updateText();
+        // Reset timer
+        if (autoNext) {
+            setAutoNextEnabled(false);
+            setAutoNextEnabled(true);
+        }
     }
 }
