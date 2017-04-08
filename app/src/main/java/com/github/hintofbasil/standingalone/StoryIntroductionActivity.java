@@ -3,6 +3,7 @@ package com.github.hintofbasil.standingalone;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,11 +28,10 @@ public class StoryIntroductionActivity extends BaseActivity {
     private int currentPage;
     private int maxPage;
 
-    private SoundPool soundPool;
+    private MediaPlayer mediaPlayer;
 
     private int[] rawSoundIds;
 
-    private int[] loadedSoundIds;
 
     public StoryIntroductionActivity() {
         super(R.drawable.the_story, R.layout.activity_story_introduction);
@@ -43,25 +43,8 @@ public class StoryIntroductionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT < 21) {
-            soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        } else {
-            AudioAttributes attrs = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                    .build();
-            soundPool = new SoundPool.Builder()
-                    .setMaxStreams(1)
-                    .setAudioAttributes(attrs)
-                    .build();
-        }
-        loadedSoundIds = new int[getRawSoundIds().length];
-        for (int i = 0; i < getRawSoundIds().length; i++) {
-            int rawId = getRawSoundIds()[i];
-            loadedSoundIds[i] = soundPool.load(this, rawId, 1);
-        }
-
-        soundPool.play(loadedSoundIds[currentPage], 1, 1, 1, 0, 1);
+        mediaPlayer = MediaPlayer.create(this, getRawSoundIds()[currentPage]);
+        mediaPlayer.start();
     }
 
     public void onLeftNavigationClicked(View view) {
@@ -79,7 +62,9 @@ public class StoryIntroductionActivity extends BaseActivity {
         getIntroductionStoryFlipper().showPrevious();
         updateDisplayForPage();
 
-        soundPool.play(loadedSoundIds[currentPage], 1, 1, 1, 0, 1);
+        mediaPlayer.reset();
+        mediaPlayer = MediaPlayer.create(this, getRawSoundIds()[currentPage]);
+        mediaPlayer.start();
     }
 
     int[] getRawSoundIds() {
@@ -109,7 +94,9 @@ public class StoryIntroductionActivity extends BaseActivity {
         getIntroductionStoryFlipper().showNext();
         updateDisplayForPage();
 
-        soundPool.play(loadedSoundIds[currentPage], 1, 1, 1, 0, 1);
+        mediaPlayer.reset();
+        mediaPlayer = MediaPlayer.create(this, getRawSoundIds()[currentPage]);
+        mediaPlayer.start();
     }
 
     private void updateDisplayForPage() {
@@ -138,7 +125,7 @@ public class StoryIntroductionActivity extends BaseActivity {
     }
 
     public void handleLetsGoButtonClick(View view) {
-        soundPool.stop(loadedSoundIds[currentPage]);
+        mediaPlayer.release();
         Intent intent = new Intent(getApplicationContext(),
                 MapActivity.class);
         startActivity(intent);
