@@ -48,7 +48,7 @@ public enum LocationFoundEnum {
     TREASURE(R.drawable.treasure_title, R.drawable.treasure,
             R.drawable.treasure_background, R.array.location_found_treasure,
             1.7f, true, true, new int[] {10000},
-            new int[] {});
+            new int[] {R.raw.treasure1});
 
     int titleDrawableId;
     int characterDrawableId;
