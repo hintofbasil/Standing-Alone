@@ -46,7 +46,7 @@ public enum LocationFoundEnum {
     BRIAN(R.drawable.brian_title, R.drawable.brian,
             R.drawable.brian_background, R.array.location_found_brian,
             1.6f, false, false, new int[] {15000},
-            new int[] {}),
+            new int[] {R.raw.brian1, R.raw.brian2}),
     TREASURE(R.drawable.treasure_title, R.drawable.treasure,
             R.drawable.treasure_background, R.array.location_found_treasure,
             1.7f, true, true, new int[] {10000},
