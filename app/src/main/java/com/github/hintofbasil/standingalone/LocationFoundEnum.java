@@ -7,34 +7,43 @@ public enum LocationFoundEnum {
 
     BROWNIE(R.drawable.brownie_title, R.drawable.blank,
             R.drawable.blank, R.array.location_found_brownie,
-            1f, true, false, new int[] {}),
+            1f, true, false, new int[] {}, new int[] {}),
     GLAISTIG(R.drawable.glaistig_title, R.drawable.glaistig,
             R.drawable.glaistig_background, R.array.location_found_glaistig,
-            1f, false, true, new int[] {10000, 6000, 12000, 8000, 8000}),
+            1f, false, true, new int[] {10000, 6000, 12000, 8000, 8000},
+            new int[] {}),
     CU_SITH(R.drawable.cu_sith_title, R.drawable.cu_sith,
             R.drawable.cu_sith_background, R.array.location_found_cu_sith,
-            1.6f, true, true, new int[] {10000, 11000, 5000, 8000, 8000, 8000}),
+            1.6f, true, true, new int[] {10000, 11000, 5000, 8000, 8000, 8000},
+            new int[] {}),
     BLUE_WITCH(R.drawable.blue_witch_title, R.drawable.blue_witch,
             R.drawable.blue_witch_background, R.array.location_found_blue_witch,
-            1.5f, true, true, new int[] {8000, 10000, 6000, 8000, 6000, 11000, 10000}),
+            1.5f, true, true, new int[] {8000, 10000, 6000, 8000, 6000, 11000, 10000},
+            new int[] {}),
     MERMAID(R.drawable.mermaid_title, R.drawable.mermaid,
             R.drawable.mermaid_background, R.array.location_found_mermaid,
-            1.2f, false, true, new int[] {12000, 12000, 6000, 8000, 11000, 5000}),
+            1.2f, false, true, new int[] {12000, 12000, 6000, 8000, 11000, 5000},
+            new int[] {}),
     SELKIE(R.drawable.selkie_title, R.drawable.selkie,
             R.drawable.selkie_background, R.array.location_found_selkie,
-            1f, true, true, new int[] {8000, 9000, 13000, 13000, 7000}),
+            1f, true, true, new int[] {8000, 9000, 13000, 13000, 7000},
+            new int[] {}),
     KELPIE(R.drawable.kelpie_title, R.drawable.kelpie,
             R.drawable.introduction_background_2, R.array.location_found_kelpie,
-            2.2f, true, true, new int[] {13000, 9000, 9000, 20000, 7000}),
+            2.2f, true, true, new int[] {13000, 9000, 9000, 20000, 7000},
+            new int[] {}),
     CAIT_SITH(R.drawable.cait_sith_title, R.drawable.cait_sith,
             R.drawable.introduction_background_4, R.array.location_found_cait_sith,
-            1f, true, true, new int[] {7000, 9000, 11000, 9000, 8000, 11000}),
+            1f, true, true, new int[] {7000, 9000, 11000, 9000, 8000, 11000},
+            new int[] {}),
     BRIAN(R.drawable.brian_title, R.drawable.brian,
             R.drawable.brian_background, R.array.location_found_brian,
-            1.6f, false, false, new int[] {15000}),
+            1.6f, false, false, new int[] {15000},
+            new int[] {}),
     TREASURE(R.drawable.treasure_title, R.drawable.treasure,
             R.drawable.treasure_background, R.array.location_found_treasure,
-            1.7f, true, true, new int[] {10000});
+            1.7f, true, true, new int[] {10000},
+            new int[] {});
 
     int titleDrawableId;
     int characterDrawableId;
@@ -44,11 +53,13 @@ public enum LocationFoundEnum {
     boolean beginWithBrownie;
     boolean endWithNoSpeech;
     int[] textTimings;
+    int[] speechFiles;
 
     LocationFoundEnum(int titleDrawableId, int characterDrawableId,
                       int backgroundDrawableId, int textStringId,
                       float scale, boolean beginWithBrownie,
-                      boolean endWithNoSpeech, int[] textTimings) {
+                      boolean endWithNoSpeech, int[] textTimings,
+                      int[] speechFiles) {
         this.titleDrawableId = titleDrawableId;
         this.characterDrawableId = characterDrawableId;
         this.backgroundDrawableId = backgroundDrawableId;
@@ -57,6 +68,7 @@ public enum LocationFoundEnum {
         this.beginWithBrownie = beginWithBrownie;
         this.endWithNoSpeech = endWithNoSpeech;
         this.textTimings = textTimings;
+        this.speechFiles = speechFiles;
     }
 
     public static LocationFoundEnum get(int progress) {

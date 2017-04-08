@@ -2,13 +2,13 @@ package com.github.hintofbasil.standingalone;
 
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +31,9 @@ public class LocationFoundActivity extends BaseActivity {
 
     private ImageView mapButton;
 
+    private MediaPlayer mediaPlayer;
+    private int[] speechFiles;
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -49,6 +52,7 @@ public class LocationFoundActivity extends BaseActivity {
 
         brownieSpeaking = details.beginWithBrownie;
         endWithNoSpeech = details.endWithNoSpeech;
+        speechFiles = details.speechFiles;
 
                 ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
         titleImageView.setImageResource(details.titleDrawableId);
@@ -88,6 +92,14 @@ public class LocationFoundActivity extends BaseActivity {
         }, 0);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+    }
+
     private void updateText() {
         speechTextView.setText(textArray[textStatus]);
         speechTextView.scrollTo(0, 0);
@@ -100,6 +112,15 @@ public class LocationFoundActivity extends BaseActivity {
         }
         if (textStatus == textArray.length -1) {
             enableMapButton();
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.reset();
+        }
+        try {
+            mediaPlayer = MediaPlayer.create(this, speechFiles[textStatus]);
+            mediaPlayer.start();
+        } catch (IndexOutOfBoundsException ex) {
+            Log.e("LocationFoundACtivity", "Speech file missing");
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
