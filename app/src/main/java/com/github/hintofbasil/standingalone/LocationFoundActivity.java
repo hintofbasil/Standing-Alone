@@ -114,6 +114,7 @@ public class LocationFoundActivity extends BaseActivity {
             enableMapButton();
         }
         if (mediaPlayer != null) {
+            mediaPlayer.stop();
             mediaPlayer.reset();
         }
         try {
