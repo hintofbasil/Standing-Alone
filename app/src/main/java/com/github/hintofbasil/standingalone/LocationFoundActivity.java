@@ -120,7 +120,7 @@ public class LocationFoundActivity extends BaseActivity {
             mediaPlayer = MediaPlayer.create(this, speechFiles[textStatus]);
             mediaPlayer.start();
         } catch (IndexOutOfBoundsException ex) {
-            Log.e("LocationFoundACtivity", "Speech file missing");
+            Log.e("LocationFoundActivity", "Speech file missing");
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
