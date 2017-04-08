@@ -37,6 +37,9 @@ public class LocationFoundActivity extends BaseActivity {
 
     private ImageView backButton;
     private ImageView nextButton;
+    private ImageView autoSpeechButton;
+    private Drawable playDrawable;
+    private Drawable pauseDrawable;
 
     public LocationFoundActivity() {
         // Override title image in onCreate
@@ -58,6 +61,16 @@ public class LocationFoundActivity extends BaseActivity {
 
         backButton = (ImageView) findViewById(R.id.back_button);
         nextButton = (ImageView) findViewById(R.id.next_button);
+        autoSpeechButton = (ImageView) findViewById(R.id.auto_speech_button);
+
+        playDrawable = getResources().getDrawable(R.drawable.play_button);
+        pauseDrawable = getResources().getDrawable(R.drawable.pause_button);
+
+        if (autoNext) {
+            autoSpeechButton.setImageDrawable(playDrawable);
+        } else {
+            autoSpeechButton.setImageDrawable(pauseDrawable);
+        }
 
         speechBubbleBottomLeft = getResources().getDrawable(R.drawable.speech_bubble_bottom);
         speechBubbleBottomRight = getResources().getDrawable(R.drawable.speech_bubble_bottom_reverse);
@@ -159,7 +172,9 @@ public class LocationFoundActivity extends BaseActivity {
         }
         if (!enabled) {
             timingHandler.removeCallbacks(updateTextRunnable);
+            autoSpeechButton.setImageDrawable(pauseDrawable);
         } else {
+            autoSpeechButton.setImageDrawable(playDrawable);
             if (textArray.length > textStatus) {
                 // TODO find out why sometimes throws exception
                 int delay;
