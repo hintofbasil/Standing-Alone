@@ -7,7 +7,7 @@ public enum LocationFoundEnum {
 
     BROWNIE(R.drawable.brownie_title, R.drawable.blank,
             R.drawable.blank, R.array.location_found_brownie,
-            1f, true, false, new int[] {}, new int[] {}),
+            1f, true, false, new int[] {}, new int[] {R.raw.brownie1}),
     GLAISTIG(R.drawable.glaistig_title, R.drawable.glaistig,
             R.drawable.glaistig_background, R.array.location_found_glaistig,
             1f, false, true, new int[] {10000, 6000, 12000, 8000, 8000},

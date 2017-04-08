@@ -68,14 +68,13 @@ public class StoryIntroductionActivity extends BaseActivity {
     }
 
     int[] getRawSoundIds() {
-        rawSoundIds = new int[7];
+        rawSoundIds = new int[6];
         rawSoundIds[0] = R.raw.intro1;
         rawSoundIds[1] = R.raw.intro2;
         rawSoundIds[2] = R.raw.intro3;
         rawSoundIds[3] = R.raw.intro4;
         rawSoundIds[4] = R.raw.intro5;
         rawSoundIds[5] = R.raw.intro6;
-        rawSoundIds[6] = R.raw.intro6b;
         return rawSoundIds;
     }
 
