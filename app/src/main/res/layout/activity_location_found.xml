@@ -27,8 +27,9 @@
             android:scaleX="0.5"
             android:scaleY="0.5"
             android:clickable="true"
-            android:onClick="handleRightButtonClick"
-            android:layout_weight="0" />
+            android:onClick="handleLeftButtonClick"
+            android:layout_weight="0"
+            android:visibility="invisible" />
 
         <RelativeLayout
             android:id="@+id/speech_bubble_container"

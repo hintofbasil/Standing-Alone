@@ -117,6 +117,11 @@ public class LocationFoundActivity extends BaseActivity {
         } else {
             nextButton.setVisibility(View.VISIBLE);
         }
+        if (textStatus == 0) {
+            backButton.setVisibility(View.INVISIBLE);
+        } else {
+            backButton.setVisibility(View.VISIBLE);
+        }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
         if (autoNext && textArray.length > textStatus) {
@@ -170,6 +175,8 @@ public class LocationFoundActivity extends BaseActivity {
     }
 
     public void handleLeftButtonClick(View view) {
+        textStatus -= 2;
+        updateText();
         setAutoNextEnabled(false);
     }
 
