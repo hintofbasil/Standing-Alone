@@ -66,6 +66,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private boolean paused;
     private MediaPlayer mediaPlayer;
 
+    private boolean backgroundServiceRunning;
+
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
     }
@@ -75,6 +77,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         super.onCreate(savedInstanceState);
 
         paused = false;
+        backgroundServiceRunning = false;
 
         ImageView locationFoundCheater = (ImageView) findViewById(R.id.location_found_cheater);
         boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
@@ -148,6 +151,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     protected void onResume() {
         super.onResume();
         paused = false;
+        if (!backgroundServiceRunning) {
+            startGeolocationService();
+        }
     }
 
     @Override
@@ -224,6 +230,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         geolocationMonitorServiceIntent = new Intent(getApplicationContext(),
                 GeolocationMonitorService.class);
         startService(geolocationMonitorServiceIntent);
+        backgroundServiceRunning = true;
     }
 
     private void stopGeolocationService() {
@@ -231,6 +238,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             stopService(geolocationMonitorServiceIntent);
         }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(locationReceiver);
+        backgroundServiceRunning = false;
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
