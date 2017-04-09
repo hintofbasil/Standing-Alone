@@ -292,6 +292,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.brownie)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setVibrate(new long[] {1000})
                 .setSound(uri)
                 .setContent(remoteViews);
 
