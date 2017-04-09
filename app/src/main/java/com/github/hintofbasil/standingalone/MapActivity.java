@@ -2,6 +2,8 @@ package com.github.hintofbasil.standingalone;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,24 +15,29 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.hintofbasil.standingalone.geolocation.GeolocationMonitorService;
 import com.github.hintofbasil.standingalone.geolocation.LocationBroadcastReceiver;
 import com.github.hintofbasil.standingalone.map.LocationsMap;
+
+import static com.github.hintofbasil.standingalone.LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS;
 
 /**
  * Created by will on 11/12/16.
@@ -55,6 +62,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private LinearLayout noGPSError;
     private Runnable noGPSErrorHandlerRunnable;
 
+    private boolean paused;
+
+    private boolean backgroundServiceRunning;
+
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
     }
@@ -62,6 +73,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        paused = false;
+        backgroundServiceRunning = false;
 
         ImageView locationFoundCheater = (ImageView) findViewById(R.id.location_found_cheater);
         boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
@@ -110,6 +124,13 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             }
         };
         noGPSErrorHandler = new Handler();
+
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        if (progress < 10) {
+            startGeolocationService();
+            noDataErrorHandler.postDelayed(noDataErrorHandlerRunnable, ERROR_DELAY_TIME);
+            noGPSErrorHandler.postDelayed(noGPSErrorHandlerRunnable, ERROR_DELAY_TIME);
+        }
     }
 
     public void postponeErrorMessages(Location location) {
@@ -125,24 +146,18 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     }
 
     @Override
-    protected void onStart() {
+    protected void onResume() {
         super.onResume();
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
-        if (progress < 10) {
+        paused = false;
+        if (!backgroundServiceRunning) {
             startGeolocationService();
-            noDataErrorHandler.postDelayed(noDataErrorHandlerRunnable, ERROR_DELAY_TIME);
-            noGPSErrorHandler.postDelayed(noGPSErrorHandlerRunnable, ERROR_DELAY_TIME);
         }
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
         super.onPause();
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
-        stopGeolocationService();
-        noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
-        noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
+        paused = true;
     }
 
     public void handleErrorClick(View view) {
@@ -213,6 +228,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         geolocationMonitorServiceIntent = new Intent(getApplicationContext(),
                 GeolocationMonitorService.class);
         startService(geolocationMonitorServiceIntent);
+        backgroundServiceRunning = true;
     }
 
     private void stopGeolocationService() {
@@ -220,6 +236,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             stopService(geolocationMonitorServiceIntent);
         }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(locationReceiver);
+        backgroundServiceRunning = false;
     }
 
     public void onLocationFoundCheaterClickHandler(View view) {
@@ -232,7 +249,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(geolocationMonitorServiceIntent);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        stopGeolocationService();
+        noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
+        noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
     }
 
     public void updateProgress(int progress, boolean showText) {
@@ -244,9 +264,54 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         if (showText && progress > 0) {
             Intent intent = new Intent(getApplicationContext(),
                     LocationFoundActivity.class);
-            intent.putExtra(LocationFoundActivity.EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(progress));
+            intent.putExtra(EXTRA_LOCATION_FOUND_PROGRESS, LocationFoundEnum.get(progress));
             startActivity(intent);
         }
+    }
+
+    public void launchNotification(int progress) {
+
+        LocationFoundEnum details = LocationFoundEnum.get(progress);
+
+        int backgroundId = details.backgroundDrawableId;
+        int characterId = details.characterDrawableId;
+
+        // Brownie is a special case as background and character are empty
+        if (details == LocationFoundEnum.BROWNIE) {
+            backgroundId = R.drawable.introduction_background_1;
+            characterId = R.drawable.brownie;
+        }
+
+        RemoteViews remoteViews = new RemoteViews(getPackageName(),
+                R.layout.custom_notification);
+        remoteViews.setImageViewResource(R.id.notification_title, details.titleDrawableId);
+        remoteViews.setImageViewResource(R.id.notification_background, backgroundId);
+        remoteViews.setImageViewResource(R.id.notification_character, characterId);
+
+        Uri uri = Uri.parse("android.resource://com.github.hintofbasil.standingalone/" + details.foundSoundFile);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.brownie)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setVibrate(new long[] {1000})
+                .setSound(uri)
+                .setContent(remoteViews);
+
+        Intent intent = new Intent(this, LocationFoundActivity.class);
+        intent.putExtra(EXTRA_LOCATION_FOUND_PROGRESS, details);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        builder.setContentIntent(pendingIntent);
+
+        int notificationId = 001;
+
+        NotificationManager mgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        mgr.notify(notificationId, builder.build());
     }
 
     private void updateProgressText(int progress) {
@@ -312,7 +377,12 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         if (key.equals(getString(R.string.preferences_locations_found_key))) {
             // Loctions found updated
             int progress = sharedPreferences.getInt(key, 0);
-            updateProgress(progress, true);
+            if (!paused) {
+                updateProgress(progress, true);
+            } else {
+                updateProgress(progress, false);
+                launchNotification(progress);
+            }
         }
     }
 
