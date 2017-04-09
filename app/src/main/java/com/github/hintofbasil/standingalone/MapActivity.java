@@ -2,7 +2,6 @@ package com.github.hintofbasil.standingalone;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -16,7 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,7 +63,6 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private Runnable noGPSErrorHandlerRunnable;
 
     private boolean paused;
-    private MediaPlayer mediaPlayer;
 
     private boolean backgroundServiceRunning;
 
@@ -255,9 +253,6 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         stopGeolocationService();
         noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
         noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
     }
 
     public void updateProgress(int progress, boolean showText) {
@@ -278,15 +273,6 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         LocationFoundEnum details = LocationFoundEnum.get(progress);
 
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-        if (details.foundSoundFile != 0) {
-            mediaPlayer = MediaPlayer.create(this, details.foundSoundFile);
-            mediaPlayer.start();
-        }
-
         int backgroundId = details.backgroundDrawableId;
         int characterId = details.characterDrawableId;
 
@@ -302,8 +288,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         remoteViews.setImageViewResource(R.id.notification_background, backgroundId);
         remoteViews.setImageViewResource(R.id.notification_character, characterId);
 
+        Uri uri = Uri.parse("android.resource://com.github.hintofbasil.standingalone/" + details.foundSoundFile);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.brownie)
+                .setSound(uri)
                 .setContent(remoteViews);
 
         Intent intent = new Intent(this, LocationFoundActivity.class);
