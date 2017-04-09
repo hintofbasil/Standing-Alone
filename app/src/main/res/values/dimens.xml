@@ -48,5 +48,6 @@
     <dimen name="about_us_congratulations_text">28sp</dimen>
     <dimen name="about_us_title_text">20sp</dimen>
     <dimen name="about_us_text">16sp</dimen>
+    <dimen name="about_us_vertical_margin">26dp</dimen>
 
 </resources>
