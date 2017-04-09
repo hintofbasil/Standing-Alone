@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,6 +63,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private Runnable noGPSErrorHandlerRunnable;
 
     private boolean paused;
+    private MediaPlayer mediaPlayer;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -244,6 +246,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         stopGeolocationService();
         noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
         noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
     }
 
     public void updateProgress(int progress, boolean showText) {
@@ -263,6 +268,15 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     public void launchNotification(int progress) {
 
         LocationFoundEnum details = LocationFoundEnum.get(progress);
+
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        if (details.foundSoundFile != 0) {
+            mediaPlayer = MediaPlayer.create(this, details.foundSoundFile);
+            mediaPlayer.start();
+        }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.brownie)
