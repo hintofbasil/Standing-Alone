@@ -33,6 +33,7 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.hintofbasil.standingalone.aboutUs.AboutUsActivity;
 import com.github.hintofbasil.standingalone.geolocation.GeolocationMonitorService;
 import com.github.hintofbasil.standingalone.geolocation.LocationBroadcastReceiver;
 import com.github.hintofbasil.standingalone.map.LocationsMap;
@@ -386,5 +387,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         }
     }
 
+    public void handleTreasureIconClick(View view) {
+        Intent intent = new Intent(this, AboutUsActivity.class);
+        startActivity(intent);
+    }
 
 }

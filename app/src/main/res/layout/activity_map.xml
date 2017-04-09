@@ -249,6 +249,14 @@
         </LinearLayout>
 
         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/man_treasure_icon_height"
+            android:adjustViewBounds="true"
+            android:src="@drawable/treasure"
+            android:clickable="true"
+            android:onClick="handleTreasureIconClick" />
+
+        <ImageView
             android:id="@+id/location_found_cheater"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
