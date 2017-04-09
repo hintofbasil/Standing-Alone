@@ -1,6 +1,12 @@
 package com.github.hintofbasil.standingalone;
 
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -22,10 +28,23 @@ public class StoryIntroductionActivity extends BaseActivity {
     private int currentPage;
     private int maxPage;
 
+    private MediaPlayer mediaPlayer;
+
+    private int[] rawSoundIds;
+
+
     public StoryIntroductionActivity() {
         super(R.drawable.the_story, R.layout.activity_story_introduction);
         currentPage = 0;
         maxPage = 5;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mediaPlayer = MediaPlayer.create(this, getRawSoundIds()[currentPage]);
+        mediaPlayer.start();
     }
 
     public void onLeftNavigationClicked(View view) {
@@ -42,6 +61,21 @@ public class StoryIntroductionActivity extends BaseActivity {
         getBackgroundImageFlipper().showPrevious();
         getIntroductionStoryFlipper().showPrevious();
         updateDisplayForPage();
+
+        mediaPlayer.reset();
+        mediaPlayer = MediaPlayer.create(this, getRawSoundIds()[currentPage]);
+        mediaPlayer.start();
+    }
+
+    int[] getRawSoundIds() {
+        rawSoundIds = new int[6];
+        rawSoundIds[0] = R.raw.intro1;
+        rawSoundIds[1] = R.raw.intro2;
+        rawSoundIds[2] = R.raw.intro3;
+        rawSoundIds[3] = R.raw.intro4;
+        rawSoundIds[4] = R.raw.intro5;
+        rawSoundIds[5] = R.raw.intro6;
+        return rawSoundIds;
     }
 
     public void onRightNavigationClicked(View view) {
@@ -58,6 +92,10 @@ public class StoryIntroductionActivity extends BaseActivity {
         getBackgroundImageFlipper().showNext();
         getIntroductionStoryFlipper().showNext();
         updateDisplayForPage();
+
+        mediaPlayer.reset();
+        mediaPlayer = MediaPlayer.create(this, getRawSoundIds()[currentPage]);
+        mediaPlayer.start();
     }
 
     private void updateDisplayForPage() {
@@ -86,6 +124,7 @@ public class StoryIntroductionActivity extends BaseActivity {
     }
 
     public void handleLetsGoButtonClick(View view) {
+        mediaPlayer.release();
         Intent intent = new Intent(getApplicationContext(),
                 MapActivity.class);
         startActivity(intent);

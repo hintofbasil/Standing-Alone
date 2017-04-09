@@ -2,13 +2,13 @@ package com.github.hintofbasil.standingalone;
 
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +40,9 @@ public class LocationFoundActivity extends BaseActivity {
     private ImageView autoSpeechButton;
     private Drawable playDrawable;
     private Drawable pauseDrawable;
+
+    private MediaPlayer mediaPlayer;
+    private int[] speechFiles;
 
     public LocationFoundActivity() {
         // Override title image in onCreate
@@ -80,8 +83,9 @@ public class LocationFoundActivity extends BaseActivity {
 
         brownieSpeaking = details.beginWithBrownie;
         endWithNoSpeech = details.endWithNoSpeech;
+        speechFiles = details.speechFiles;
 
-                ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
+        ImageView titleImageView = (ImageView) findViewById(R.id.titleText);
         titleImageView.setImageResource(details.titleDrawableId);
 
         final ImageView characterImageView = (ImageView) findViewById(R.id.location_found_character_image);
@@ -114,6 +118,14 @@ public class LocationFoundActivity extends BaseActivity {
         timingHandler.postDelayed(updateTextRunnable, 0);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+    }
+
     private void updateText() {
         speechTextView.setText(textArray[textStatus]);
         speechTextView.scrollTo(0, 0);
@@ -134,6 +146,16 @@ public class LocationFoundActivity extends BaseActivity {
             backButton.setVisibility(View.INVISIBLE);
         } else {
             backButton.setVisibility(View.VISIBLE);
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+        }
+        try {
+            mediaPlayer = MediaPlayer.create(this, speechFiles[textStatus]);
+            mediaPlayer.start();
+        } catch (IndexOutOfBoundsException ex) {
+            Log.e("LocationFoundActivity", "Speech file missing");
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
