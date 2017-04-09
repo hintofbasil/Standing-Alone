@@ -1,13 +1,21 @@
 package com.github.hintofbasil.standingalone.map;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -31,6 +39,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
     Bitmap mapBackground;
     Bitmap nextLocationImage;
     Bitmap previousLocationImage;
+    Bitmap yourLocationImage;
 
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
@@ -43,6 +52,9 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
     private Context context;
 
+    private Location currentLocation;
+    private LocationManager locationManager;
+
     public LocationsMap(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         this.context = context;
@@ -51,6 +63,7 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         mapBackground = BitmapFactory.decodeResource(getResources(), R.drawable.map_background);
         nextLocationImage = BitmapFactory.decodeResource(getResources(), R.drawable.next_location_marker);
         previousLocationImage = BitmapFactory.decodeResource(getResources(), R.drawable.previous_location_marker);
+        yourLocationImage = BitmapFactory.decodeResource(getResources(), R.drawable.your_location_marker);
 
         scaleGestureDetector = new ScaleGestureDetector(context, new ScaleListener());
         gestureDetector = new GestureDetector(context, this);
@@ -59,6 +72,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
         offsetY = 0;
         locations = getLocations();
         foundLocations = 0;
+
+        LocalBroadcastManager.getInstance(context).registerReceiver(locationReceiver, new IntentFilter("custom"));
     }
 
     private Point[] getLocations() {
@@ -102,6 +117,12 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
             int x = location.x - nextLocationImage.getWidth()/2;
             int y = location.y - nextLocationImage.getHeight();
             canvas.drawBitmap(nextLocationImage, x, y, paint);
+        }
+        if (currentLocation != null) {
+            //TODO transform
+            int x = 100;
+            int y = 100;
+            canvas.drawBitmap(yourLocationImage, x, y, paint);
         }
         canvas.restore();
     }
@@ -231,6 +252,14 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
             return true;
         }
     }
+
+    private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Location location = intent.getParcelableExtra("location");
+            LocationsMap.this.currentLocation = location;
+        }
+    };
 
     public void setFoundLocations(int foundLocations) {
         this.foundLocations = foundLocations;
