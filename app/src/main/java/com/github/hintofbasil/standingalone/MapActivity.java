@@ -30,6 +30,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -278,10 +279,24 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             mediaPlayer.start();
         }
 
+        int backgroundId = details.backgroundDrawableId;
+        int characterId = details.characterDrawableId;
+
+        // Brownie is a special case as background and character are empty
+        if (details == LocationFoundEnum.BROWNIE) {
+            backgroundId = R.drawable.introduction_background_1;
+            characterId = R.drawable.brownie;
+        }
+
+        RemoteViews remoteViews = new RemoteViews(getPackageName(),
+                R.layout.custom_notification);
+        remoteViews.setImageViewResource(R.id.notification_title, details.titleDrawableId);
+        remoteViews.setImageViewResource(R.id.notification_background, backgroundId);
+        remoteViews.setImageViewResource(R.id.notification_character, characterId);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.brownie)
-                .setContentTitle(details.name() + " found!")
-                .setContentText(details.name() + " was found!");
+                .setContent(remoteViews);
 
         Intent intent = new Intent(this, LocationFoundActivity.class);
         intent.putExtra(EXTRA_LOCATION_FOUND_PROGRESS, details);
