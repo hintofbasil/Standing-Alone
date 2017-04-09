@@ -31,6 +31,7 @@ public class CharacterDetailsActivity extends BaseActivity {
         }
 
         TextView characterText = (TextView) findViewById(R.id.character_text);
+        characterText.setText(details.characterDetailsText);
 
     }
 }
