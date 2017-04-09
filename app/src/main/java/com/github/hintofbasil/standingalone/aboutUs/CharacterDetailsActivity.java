@@ -10,6 +10,8 @@ import com.github.hintofbasil.standingalone.R;
 
 public class CharacterDetailsActivity extends BaseActivity {
 
+    public static final String CHARACTER_DETAILS = "com.hintofbasil.github.CHARACTER_DETAILS";
+
     public CharacterDetailsActivity() {
         super(R.drawable.blank, R.layout.activity_character_details);
     }
@@ -18,7 +20,7 @@ public class CharacterDetailsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        LocationFoundEnum details = LocationFoundEnum.BROWNIE;
+        LocationFoundEnum details = (LocationFoundEnum) getIntent().getSerializableExtra(CHARACTER_DETAILS);
 
         ImageView titleImage = (ImageView) findViewById(R.id.character_title_image);
         titleImage.setImageResource(details.titleDrawableId);
@@ -32,6 +34,5 @@ public class CharacterDetailsActivity extends BaseActivity {
 
         TextView characterText = (TextView) findViewById(R.id.character_text);
         characterText.setText(details.characterDetailsText);
-
     }
 }
