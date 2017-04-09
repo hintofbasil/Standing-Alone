@@ -30,8 +30,9 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/about_us_treasure_height"
                     android:src="@drawable/treasure"
+                    android:adjustViewBounds="true"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
