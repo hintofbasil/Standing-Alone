@@ -1,5 +1,6 @@
 package com.github.hintofbasil.standingalone;
 
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -16,6 +17,7 @@ public class LocationFoundActivity extends BaseActivity {
 
     public static final String EXTRA_LOCATION_FOUND_PROGRESS = "com.github.hintofbasil.EXTRA_LOCATION_FOUND_PROGRESS";
     public static final String LOCATION_FOUND_REPLAY = "com.github.hintofbasil.LOCATION_FOUND_REPLAY";
+    public static final String LOCATION_FOUND_AUTO_NEXT = "com.github.hintofbasil.LOCATION_FOUND_AUTO_NEXT";
 
     private CharSequence[] textArray;
     private int[] textTimings;
@@ -68,6 +70,8 @@ public class LocationFoundActivity extends BaseActivity {
 
         playDrawable = getResources().getDrawable(R.drawable.play_button);
         pauseDrawable = getResources().getDrawable(R.drawable.pause_button);
+
+        autoNext = getSharedPreferences("SETTINGS", MODE_PRIVATE).getBoolean(LOCATION_FOUND_AUTO_NEXT, false);
 
         if (autoNext) {
             autoSpeechButton.setImageDrawable(playDrawable);
@@ -209,6 +213,7 @@ public class LocationFoundActivity extends BaseActivity {
             }
         }
         autoNext = enabled;
+        getSharedPreferences("SETTINGS", MODE_PRIVATE).edit().putBoolean(LOCATION_FOUND_AUTO_NEXT, enabled).apply();
     }
 
     public void handleLeftButtonClick(View view) {
