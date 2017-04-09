@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Standing Alone</string>
+    <string name="app_name">Jupiter Artland: In Minecraft app</string>
     <string name="story_welcome_text">Welcome\n\nto Jupiter Artland Treasure\nHunt Adventure</string>
 
     <string name="preferences_file_key">com.github.hintofbasil.StandingAlone.preferences</string>
