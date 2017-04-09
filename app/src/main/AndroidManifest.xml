@@ -11,20 +11,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity"
-            android:screenOrientation="portrait" >
+        <activity
+            android:name=".WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StoryIntroductionActivity"
+        <activity
+            android:name=".StoryIntroductionActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MapActivity"
+        <activity
+            android:name=".MapActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".LocationFoundActivity"
+        <activity
+            android:name=".LocationFoundActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".AboutUsActivity"
+            android:screenOrientation="portrait" />
+
         <service
             android:name=".geolocation.GeolocationMonitorService"
             android:enabled="true"
