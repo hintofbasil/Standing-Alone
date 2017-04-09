@@ -6,13 +6,6 @@
     tools:context=".LocationFoundActivity"
     android:background="@drawable/gradient_background" >
 
-    <ImageView
-        android:id="@+id/auto_speech_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="handleAutoSpeechButtonClick" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,9 +123,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/map_button"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/auto_speech_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/location_found_play_pause_height"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:onClick="handleAutoSpeechButtonClick"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/location_found_play_pause_margin_horizontal"
+            android:layout_marginRight="@dimen/location_found_play_pause_margin_horizontal"
+            android:layout_toRightOf="@id/map_button"
+            android:layout_toEndOf="@id/map_button"/>
 
         <ImageView
             android:id="@+id/next_button"

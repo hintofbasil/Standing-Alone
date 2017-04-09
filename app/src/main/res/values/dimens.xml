@@ -44,5 +44,7 @@
     <dimen name="location_found_padding">10dp</dimen>
     <!-- TODO remove hard coded height-->
     <dimen name="location_found_character_container_height">200dp</dimen>
+    <dimen name="location_found_play_pause_height">40dp</dimen>
+    <dimen name="location_found_play_pause_margin_horizontal">20dp</dimen>
 
 </resources>
