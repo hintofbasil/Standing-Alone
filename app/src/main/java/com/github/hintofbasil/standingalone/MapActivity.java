@@ -291,6 +291,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         Uri uri = Uri.parse("android.resource://com.github.hintofbasil.standingalone/" + details.foundSoundFile);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.brownie)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setSound(uri)
                 .setContent(remoteViews);
 
