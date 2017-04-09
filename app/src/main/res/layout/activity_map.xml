@@ -251,7 +251,7 @@
         <ImageView
             android:id="@+id/treasure_icon"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/man_treasure_icon_height"
+            android:layout_height="@dimen/map_treasure_icon_height"
             android:adjustViewBounds="true"
             android:src="@drawable/treasure"
             android:clickable="true"
