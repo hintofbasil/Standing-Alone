@@ -33,6 +33,7 @@
     <dimen name="location_found_character_width">160dp</dimen>
     <dimen name="location_found_character_horizontal_padding">80dp</dimen>
     <dimen name="location_found_text_size">50sp</dimen>
+    <dimen name="location_found_padding">20dp</dimen>
     <!-- TODO remove hard coded height-->
     <dimen name="location_found_character_container_height">400dp</dimen>
 
