@@ -22,18 +22,21 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/character_title_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/brownie_title"
                 android:layout_gravity="center_horizontal" />
 
             <ImageView
+                android:id="@+id/character_image"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/character_details_image_height"
                 android:src="@drawable/brownie"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
+                android:id="@+id/character_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/character_details_brownie"
