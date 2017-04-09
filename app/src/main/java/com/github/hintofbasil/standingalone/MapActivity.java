@@ -67,6 +67,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
     private boolean backgroundServiceRunning;
 
+    private ImageView treasureIcon;
+
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
     }
@@ -77,6 +79,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         paused = false;
         backgroundServiceRunning = false;
+
+        treasureIcon = (ImageView) findViewById(R.id.treasure_icon);
 
         ImageView locationFoundCheater = (ImageView) findViewById(R.id.location_found_cheater);
         boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
@@ -260,6 +264,12 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         updateProgressPointImages(progress);
         updateProgressText(progress);
         getLocationsMap().setFoundLocations(progress);
+
+        if (progress == 10) {
+            treasureIcon.setVisibility(View.VISIBLE);
+        } else {
+            treasureIcon.setVisibility(View.GONE);
+        }
 
         // Must check if not 0 as cheat is cyclical
         if (showText && progress > 0) {
