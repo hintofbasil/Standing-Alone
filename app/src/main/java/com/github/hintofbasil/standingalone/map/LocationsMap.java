@@ -36,8 +36,8 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
 
     private static final double MAP_OFFSET_X = 55.903689108;
     private static final double MAP_LAT_LENGTH = 0.005121389;
-    private static final double MAP_OFFSET_Y = 0;
-    private static final double MAP_LANG_LENGTH = 0;
+    private static final double MAP_OFFSET_Y = -3.437337007;
+    private static final double MAP_LANG_LENGTH = 0.036683377;
 
     private Paint paint;
 
@@ -124,10 +124,12 @@ public class LocationsMap extends View implements GestureDetector.OnGestureListe
             canvas.drawBitmap(nextLocationImage, x, y, paint);
         }
         if (currentLocation != null) {
+
             //TODO transform
             double percentX = (currentLocation.getLatitude() - MAP_OFFSET_X) / MAP_LAT_LENGTH;
-            int x = (int)(percentX * mapBackground.getWidth());
-            int y = 100;
+            int x = (int)(percentX * mapBackground.getWidth()) - yourLocationImage.getWidth()/2;
+            double percentY = (currentLocation.getLongitude() - MAP_OFFSET_Y) / MAP_LANG_LENGTH;
+            int y = (int)(percentY * mapBackground.getHeight()) - yourLocationImage.getHeight();
             canvas.drawBitmap(yourLocationImage, x, y, paint);
         }
         canvas.restore();
