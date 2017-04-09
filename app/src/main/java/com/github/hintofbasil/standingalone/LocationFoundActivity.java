@@ -121,6 +121,7 @@ public class LocationFoundActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        timingHandler.removeCallbacks(updateTextRunnable);
         if (mediaPlayer != null) {
             mediaPlayer.release();
         }
@@ -148,8 +149,7 @@ public class LocationFoundActivity extends BaseActivity {
             backButton.setVisibility(View.VISIBLE);
         }
         if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.reset();
+            mediaPlayer.release();
         }
         try {
             mediaPlayer = MediaPlayer.create(this, speechFiles[textStatus]);
