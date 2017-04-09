@@ -44,4 +44,9 @@
     <!-- TODO remove hard coded height-->
     <dimen name="location_found_character_container_height">200dp</dimen>
 
+    <!-- About Us -->
+    <dimen name="about_us_congratulations_text">28sp</dimen>
+    <dimen name="about_us_title_text">20sp</dimen>
+    <dimen name="about_us_text">16sp</dimen>
+
 </resources>

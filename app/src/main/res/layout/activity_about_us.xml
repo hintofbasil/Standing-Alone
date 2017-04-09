@@ -29,19 +29,28 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/treasure" />
+                    android:src="@drawable/treasure"
+                    android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/about_us_congratulation" />
+                    android:text="@string/about_us_congratulation"
+                    android:layout_gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/about_us_congratulations_text"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/about_us_character_more_information" />
+                android:text="@string/about_us_character_more_information"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="@dimen/about_us_title_text"
+                android:textStyle="bold" />
 
             <GridView
                 android:id="@+id/character_grid_container"
@@ -54,12 +63,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/about_us_acknowledgements_title" />
+                android:text="@string/about_us_acknowledgements_title"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="@dimen/about_us_title_text"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/about_us_acknowledgements" />
+                android:text="@string/about_us_acknowledgements"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="@dimen/about_us_text" />
 
         </LinearLayout>
 
