@@ -113,4 +113,7 @@
         <item>"You found the gold!  Take this screen and show it at the art hut if it’s open otherwise go to the shop."</item>
     </string-array>
 
+    <!-- Character Details -->
+    <string name="character_details_brownie">This small brown troll used to help the villagers who lived in the surrounding farms. Brownie lives underground, mostly around Suck, as this is the entrance to his home. He gets on with everyone, although is very shy and sometimes can be very defensive. He is afraid of Cait Sith, as Cait attacked him and some chickens in the past. He still takes care of all the farm animals in Jupiter Artland.</string>
+
 </resources>

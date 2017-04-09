@@ -50,4 +50,8 @@
     <dimen name="about_us_text">16sp</dimen>
     <dimen name="about_us_vertical_margin">26dp</dimen>
 
+    <!-- Character Details -->
+    <dimen name="character_details_image_height">200dp</dimen>
+    <dimen name="character_details_text">20sp</dimen>
+
 </resources>
