@@ -1,10 +1,10 @@
 package com.github.hintofbasil.standingalone.aboutUs;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
 import com.github.hintofbasil.standingalone.LocationFoundEnum;
 import com.github.hintofbasil.standingalone.R;
@@ -40,12 +40,11 @@ public class CharacterGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ImageView imageView;
+        SquareImageView imageView;
         if (view == null) {
-            imageView = new ImageView(context);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(85, 85));
+            imageView = new SquareImageView(context);
         } else {
-            imageView = (ImageView) view;
+            imageView = (SquareImageView) view;
         }
         LocationFoundEnum details = getValues()[i];
         if (details == LocationFoundEnum.BROWNIE) {
@@ -53,6 +52,7 @@ public class CharacterGridAdapter extends BaseAdapter {
         } else {
             imageView.setImageResource(details.characterDrawableId);
         }
+        imageView.setForegroundGravity(Gravity.CENTER_HORIZONTAL);
         return imageView;
     }
 
