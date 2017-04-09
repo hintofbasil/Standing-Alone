@@ -36,15 +36,15 @@ public enum LocationFoundEnum {
             R.drawable.treasure_background, R.array.location_found_treasure,
             1.7f, true, true, new int[] {10000}, 0);
 
-    int titleDrawableId;
-    int characterDrawableId;
-    int backgroundDrawableId;
-    int textStringId;
-    float scale;
-    boolean beginWithBrownie;
-    boolean endWithNoSpeech;
-    int[] textTimings;
-    int foundSoundFile;
+    public int titleDrawableId;
+    public int characterDrawableId;
+    public int backgroundDrawableId;
+    public int textStringId;
+    public float scale;
+    public boolean beginWithBrownie;
+    public boolean endWithNoSpeech;
+    public int[] textTimings;
+    public int foundSoundFile;
 
     LocationFoundEnum(int titleDrawableId, int characterDrawableId,
                       int backgroundDrawableId, int textStringId,

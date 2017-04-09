@@ -23,6 +23,12 @@
     <string name="location_service_no_data_error">No location\ndata detected.</string>
     <string name="location_service_network_only_error">No GPS\ndata detected.</string>
 
+    <!-- About us -->
+    <string name="about_us_congratulation">Congratulations!\n\nYou found the treasure!</string>
+    <string name="about_us_character_more_information">Select a character below to learn more about them.</string>
+    <string name="about_us_acknowledgements_title">Acknowledgements</string>
+    <string name="about_us_acknowledgements">This application is a joint production between Jupiter Artland and Edinburgh Napier University as part of the Every Child in Scotland Project.\n\nThe app was created in collaboration with pupils from Ratho Primary School.\n\nProduction: Tom Flint\nDesign: Aga Banach\nProgramming: William Hutcheson\nSound: Iain McGregor\nCharacter Design and voices: pupils from Ratho Primary School\nSpecial Thanks to William and Isobel.</string>
+
     <!-- Location Found -->
     <string-array name="location_found_brownie">
         <item>"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary.<br />We should start with the Stone house. Something tells me one of my friends is hiding there. Let’s find out!"</item>
