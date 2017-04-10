@@ -1,6 +1,8 @@
 package com.github.hintofbasil.standingalone;
 
 import android.app.NotificationManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -131,6 +133,8 @@ public class LocationFoundActivity extends BaseActivity {
         timingHandler.postDelayed(updateTextRunnable, 0);
 
         notificationManager.cancelAll();
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preferences_file_key), Context.MODE_PRIVATE);
+        sharedPreferences.edit().putBoolean("NOTIFICATION_LAUNCHED", false).apply();
     }
 
     @Override

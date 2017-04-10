@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -72,6 +73,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
     private Vibrator vibrator;
 
+    private NotificationManager notificationManager;
+
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
     }
@@ -85,6 +88,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         treasureIcon = (ImageView) findViewById(R.id.treasure_icon);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         ImageView locationFoundCheater = (ImageView) findViewById(R.id.location_found_cheater);
         boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
@@ -158,8 +162,14 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     protected void onResume() {
         super.onResume();
         paused = false;
-        if (!backgroundServiceRunning) {
-            startGeolocationService();
+        boolean notificationLaunched = sharedPreferences.getBoolean("NOTIFICATION_LAUNCHED", true);
+        if (notificationLaunched) {
+            int progress = sharedPreferences.getInt(getString(R.string.preferences_locations_found_key), 0);
+            updateProgress(progress, true);
+        } else {
+            if (!backgroundServiceRunning) {
+                startGeolocationService();
+            }
         }
     }
 
@@ -324,9 +334,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
         int notificationId = 001;
 
-        NotificationManager mgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        mgr.notify(notificationId, builder.build());
+        notificationManager.notify(notificationId, builder.build());
     }
 
     private void updateProgressText(int progress) {
@@ -398,6 +406,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             } else {
                 updateProgress(progress, false);
                 launchNotification(progress);
+                sharedPreferences.edit().putBoolean("NOTIFICATION_LAUNCHED", true).apply();
+                stopGeolocationService();
             }
         }
     }
