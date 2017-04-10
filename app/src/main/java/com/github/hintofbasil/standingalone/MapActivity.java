@@ -74,6 +74,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
     private Vibrator vibrator;
 
     private NotificationManager notificationManager;
+    private MediaPlayer mediaPlayer;
 
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
@@ -272,6 +273,10 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         stopGeolocationService();
         noDataErrorHandler.removeCallbacks(noDataErrorHandlerRunnable);
         noGPSErrorHandler.removeCallbacks(noGPSErrorHandlerRunnable);
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     public void updateProgress(int progress, boolean showText) {
@@ -313,12 +318,9 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         remoteViews.setImageViewResource(R.id.notification_background, backgroundId);
         remoteViews.setImageViewResource(R.id.notification_character, characterId);
 
-        Uri uri = Uri.parse("android.resource://com.github.hintofbasil.standingalone/" + details.foundSoundFile);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.brownie)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setVibrate(new long[] {1000})
-                .setSound(uri)
                 .setContent(remoteViews);
 
         Intent intent = new Intent(this, LocationFoundActivity.class);
@@ -333,6 +335,16 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         builder.setContentIntent(pendingIntent);
 
         int notificationId = 001;
+
+        vibrator.vibrate(1000);
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        if (details.foundSoundFile > 0) {
+            mediaPlayer = MediaPlayer.create(this, details.foundSoundFile);
+            mediaPlayer.start();
+        }
 
         notificationManager.notify(notificationId, builder.build());
     }
