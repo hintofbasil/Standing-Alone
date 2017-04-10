@@ -1,6 +1,5 @@
 package com.github.hintofbasil.standingalone;
 
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -45,6 +44,9 @@ public class LocationFoundActivity extends BaseActivity {
 
     private MediaPlayer mediaPlayer;
     private int[] speechFiles;
+    private boolean isComplete;
+
+    private boolean isDebugMode;
 
     public LocationFoundActivity() {
         // Override title image in onCreate
@@ -55,6 +57,8 @@ public class LocationFoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
+
+        isComplete = false;
 
         timingHandler = new Handler();
         updateTextRunnable = new Runnable() {
@@ -105,8 +109,8 @@ public class LocationFoundActivity extends BaseActivity {
         speechTextView.setMovementMethod(new ScrollingMovementMethod());
 
         mapButton = (ImageView) findViewById(R.id.map_button);
-        boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
-        if (isDebuggable) {
+        isDebugMode = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
+        if (isDebugMode) {
             Log.d("LocationFoundCheater", "Debug mode enabled, map button visible");
             enableMapButton();
         }
@@ -142,6 +146,7 @@ public class LocationFoundActivity extends BaseActivity {
             speechBubbleBottomView.setImageDrawable(speechBubbleBottomRight);
         }
         if (textStatus == textArray.length -1) {
+            isComplete = true;
             enableMapButton();
             nextButton.setVisibility(View.INVISIBLE);
         } else {
@@ -163,7 +168,7 @@ public class LocationFoundActivity extends BaseActivity {
         }
         brownieSpeaking = !brownieSpeaking;
         textStatus++;
-        if (autoNext && textArray.length > textStatus) {
+        if (!isComplete && autoNext && textArray.length > textStatus) {
             // TODO find out why sometimes throws exception
             int delay;
             try {
@@ -186,6 +191,9 @@ public class LocationFoundActivity extends BaseActivity {
             }
         });
         mapButton.setVisibility(View.VISIBLE);
+        if (!isDebugMode) {
+            autoSpeechButton.setVisibility(View.GONE);
+        }
     }
 
     public void handleAutoSpeechButtonClick(View view) {
@@ -201,7 +209,7 @@ public class LocationFoundActivity extends BaseActivity {
             autoSpeechButton.setImageDrawable(pauseDrawable);
         } else {
             autoSpeechButton.setImageDrawable(playDrawable);
-            if (textArray.length > textStatus) {
+            if (!isComplete && textArray.length > textStatus) {
                 // TODO find out why sometimes throws exception
                 int delay;
                 try {
@@ -219,7 +227,9 @@ public class LocationFoundActivity extends BaseActivity {
     public void handleLeftButtonClick(View view) {
         textStatus -= 2;
         updateText();
-        setAutoNextEnabled(false);
+        if (!isComplete) {
+            setAutoNextEnabled(false);
+        }
     }
 
     public void handleRightButtonClick(View view) {
