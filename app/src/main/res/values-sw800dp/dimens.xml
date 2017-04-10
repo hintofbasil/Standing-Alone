@@ -33,9 +33,12 @@
     <dimen name="location_found_character_bottom_spacing">22dp</dimen>
     <dimen name="location_found_character_width">120dp</dimen>
     <dimen name="location_found_character_horizontal_padding">60dp</dimen>
-    <dimen name="location_found_text_size">30sp</dimen>
+    <dimen name="location_found_text_size">40sp</dimen>
+    <dimen name="location_found_padding">20dp</dimen>
     <!-- TODO remove hard coded height-->
     <dimen name="location_found_character_container_height">300dp</dimen>
+    <dimen name="location_found_play_pause_height">80dp</dimen>
+    <dimen name="location_found_play_pause_margin_horizontal">40dp</dimen>
 
     <!-- About Us -->
     <dimen name="about_us_treasure_height">400dp</dimen>

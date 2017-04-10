@@ -31,6 +31,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginBottom="0dp"
+            android:padding="@dimen/location_found_padding"
             android:layout_alignParentTop="true"
             android:layout_above="@+id/speech_bubble_bottom"
             android:textSize="@dimen/location_found_text_size"
@@ -53,7 +54,7 @@
         android:id="@+id/background_image_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/location_found_character_container_height"
-        android:layout_above="@+id/map_button" >
+        android:layout_above="@+id/navigation_buttons" >
 
         <ImageView
             android:id="@+id/background_image"
@@ -96,15 +97,59 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@id/map_button"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/navigation_buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/introduction_navigation_margin_left"
+        android:layout_marginRight="@dimen/introduction_navigation_margin_right"
         android:layout_marginTop="@dimen/map_button_margin_top"
         android:layout_marginBottom="@dimen/map_button_margin_bottom"
-        android:src="@drawable/map_button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
+        android:layout_alignParentBottom="true" >
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left_button"
+            android:clickable="true"
+            android:onClick="handleLeftButtonClick"
+            android:visibility="invisible"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/map_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map_button"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/auto_speech_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/location_found_play_pause_height"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:onClick="handleAutoSpeechButtonClick"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/location_found_play_pause_margin_horizontal"
+            android:layout_marginRight="@dimen/location_found_play_pause_margin_horizontal"
+            android:layout_toRightOf="@id/map_button"
+            android:layout_toEndOf="@id/map_button"/>
+
+        <ImageView
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_button"
+            android:clickable="true"
+            android:onClick="handleRightButtonClick"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
