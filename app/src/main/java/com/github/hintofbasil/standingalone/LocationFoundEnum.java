@@ -50,7 +50,7 @@ public enum LocationFoundEnum {
             1f, true, true, new int[] {5000, 11000, 15000, 11000, 6000, 15000}, R.raw.cait_sith_found,
             R.string.character_details_cait_sith,
             new int[] {R.raw.cait_sith1, R.raw.cait_sith2, R.raw.cait_sith3, R.raw.cait_sith4,
-            R.raw.cait_sith5, R.raw.cait_sith6}),
+            R.raw.cait_sith5, R.raw.cait_sith6, R.raw.cait_sith7}),
     BRIAN(R.drawable.brian_title, R.drawable.brian,
             R.drawable.brian_background, R.array.location_found_brian,
             1.6f, false, false, new int[] {15000}, R.raw.brian_found,
