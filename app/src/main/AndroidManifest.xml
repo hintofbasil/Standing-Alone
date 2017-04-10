@@ -29,9 +29,11 @@
         <activity
             android:name=".LocationFoundActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".aboutUs.AboutUsActivity"
+        <activity
+            android:name=".aboutUs.AboutUsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".aboutUs.CharacterDetailsActivity"
+        <activity
+            android:name=".aboutUs.CharacterDetailsActivity"
             android:screenOrientation="portrait" />
 
         <service
