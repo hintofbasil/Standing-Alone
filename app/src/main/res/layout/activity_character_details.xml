@@ -31,6 +31,7 @@
                 android:id="@+id/character_image"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/character_details_image_height"
+                android:adjustViewBounds="true"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
