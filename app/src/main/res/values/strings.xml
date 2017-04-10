@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Jupiter Artland: In Minecraft app</string>
-    <string name="story_welcome_text">Welcome\n\nto Jupiter Artland Treasure\nHunt Adventure</string>
+    <string name="story_welcome_text">Welcome\n\nto Jupiter Artland: In Minecraft App</string>
 
     <string name="preferences_file_key">com.github.hintofbasil.StandingAlone.preferences</string>
     <string name="preferences_locations_found_key">LOCATIONS_FOUND_KEY</string>
@@ -31,16 +31,16 @@
 
     <!-- Location Found -->
     <string-array name="location_found_brownie">
-        <item>"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary.<br />We should start with the Stone house. Something tells me one of my friends is hiding there. Let’s find out!"</item>
+        <item>"Hello again, thank you so much for helping me. I need to find out what happened, it’s important for me and my friends. The magic gold which allows us to travel between dimensions has disappeared. This mission is not easy because the other creatures are scared of humans.  With your help we will find out the truth but beware, the truth might be scary.  We should start with the Stone house.  Something tells me one of my friends is hiding there. Let’s find out!"</item>
     </string-array>
 
     <string-array name="location_found_glaistig">
         <item>"<b>Glaistig:</b> Hello Brownie, oh you’ve brought a human.  I haven’t seen humans for a while now. I can’t go back to our world and I’m not sure why."</item>
         <item>"<b>Brownie:</b> Hi old friend, did you notice anything odd?"</item>
-        <item>"<b>"Glaistig:</b> Well, I heard voices. I’m sure Brian and Blue Witch were looking for something, they had shovels, maybe they were digging. I’m sure it’s all fine, Brian was there. Don’t worry, he’s protecting us."</item>
+        <item>"<b>"Glaistig:</b> Well, I heard noises.  I’m sure Brian and Blue Witch were looking for something, they had shovels, maybe they were digging. I’m sure it’s all fine, Brian was there. Don’t worry, he’s protecting us."</item>
         <item>"<b>Brownie:</b> I don’t think so friend. Thank you, stay safe. Something strange is going on.  We need to talk to the others."</item>
         <item>"<b>Glaistig:</b> I think I saw Cu Sith somewhere in the forest near to the Temple of Apollo."</item>
-        <item>"The first creature you found with Brownie was Glaistig, who lived in  Stone House. When Asked by Brownie, he mentioned seeing Brian and Blue Witch looking for something with shovels. He advised you to ask Cu Sith, who lives near to The Temple of Apollo."</item>
+        <item>"The first creature you found with Brownie was Glaistig, who lived in  Stone House. When asked by Brownie, he mentioned seeing Brian and Blue Witch looking for something with shovels. He advised you to ask Cu Sith, who lives near to The Temple of Apollo."</item>
     </string-array>
 
     <string-array name="location_found_cu_sith">
@@ -54,7 +54,7 @@
     </string-array>
 
     <string-array name="location_found_blue_witch">
-        <item>"<b>Brownie:</b> (Be careful, she can be  dangerous! ) Hello Blue Witch are you there?"</item>
+        <item>"<b>Brownie:</b> (Be careful, she can be  dangerous!) Hello Blue Witch are you there?"</item>
         <item>"<b>Cailleach Bheur:</b> Oh no, not you… and you have noisy humans with you! Well, you humans are safe just as long you’re here with Brownie but don’t come back without him."</item>
         <item>"<b>Brownie:</b> Tell us witch, what you know about gold?"</item>
         <item>"<b>Cailleach Bheur:</b> Why do you ask, why are you bothering me about that?"</item>
@@ -114,14 +114,14 @@
     </string-array>
 
     <!-- Character Details -->
-    <string name="character_details_brownie">This small brown troll used to help the villagers who lived in the surrounding farms. Brownie lives underground, mostly around Suck, as this is the entrance to his home. He gets on with everyone, although is very shy and sometimes can be very defensive. He is afraid of Cait Sith, as Cait attacked him and some chickens in the past. He still takes care of all the farm animals in Jupiter Artland.</string>
+    <string name="character_details_brownie">This friendly goblin used to help the villagers who lived in the surrounding farms. Brownie lives underground, mostly around Suck, as this is the entrance to his home. He gets on with everyone, although is very shy and sometimes can be very defensive. He is afraid of Cait Sith, as Cait attacked him and some chickens in the past. He still takes care of all the farm animals in Jupiter Artland.</string>
     <string name="character_details_glaistig">Half-goat, half-human, Glaistig lives in the Stone House, because she likes the rocky floor. She is friends with Ceasg because she is half-human too. Glaistig visits Green Hills quite often as she can jump, run and climb.</string>
     <string name="character_details_cu_sith">A very old and wise large green fairy dog. He is gentle with children, but can be dangerous when getting protective over other characters. Cu Sith lives in and protects the forest area. The other creatures used to listen to him as the oldest and most powerful of the group. Now he is difficult to find and avoids company.</string>
-    <string name="character_details_blue_witch">A green water horse who lives in the Duck Pond. He likes to run through the meadows sometimes, and visit the Cristal Cave (Light Pours Out of Me). It used to be very friendly letting people to ride on their back but now they are not very trusty, sometimes even dangerous to people who come to close. It is a friend of Selkies and sometimes they swim together. The only creature who is friend of Caillneach Bheur. Sometimes they ride through the forest together.</string>
-    <string name="character_details_mermaid">This mermaid lives in the second part of ponds, next to Green Hills. If she is captured by a human she can grant 3 wishes. She is quite dangerous as she has been known to drag people under water and drown them. She avoids people now, but used to be very kind and helpful.</string>
-    <string name="character_details_selkie">These half –human, half – seals live in the left hand side pound next to Green Hills (Life Mounds). They are kind, gentle and very shy. They used to turn into the human form from time to time. Now they just stay in seal form, in order to be able to quickly swim away and hide in the water, which is deeper than it looks. When they run away, their eyes turn red. They like to swim with the Kelpie, and spend time with Ceasag which lives next to them.</string>
-    <string name="character_details_kelpie">A green water horse who lives in the Duck Pond. He likes to run through the meadows sometimes, and visit the Crystal Cave (Light Pours Out of Me). Kelpie used to be very friendly letting people ride on his back but now he is not very trusting, sometimes even dangerous to people who come too close. He is a friend of the Selkies and sometimes they swim together. Kelpie is the only creature who is friend of Caillneach Bheur, sometimes they ride through the forest together.</string>
-    <string name="character_details_cait_sith">This big black magic cat lives very long, and has known know Cu Sith for a long time. He lives at the Crystal Cave, as he protects its magical jewels. He use to give jewels to humans but now does not let anyone remove the magic stones. From time to time he visit Green Hills, to catch fish.</string>
-    <string name="character_details_brian">Brian used to be one of the villagers, jealous of the creatures’ magical powers. His lying and scheming has led to humans and the creatures mistrusting each other. Brian is the only mediator between the two groups meaning he has control over every situation. He uses the magical powers of the creatures to control the village. Brian lives in Tree House, from where he observes the whole of Jupiter Artland.</string>
+    <string name="character_details_blue_witch">A green water horse who lives in the Duck Pond. He likes to run through the meadows sometimes, and visit the Cristal Cave (Light Pours Out of Me). It used to be very friendly letting people to ride on their back but now they are not very trusty, sometimes even dangerous to people who come to close. It is a friend of Selkies and sometimes they swim together. The only creature who is friend of Cailleach Bheur. Sometimes they ride through the forest together.</string>
+    <string name="character_details_mermaid">This mermaid lives in the second part of ponds, next to the Green Hills. If she is captured by a human she can grant 3 wishes. She is quite dangerous as she has been known to drag people under water and drown them. She avoids people now, but used to be very kind and helpful.</string>
+    <string name="character_details_selkie">These half – human, half – seals live in the left hand side pound next to the Green Hills (Life Mounds). They are kind, gentle and very shy. They used to turn into the human form from time to time. Now they just stay in seal form, in order to be able to quickly swim away and hide in the water, which is deeper than it looks. When they run away, their eyes turn red. They like to swim with the Kelpie, and spend time with Ceasag which lives next to them.</string>
+    <string name="character_details_kelpie">A green water horse who lives in the Duck Pond. He likes to run through the meadows sometimes, and visit the Crystal Cave (Light Pours Out of Me). Kelpie used to be very friendly letting people ride on his back but now he is not very trusting, sometimes even dangerous to people who come too close. He is a friend of the Selkies and sometimes they swim together. Kelpie is the only creature who is friend of Cailleach Bheur, sometimes they ride through the forest together.</string>
+    <string name="character_details_cait_sith">This big black magic cat lives very long, and has known know Cu Sith for a long time. He lives at the Crystal Cave, as he protects its magical jewels. He used to give jewels to humans but now does not let anyone remove the magic stones. From time to time he visits the Green Hills, to catch fish.</string>
+    <string name="character_details_brian">Brian used to be one of the villagers, jealous of the creatures’ magical powers. His lying and scheming has led to the humans and the creatures mistrusting each other. Brian is the only mediator between the two groups meaning he has control over every situation. He uses the magical powers of the creatures to control the village. Brian lives in the Tree House, from where he observes the whole of Jupiter Artland.</string>
 
 </resources>
