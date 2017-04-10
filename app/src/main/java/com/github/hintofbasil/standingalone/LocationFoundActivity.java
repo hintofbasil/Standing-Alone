@@ -1,5 +1,6 @@
 package com.github.hintofbasil.standingalone;
 
+import android.app.NotificationManager;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -48,6 +49,8 @@ public class LocationFoundActivity extends BaseActivity {
 
     private boolean isDebugMode;
 
+    private NotificationManager notificationManager;
+
     public LocationFoundActivity() {
         // Override title image in onCreate
         super(R.drawable.glaistig_title, R.layout.activity_location_found);
@@ -57,6 +60,8 @@ public class LocationFoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_found);
+
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         isComplete = false;
 
@@ -124,6 +129,8 @@ public class LocationFoundActivity extends BaseActivity {
         textArray = getResources().getTextArray(details.textStringId);
         textTimings = details.textTimings;
         timingHandler.postDelayed(updateTextRunnable, 0);
+
+        notificationManager.cancelAll();
     }
 
     @Override
