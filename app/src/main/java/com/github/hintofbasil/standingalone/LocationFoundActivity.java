@@ -78,9 +78,9 @@ public class LocationFoundActivity extends BaseActivity {
         autoNext = getSharedPreferences("SETTINGS", MODE_PRIVATE).getBoolean(LOCATION_FOUND_AUTO_NEXT, false);
 
         if (autoNext) {
-            autoSpeechButton.setImageDrawable(playDrawable);
-        } else {
             autoSpeechButton.setImageDrawable(pauseDrawable);
+        } else {
+            autoSpeechButton.setImageDrawable(playDrawable);
         }
 
         speechBubbleBottomLeft = getResources().getDrawable(R.drawable.speech_bubble_bottom);
@@ -206,9 +206,9 @@ public class LocationFoundActivity extends BaseActivity {
         }
         if (!enabled) {
             timingHandler.removeCallbacks(updateTextRunnable);
-            autoSpeechButton.setImageDrawable(pauseDrawable);
-        } else {
             autoSpeechButton.setImageDrawable(playDrawable);
+        } else {
+            autoSpeechButton.setImageDrawable(pauseDrawable);
             if (!isComplete && textArray.length > textStatus) {
                 // TODO find out why sometimes throws exception
                 int delay;
