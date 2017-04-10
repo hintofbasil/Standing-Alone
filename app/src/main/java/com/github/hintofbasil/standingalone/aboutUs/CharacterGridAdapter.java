@@ -52,7 +52,6 @@ public class CharacterGridAdapter extends BaseAdapter {
         } else {
             imageView.setImageResource(details.characterDrawableId);
         }
-        imageView.setForegroundGravity(Gravity.CENTER_HORIZONTAL);
         return imageView;
     }
 
