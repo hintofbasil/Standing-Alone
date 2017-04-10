@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Jupiter Artland: In Minecraft app</string>
-    <string name="story_welcome_text">Welcome\n\nto Jupiter Artland: In Minecraft App</string>
+    <string name="story_welcome_text">Welcome\n\nto Jupiter Artland:\nIn Minecraft App</string>
 
     <string name="preferences_file_key">com.github.hintofbasil.StandingAlone.preferences</string>
     <string name="preferences_locations_found_key">LOCATIONS_FOUND_KEY</string>
