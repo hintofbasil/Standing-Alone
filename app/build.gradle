@@ -8,8 +8,8 @@ android {
         applicationId "com.github.hintofbasil.standingalone"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 03
-        versionName "0.3"
+        versionCode 04
+        versionName "0.4"
     }
     buildTypes {
         release {
