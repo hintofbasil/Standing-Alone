@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -69,6 +70,8 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
 
     private ImageView treasureIcon;
 
+    private Vibrator vibrator;
+
     public MapActivity() {
         super(R.drawable.map_title, R.layout.activity_map);
     }
@@ -81,6 +84,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
         backgroundServiceRunning = false;
 
         treasureIcon = (ImageView) findViewById(R.id.treasure_icon);
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         ImageView locationFoundCheater = (ImageView) findViewById(R.id.location_found_cheater);
         boolean isDebuggable = ( 0 != ( getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) );
@@ -389,6 +393,7 @@ public class MapActivity extends BaseActivity implements SharedPreferences.OnSha
             // Loctions found updated
             int progress = sharedPreferences.getInt(key, 0);
             if (!paused) {
+                vibrator.vibrate(1000);
                 updateProgress(progress, true);
             } else {
                 updateProgress(progress, false);
